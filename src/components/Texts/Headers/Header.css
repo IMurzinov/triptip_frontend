@@ -1,0 +1,21 @@
+.header {
+    color: var(--black);
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.pageHeader {
+    font-size: 32px;
+    line-height: normal; 
+}
+
+.sectionHeader {
+    font-size: 20px;
+    line-height: normal; 
+}
+
+.formHeader {
+    font-size: 14px;
+    line-height: 18px;
+}

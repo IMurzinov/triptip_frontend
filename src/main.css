@@ -2,6 +2,7 @@
 @import './components/Buttons/primary-button/PrimaryButton.css';
 @import './components/Buttons/secondary-button/SecondaryButton.css';
 @import './components/Buttons/danger-button/DangerButton.css';
+@import './components/Texts/Headers/Header.css';
 
 body, html {
     margin: 0;
