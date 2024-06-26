@@ -1,14 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import ProfileCard from './components/Cards/ProfileCard/ProfileCard';
+import PrimaryButton from './components/Buttons/primary-button/PrimaryButton';
 
 function App() {
   return (
-    // <Router>
-    //   <Switch>
-    //   </Switch>
-    // </Router>
-    <ProfileCard />
+    <div className='App'></div>
   );
 }
 
