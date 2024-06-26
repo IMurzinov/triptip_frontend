@@ -1,5 +1,6 @@
-@import '../src/styles/variables.css';
-@import '../src/components/Buttons/primary-button/PrimaryButton.css';
+@import './styles/variables.css';
+@import './components/Buttons/primary-button/PrimaryButton.css';
+@import './components/Buttons/secondary-button/SecondaryButton.css';
 
 body, html {
     margin: 0;

@@ -1,16 +1,16 @@
-.primaryButton {
+.secondaryButton {
     display: flex;
-    height: 34px;
     align-items: center;
+    height: 34px;
     padding: 8px 12px;
     gap: 8px;
 
     border: none;
     border-radius: 4px;
 
-    background-color: var(--primary-color);
+    background-color: rgba(255, 79, 24, 0.10);
+    color: var(--primary-color);
 
-    color: #FFF;
     font-family: Inter, sans-serif;
     font-size: 14px;
     font-style: normal;
