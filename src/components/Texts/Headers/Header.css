@@ -3,6 +3,7 @@
     font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: 600;
+    margin: 0;
 }
 
 .pageHeader {
@@ -18,4 +19,5 @@
 .formHeader {
     font-size: 14px;
     line-height: 18px;
+    margin-bottom: 4px;
 }
