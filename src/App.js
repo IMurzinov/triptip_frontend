@@ -7,9 +7,9 @@ import Header from './components/Texts/Headers/Header';
 function App() {
   return (
     <div className='App'>
-      <PrimaryButton className="primaryButton" text="Зарегистрироваться" onClick={() => { console.log('primaryButton click') }} />
-      <SecondaryButton className="secondaryButton" text="Добавить город" onClick={() => { console.log('secondaryButton click') }} />
-      <DangerButton className="dangerButton" text="Удалить аккаунт" onClick={() => { console.log('dangerButton click') }} />
+      <PrimaryButton className="primaryButton" text="Зарегистрироваться" onClick={() => { console.log('primaryButton click') }} type="submit" />
+      <SecondaryButton className="secondaryButton" text="Добавить город" onClick={() => { console.log('secondaryButton click') }} type="button" />
+      <DangerButton className="dangerButton" text="Удалить аккаунт" onClick={() => { console.log('dangerButton click') }} type="button" />
       <Header className="pageHeader" text="Регистрация" />
       <Header className="sectionHeader" text="Общая информация" />
       <Header className="formHeader" text="Город" />

@@ -17,3 +17,7 @@
     font-weight: 600;
     line-height: 18px;
 }
+
+.primaryButton:hover {
+    cursor: pointer;
+}
