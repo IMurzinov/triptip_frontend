@@ -1,0 +1,28 @@
+.sign-up-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 52px;
+
+    width: 502px;
+    margin: auto;
+}
+
+.sign-up-form__personal-data {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px; 
+}
+
+.sign-up-form__password {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px; 
+}
+
+.sign-up-form__buttons {
+    display: flex;
+    gap: 20px;
+}

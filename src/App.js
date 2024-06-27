@@ -4,6 +4,7 @@ import SecondaryButton from './components/Buttons/secondary-button/SecondaryButt
 import DangerButton from './components/Buttons/danger-button/DangerButton';
 import Header from './components/Texts/Headers/Header';
 import FormInput from './components/Inputs/FormInput';
+import SignUpForm from './components/Forms/sign-up/SignUpForm';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         onChange={() => console.log("field's changed")}
         requiered
       />
+      <SignUpForm />
     </div>
   );
 }

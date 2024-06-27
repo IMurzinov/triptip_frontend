@@ -1,7 +1,7 @@
 import React from "react";
 import './FormInput.css';
 
-const FormInput = ({ label, type, placeholder, name, value, onChange }) => {
+const FormInput = ({ label, type, placeholder, name, value, onChange, autocomplete }) => {
     return (
         <div className="formInput">
             <label className="formInput__label">{label}
@@ -12,6 +12,7 @@ const FormInput = ({ label, type, placeholder, name, value, onChange }) => {
                     name={name}
                     value={value}
                     onChange={onChange}
+                    autoComplete={autocomplete}
                     required
                 />
             </label>
