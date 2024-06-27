@@ -1,0 +1,27 @@
+.formInput__label {
+    display: block;
+}
+  
+  
+.formInput__field {
+    width: 100%;
+    max-width: 450px;
+    height: 36px;
+    padding: 8px 12px;
+    font-size: 16px;
+    color: var(--black);
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+  
+  
+.formInput__field::placeholder {
+    color: var(--grey);
+    opacity: 1;
+}
+
+.formInput__field:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
