@@ -25,11 +25,11 @@ const SignUpForm = ({}) => {
     
     return (
         <form className="sign-up-form" name="sign-up-form" action="" method="post">
-            <Header className="pageHeader" text="Регистрация" />
+            <Header className="page-header" text="Регистрация" />
             <div className="sign-up-form__personal-data">
-                <Header className="sectionHeader" text="Общая информация" style={{ marginBottom: "4px" }} />
+                <Header className="section-header" text="Общая информация" style={{ marginBottom: "4px" }} />
                 <FormInput
-                    label={<Header className="formHeader" text="Имя"/>}
+                    label={<Header className="form-header" text="Имя"/>}
                     type="text"
                     placeholder="Иван"
                     name="name"
@@ -39,7 +39,7 @@ const SignUpForm = ({}) => {
                     requiered
                 />
                 <FormInput
-                    label={<Header className="formHeader" text="Фамилия"/>}
+                    label={<Header className="form-header" text="Фамилия"/>}
                     type="text"
                     placeholder="Иванов"
                     name="surname"
@@ -49,7 +49,7 @@ const SignUpForm = ({}) => {
                     requiered
                 />
                 <FormInput
-                    label={<Header className="formHeader" text="Электронная почта"/>}
+                    label={<Header className="form-header" text="Электронная почта"/>}
                     type="email"
                     placeholder="something@smth.com"
                     name="email"
@@ -59,7 +59,7 @@ const SignUpForm = ({}) => {
                     requiered
                 />
                 <FormInput
-                    label={<Header className="formHeader" text="Телефон"/>}
+                    label={<Header className="form-header" text="Телефон"/>}
                     type="tel"
                     placeholder="+7(XXX)XXX-XX-XX"
                     name="phone"
@@ -69,7 +69,7 @@ const SignUpForm = ({}) => {
                     requiered
                 />
                 <FormInput
-                    label={<Header className="formHeader" text="Дата рождения"/>}
+                    label={<Header className="form-header" text="Дата рождения"/>}
                     type="date"
                     placeholder="20.01.1995"
                     name="dob"
@@ -80,9 +80,9 @@ const SignUpForm = ({}) => {
                 />
             </div>
             <div className="sign-up-form__password">
-                <Header className="sectionHeader" text="Создание пароля" style={{ marginBottom: "4px" }} />
+                <Header className="section-header" text="Создание пароля" style={{ marginBottom: "4px" }} />
                 <FormInput
-                    label={<Header className="formHeader" text="Введите пароль"/>}
+                    label={<Header className="form-header" text="Введите пароль"/>}
                     type="password"
                     placeholder=""
                     name="password"
@@ -92,7 +92,7 @@ const SignUpForm = ({}) => {
                     requiered
                 />
                 <FormInput
-                    label={<Header className="formHeader" text="Повторите пароль"/>}
+                    label={<Header className="form-header" text="Повторите пароль"/>}
                     type="password"
                     placeholder=""
                     name="confirmPassword"
@@ -104,13 +104,13 @@ const SignUpForm = ({}) => {
             </div>
             <div className="sign-up-form__buttons">
                 <PrimaryButton
-                    className="primaryButton"
+                    className="primary-button"
                     text="Зарегистрироваться"
                     onClick={() => { console.log('primaryButton click') }}
                     type="submit"
                 />
                 <SecondaryButton
-                    className="secondaryButton"
+                    className="secondary-button"
                     text="Отменить"
                     onClick={() => { console.log('secondaryButton click') }}
                     type="button"

@@ -10,14 +10,14 @@ import AuthForm from './components/Forms/auth/AuthForm';
 function App() {
   return (
     <div className='App'>
-      <PrimaryButton className="primaryButton" text="Зарегистрироваться" onClick={() => { console.log('primaryButton click') }} type="submit" />
-      <SecondaryButton className="secondaryButton" text="Добавить город" onClick={() => { console.log('secondaryButton click') }} type="button" />
-      <DangerButton className="dangerButton" text="Удалить аккаунт" onClick={() => { console.log('dangerButton click') }} type="button" />
-      <Header className="pageHeader" text="Регистрация" />
-      <Header className="sectionHeader" text="Общая информация" />
-      <Header className="formHeader" text="Город" />
+      <PrimaryButton className="primary-button" text="Зарегистрироваться" onClick={() => { console.log('primaryButton click') }} type="submit" />
+      <SecondaryButton className="secondary-button" text="Добавить город" onClick={() => { console.log('secondaryButton click') }} type="button" />
+      <DangerButton className="danger-button" text="Удалить аккаунт" onClick={() => { console.log('dangerButton click') }} type="button" />
+      <Header className="page-header" text="Регистрация" />
+      <Header className="section-header" text="Общая информация" />
+      <Header className="form-header" text="Город" />
       <FormInput
-        label={<Header className="formHeader" text="Телефон"/>}
+        label={<Header className="form-header" text="Телефон"/>}
         type="tel"
         placeholder="+7(XXX)XXX-XX-XX"
         name="phone"
