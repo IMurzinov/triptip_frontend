@@ -5,6 +5,7 @@
 @import './components/Texts/Headers/Header.css';
 @import './components/Inputs/FormInput.css';
 @import './components/Forms/sign-up/SignUpForm.css';
+@import './components/Forms/auth/AuthForm.css';
 
 body, html {
     margin: 0;

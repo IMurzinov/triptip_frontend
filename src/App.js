@@ -5,6 +5,7 @@ import DangerButton from './components/Buttons/danger-button/DangerButton';
 import Header from './components/Texts/Headers/Header';
 import FormInput from './components/Inputs/FormInput';
 import SignUpForm from './components/Forms/sign-up/SignUpForm';
+import AuthForm from './components/Forms/auth/AuthForm';
 
 function App() {
   return (
