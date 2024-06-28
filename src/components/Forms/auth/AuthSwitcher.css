@@ -1,0 +1,47 @@
+.auth-switcher {
+    width: 100%;
+    max-width: 502px;
+}
+  
+.toggle-buttons {
+    display: flex;
+    gap: 0;
+    position: relative;
+    border-bottom: 2px solid var(--light-grey);
+    margin-bottom: 12px;
+}
+  
+.toggle-button {
+    background: none;
+
+    border: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+
+    padding: 12px 16px;
+    cursor: pointer;
+    outline: none;
+
+    
+}
+  
+.toggle-button.active {
+    border-bottom: 2px solid var(--primary-color);
+}
+  
+.form-wrapper {
+    padding-top: 28px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+}

@@ -5,7 +5,7 @@ import Header from '../../Texts/Headers/Header';
 import PrimaryButton from "../../Buttons/primary-button/PrimaryButton";
 import SecondaryButton from "../../Buttons/secondary-button/SecondaryButton";
 
-const SignUpForm = ({}) => {
+const SignUpForm = () => {
     const [formData, setFormData] = useState({
         name: '',
         surname: '',
@@ -36,7 +36,7 @@ const SignUpForm = ({}) => {
                     value={formData.name}
                     onChange={handleChange}
                     autocomplete="given-name"
-                    requiered
+                    required
                 />
                 <FormInput
                     label={<Header className="form-header" text="Фамилия"/>}
@@ -46,7 +46,7 @@ const SignUpForm = ({}) => {
                     value={formData.surname}
                     onChange={handleChange}
                     autocomplete="family-name"
-                    requiered
+                    required
                 />
                 <FormInput
                     label={<Header className="form-header" text="Электронная почта"/>}
@@ -56,7 +56,7 @@ const SignUpForm = ({}) => {
                     value={formData.email}
                     onChange={handleChange}
                     autocomplete="email"
-                    requiered
+                    required
                 />
                 <FormInput
                     label={<Header className="form-header" text="Телефон"/>}
@@ -66,7 +66,7 @@ const SignUpForm = ({}) => {
                     value={formData.phone}
                     onChange={handleChange}
                     autocomplete="tel"
-                    requiered
+                    required
                 />
                 <FormInput
                     label={<Header className="form-header" text="Дата рождения"/>}
@@ -76,7 +76,7 @@ const SignUpForm = ({}) => {
                     value={formData.dob}
                     onChange={handleChange}
                     autocomplete="off"
-                    requiered
+                    required
                 />
             </div>
             <div className="sign-up-form__password">
@@ -89,7 +89,7 @@ const SignUpForm = ({}) => {
                     value={formData.password}
                     onChange={handleChange}
                     autocomplete="off"
-                    requiered
+                    required
                 />
                 <FormInput
                     label={<Header className="form-header" text="Повторите пароль"/>}
@@ -99,7 +99,7 @@ const SignUpForm = ({}) => {
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     autocomplete="off"
-                    requiered
+                    required
                 />
             </div>
             <div className="sign-up-form__buttons">
