@@ -1,33 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import './AuthForm.css';
 import Header from '../../Texts/Headers/Header';
-import FormInput from '../../Inputs/FormInput';
 import PrimaryButton from '../../Buttons/primary-button/PrimaryButton';
 import SecondaryButton from '../../Buttons/secondary-button/SecondaryButton';
+import AuthSwitcher from "./AuthSwitcher";
 
-const AuthForm = ({}) => {
-    const [formData, setFormData] = useState({
-        tel: "",
-        email: "",
-        password: "",
-    });
-
-    const [isEmailVisible, setIsEmailVisible] =useState(true);
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const toggleInput = () => {
-        setIsEmailVisible(!isFirstVisible);
-    };
-        
+const AuthForm = () => {    
     return (
         <div className="auth-form">
-            
+            <Header className="page-header" text="Вход или регистрация" />
+            <div className="auth-form__data">
+                <AuthSwitcher />
+            </div>
+            <div className="auth-form__buttons">
+                <PrimaryButton
+                    className="primary-button"
+                    text="Войти"
+                    onClick={() => { console.log('primaryButton click') }}
+                    type="submit"
+                />
+                <SecondaryButton
+                    className="secondary-button"
+                    text="Зарегистрироваться"
+                    onClick={() => { console.log('secondaryButton click') }}
+                    type="button"
+                />
+            </div>
         </div>
     );
 };

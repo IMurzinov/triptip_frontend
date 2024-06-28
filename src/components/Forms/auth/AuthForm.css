@@ -1,3 +1,14 @@
 .auth-form {
-    
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 52px;
+
+    width: 502px;
+    margin: auto;
+}
+
+.auth-form__buttons {
+    display: flex;
+    gap: 20px;
 }
