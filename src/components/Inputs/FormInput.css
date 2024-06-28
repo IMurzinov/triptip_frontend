@@ -1,10 +1,10 @@
-.formInput__label {
+.form-input__label {
     display: block;
     width: 100%;
 }
   
   
-.formInput__field {
+.form-input__field {
     width: 100%;
     max-width: 502px;
     height: 36px;
@@ -17,12 +17,12 @@
 }
   
   
-.formInput__field::placeholder {
+.form-input__field::placeholder {
     color: var(--grey);
     opacity: 1;
 }
 
-.formInput__field:focus {
+.form-input__field:focus {
     outline: none;
     border-color: var(--primary-color);
 }

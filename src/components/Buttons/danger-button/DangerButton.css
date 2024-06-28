@@ -1,4 +1,4 @@
-.dangerButton {
+.danger-button {
     display: flex;
     text-align: center;
     height: 34px;
@@ -17,6 +17,6 @@
     line-height: 18px;
 }
 
-.dangerButton:hover {
+.danger-button:hover {
     cursor: pointer;
 }
