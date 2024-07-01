@@ -8,6 +8,13 @@
     margin: auto;
 }
 
+.auth-form__data-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 52px;
+}
+
 .auth-form__buttons {
     display: flex;
     gap: 20px;

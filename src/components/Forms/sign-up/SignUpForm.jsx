@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
+import { Button, Header, Input } from '../../index';
+
 import './SignUpForm.css';
-import FormInput from '../../Inputs/FormInput';
-import Header from '../../Texts/Headers/Header';
-import PrimaryButton from "../../Buttons/primary-button/PrimaryButton";
-import SecondaryButton from "../../Buttons/secondary-button/SecondaryButton";
 
 const SignUpForm = () => {
     const [formData, setFormData] = useState({
@@ -28,7 +27,7 @@ const SignUpForm = () => {
             <Header className="page-header" text="Регистрация" />
             <div className="sign-up-form__personal-data">
                 <Header className="section-header" text="Общая информация" style={{ marginBottom: "4px" }} />
-                <FormInput
+                <Input
                     label={<Header className="form-header" text="Имя"/>}
                     type="text"
                     placeholder="Иван"
@@ -38,7 +37,7 @@ const SignUpForm = () => {
                     autocomplete="given-name"
                     required
                 />
-                <FormInput
+                <Input
                     label={<Header className="form-header" text="Фамилия"/>}
                     type="text"
                     placeholder="Иванов"
@@ -48,7 +47,7 @@ const SignUpForm = () => {
                     autocomplete="family-name"
                     required
                 />
-                <FormInput
+                <Input
                     label={<Header className="form-header" text="Электронная почта"/>}
                     type="email"
                     placeholder="something@smth.com"
@@ -58,7 +57,7 @@ const SignUpForm = () => {
                     autocomplete="email"
                     required
                 />
-                <FormInput
+                <Input
                     label={<Header className="form-header" text="Телефон"/>}
                     type="tel"
                     placeholder="+7(XXX)XXX-XX-XX"
@@ -68,7 +67,7 @@ const SignUpForm = () => {
                     autocomplete="tel"
                     required
                 />
-                <FormInput
+                <Input
                     label={<Header className="form-header" text="Дата рождения"/>}
                     type="date"
                     placeholder="20.01.1995"
@@ -81,7 +80,7 @@ const SignUpForm = () => {
             </div>
             <div className="sign-up-form__password">
                 <Header className="section-header" text="Создание пароля" style={{ marginBottom: "4px" }} />
-                <FormInput
+                <Input
                     label={<Header className="form-header" text="Введите пароль"/>}
                     type="password"
                     placeholder=""
@@ -91,7 +90,7 @@ const SignUpForm = () => {
                     autocomplete="off"
                     required
                 />
-                <FormInput
+                <Input
                     label={<Header className="form-header" text="Повторите пароль"/>}
                     type="password"
                     placeholder=""
@@ -103,13 +102,13 @@ const SignUpForm = () => {
                 />
             </div>
             <div className="sign-up-form__buttons">
-                <PrimaryButton
+                <Button
                     className="primary-button"
                     text="Зарегистрироваться"
                     onClick={() => { console.log('primaryButton click') }}
                     type="submit"
                 />
-                <SecondaryButton
+                <Button
                     className="secondary-button"
                     text="Отменить"
                     onClick={() => { console.log('secondaryButton click') }}
