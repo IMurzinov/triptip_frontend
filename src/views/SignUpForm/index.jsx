@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import { Button, Header, Input } from '../../index';
+import { Button, Header, Input } from '../../components';
 
-import './SignUpForm.css';
+import './index.css';
 
 const SignUpForm = () => {
     const [formData, setFormData] = useState({

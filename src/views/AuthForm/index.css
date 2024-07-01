@@ -19,3 +19,14 @@
     display: flex;
     gap: 20px;
 }
+  
+.form-wrapper {
+    padding-top: 28px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+}

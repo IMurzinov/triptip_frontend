@@ -4,9 +4,9 @@
 @import './components/Header/index.css';
 @import './components/Input/index.css';
 
-@import './components/Forms/sign-up/SignUpForm.css';
-@import './components/Forms/auth/AuthForm.css';
-@import './components/Forms/auth/AuthSwitcher.css';
+@import './views/SignUpForm/index.css';
+@import './views/AuthForm/index.css';
+@import './views/Toggler/index.css';
 
 body, html {
     margin: 0;

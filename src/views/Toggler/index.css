@@ -34,14 +34,3 @@
 .toggle-button.active {
     border-bottom: 2px solid var(--primary-color);
 }
-  
-.form-wrapper {
-    padding-top: 28px;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 28px;
-}
