@@ -1,7 +1,5 @@
 @import './styles/variables.css';
-@import './components/Buttons/primary-button/PrimaryButton.css';
-@import './components/Buttons/secondary-button/SecondaryButton.css';
-@import './components/Buttons/danger-button/DangerButton.css';
+@import './components/Button/index.css';
 @import './components/Texts/Headers/Header.css';
 @import './components/Inputs/FormInput.css';
 @import './components/Forms/sign-up/SignUpForm.css';
