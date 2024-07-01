@@ -1,7 +1,9 @@
 @import './styles/variables.css';
+
 @import './components/Button/index.css';
-@import './components/Texts/Headers/Header.css';
-@import './components/Inputs/FormInput.css';
+@import './components/Header/index.css';
+@import './components/Input/index.css';
+
 @import './components/Forms/sign-up/SignUpForm.css';
 @import './components/Forms/auth/AuthForm.css';
 @import './components/Forms/auth/AuthSwitcher.css';

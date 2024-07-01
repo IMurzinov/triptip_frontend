@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react'
+
+import { Header, Input} from '../../index';
+
 import './AuthSwitcher.css';
-import FormInput from '../../Inputs/FormInput';
-import Header from '../../Texts/Headers/Header';
 
 const AuthSwitcher = () => {
     const [formData, setFormData] = useState({
@@ -42,7 +43,7 @@ const AuthSwitcher = () => {
       <div className="form-wrapper">
         {isEmailVisible ? (
           <div className="form email-form">
-            <FormInput
+            <Input
                 label={<Header className="form-header" text="Электронная почта"/>}
                 type="email"
                 placeholder="something@smth.com"
@@ -52,7 +53,7 @@ const AuthSwitcher = () => {
                 autocomplete="email"
                 required
             />
-            <FormInput
+            <Input
                 label={<Header className="form-header" text="Пароль"/>}
                 type="password"
                 placeholder="********"
@@ -65,7 +66,7 @@ const AuthSwitcher = () => {
           </div>
         ) : (
           <div className="form phone-form">
-            <FormInput
+            <Input
                 label={<Header className="form-header" text="Телефон"/>}
                 type="tel"
                 placeholder="+7(XXX)XXX-XX-XX"
@@ -75,7 +76,7 @@ const AuthSwitcher = () => {
                 autocomplete="tel"
                 required
             />
-            <FormInput
+            <Input
                 label={<Header className="form-header" text="Пароль"/>}
                 type="password"
                 placeholder="********"

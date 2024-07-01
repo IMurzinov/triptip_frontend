@@ -1,7 +1,6 @@
-import React from "react";
-import './FormInput.css';
+import './index.css';
 
-const FormInput = ({ label, type, placeholder, name, value, onChange, autocomplete }) => {
+const Input = ({ label, type, placeholder, name, value, onChange, autocomplete }) => {
     return (
         <div className="form-input">
             <label className="form-input__label">{label}
@@ -20,4 +19,4 @@ const FormInput = ({ label, type, placeholder, name, value, onChange, autocomple
     );
 };
 
-export default FormInput;
+export default Input;
