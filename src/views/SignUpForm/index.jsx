@@ -1,10 +1,32 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { Button, Header, Input } from '../../components';
 
 import './index.css';
 
 const SignUpForm = () => {
+    const { 
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors, isSubmitting },
+    } = useForm();
+
+    const onSubmit = async (data) => {
+        try {
+            // setTimeout имитирует задержку ответа сервера для теста кнопки disabled
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            // Позднее throw new Error() необходимо заменить на обработку ответа сервера и только в определенных случаях вызывать ошибку setError
+            throw new Error();
+            console.log(data); 
+        } catch (error) {
+            setError("email", {
+                message: "Этот адрес электронной почты уже зарегистрирован",
+            });
+        }
+    };
+
     const [formData, setFormData] = useState({
         name: '',
         surname: '',
@@ -24,95 +46,154 @@ const SignUpForm = () => {
     };
     
     return (
-        <form className="sign-up-form" name="sign-up-form" action="" method="post">
+        <form
+            className="sign-up-form"
+            name="sign-up-form"
+            action=""
+            method="post"
+            onSubmit={handleSubmit(onSubmit)}
+        >
             <Header className="page-header" text="Регистрация" />
             <div className="sign-up-form__personal-data">
                 <Header className="section-header" text="Общая информация" style={{ marginBottom: "4px" }} />
-                <Input
-                    label={<Header className="form-header" text="Имя"/>}
-                    type="text"
-                    placeholder="Иван"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    autocomplete="given-name"
-                    required
-                />
-                <Input
-                    label={<Header className="form-header" text="Фамилия"/>}
-                    type="text"
-                    placeholder="Иванов"
-                    name="surname"
-                    value={formData.surname}
-                    onChange={handleChange}
-                    autocomplete="family-name"
-                    required
-                />
-                <Input
-                    label={<Header className="form-header" text="Электронная почта"/>}
-                    type="email"
-                    placeholder="something@smth.com"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    autocomplete="email"
-                    required
-                />
-                <Input
-                    label={<Header className="form-header" text="Телефон"/>}
-                    type="tel"
-                    placeholder="+7(XXX)XXX-XX-XX"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    autocomplete="tel"
-                    required
-                />
-                <Input
-                    label={<Header className="form-header" text="Дата рождения"/>}
-                    type="date"
-                    placeholder="20.01.1995"
-                    name="dob"
-                    value={formData.dob}
-                    onChange={handleChange}
-                    autocomplete="off"
-                    required
-                />
+                <div className="input-container">
+                    <Input
+                        register={register("name", {
+                            required: "Введите имя",
+                            pattern: {
+                                value: /^[a-zA-Zа-яА-ЯёЁ]+$/,
+                                message: "Только латиница или кириллица"
+                            }
+                        })}
+                        label={<Header className="form-header" text="Имя"/>}
+                        type="text"
+                        placeholder="Иван"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        autocomplete="given-name"
+                    />
+                    {errors.name && <div className="error-message">{errors.name.message}</div>}
+                </div>
+                <div className="input-container">
+                    <Input
+                        register={register("surname", {
+                            required: "Введите фамилию",
+                            pattern: {
+                                value: /^[a-zA-Zа-яА-ЯёЁ]+$/,
+                                message: "Только латиница или кириллица"
+                            }
+                        })}
+                        label={<Header className="form-header" text="Фамилия"/>}
+                        type="text"
+                        placeholder="Иванов"
+                        name="surname"
+                        value={formData.surname}
+                        onChange={handleChange}
+                        autocomplete="family-name"
+                    />
+                    {errors.surname && <div className="error-message">{errors.surname.message}</div>}
+                </div>
+                <div className="input-container">
+                    <Input
+                        register={register("email", {
+                            required: "Введите email",
+                        })}
+                        label={<Header className="form-header" text="Электронная почта"/>}
+                        type="email"
+                        placeholder="something@smth.com"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        autocomplete="email"
+                    />
+                    {errors.email && <div className="error-message">{errors.email.message}</div>}
+                </div>
+                <div className="input-container">
+                    <Input
+                        register={register("phone", {
+                            required: "Введите номер телефона",
+                        })}
+                        label={<Header className="form-header" text="Телефон"/>}
+                        type="tel"
+                        placeholder="+7(XXX)XXX-XX-XX"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        autocomplete="tel"
+                    />
+                    {errors.phone && <div className="error-message">{errors.phone.message}</div>}
+                </div>
+                <div className="input-container">
+                    <Input
+                        register={register("dob", {
+                            required: "Введите дату рождения",
+                        })}
+                        label={<Header className="form-header" text="Дата рождения"/>}
+                        type="date"
+                        placeholder="20.01.1995"
+                        name="dob"
+                        value={formData.dob}
+                        onChange={handleChange}
+                        autocomplete="off"
+                    />
+                    {errors.dob && <div className="error-message">{errors.dob.message}</div>}
+                </div>
             </div>
             <div className="sign-up-form__password">
                 <Header className="section-header" text="Создание пароля" style={{ marginBottom: "4px" }} />
-                <Input
-                    label={<Header className="form-header" text="Введите пароль"/>}
-                    type="password"
-                    placeholder=""
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    autocomplete="off"
-                    required
-                />
-                <Input
-                    label={<Header className="form-header" text="Повторите пароль"/>}
-                    type="password"
-                    placeholder=""
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    autocomplete="off"
-                    required
-                />
+                <div className="input-container">
+                    <Input
+                        register={register("password", {
+                            required: "Введите пароль",
+                            minLength: {
+                                value: 8,
+                                message: "Пароль должен содержать не менее 8 символов"
+                            }
+                        })}
+                        label={<Header className="form-header" text="Введите пароль"/>}
+                        type="password"
+                        placeholder=""
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        autocomplete="off"
+                    />
+                    {errors.password && <div className="error-message">{errors.password.message}</div>}
+                </div>
+                <div className="input-container">
+                    <Input
+                        register={register("confirmPassword", {
+                            required: "Подтвердите пароль",
+                            validate: (value) => {
+                                if (formData.password === value) {
+                                    return true;
+                                }
+                                return "Пароли не совпадают";
+                            }, 
+                        })}
+                        label={<Header className="form-header" text="Повторите пароль"/>}
+                        type="password"
+                        placeholder=""
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
+                        autocomplete="off"
+                    />
+                    {errors.confirmPassword && <div className="error-message">{errors.confirmPassword.message}</div>}
+                </div>    
             </div>
             <div className="sign-up-form__buttons">
                 <Button
+                    disabled={isSubmitting}
                     className="primary-button"
                     text="Зарегистрироваться"
-                    onClick={() => { console.log('primaryButton click') }}
                     type="submit"
                 />
                 <Button
+                    disabled={isSubmitting}
                     className="secondary-button"
                     text="Отменить"
-                    onClick={() => { console.log('secondaryButton click') }}
                     type="button"
                 />
             </div>
