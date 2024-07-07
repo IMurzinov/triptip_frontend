@@ -35,3 +35,12 @@
     background-color: var(--danger-red-1);
     color: var(--danger-red-2);
 }
+
+[aria-disabled="true"] {
+    opacity: 0.7;
+}
+
+[aria-disabled="true"]:focus {
+    cursor: default;
+}
+
