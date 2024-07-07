@@ -30,3 +30,15 @@
     align-items: stretch;
     gap: 28px;
 }
+
+.error-message {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    color:  var(--danger-red-2);
+    font-size: 12px;
+}
+
+.input-container {
+    position: relative;
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { Toggler } from "../index";
 import { Button, Header, Input } from '../../components';
@@ -6,6 +7,24 @@ import { Button, Header, Input } from '../../components';
 import './index.css';
 
 const AuthForm = () => {
+    const {
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors, isSubmitting },
+    } = useForm();
+
+    const onSubmit = async (data) => {
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            throw new Error();
+            console.log(data);
+        } catch (error) {
+            setError("email", {
+                message: "Неверный пароль и/или логин",
+            });
+        }
+    };
 
     const [formData, setFormData] = useState({
         tel: "",
@@ -31,7 +50,13 @@ const AuthForm = () => {
     return (
         <div className="auth-form">
             <Header className="page-header" text="Вход или регистрация" />
-            <form className="auth-form__data-wrapper">
+            <form
+                className="auth-form__data-wrapper"
+                name="auth-form"
+                action=""
+                method=""
+                onSubmit={handleSubmit(onSubmit)}
+            >
                 <div className="auth-form__data">
                     <Toggler
                         isEmailVisible={isEmailVisible}
@@ -40,49 +65,69 @@ const AuthForm = () => {
                     <div className="form-wrapper">
                         {isEmailVisible ? (
                         <div className="form email-form">
-                            <Input
-                                label={<Header className="form-header" text="Электронная почта"/>}
-                                type="email"
-                                placeholder="something@smth.com"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                autocomplete="email"
-                                required
-                            />
-                            <Input
-                                label={<Header className="form-header" text="Пароль"/>}
-                                type="password"
-                                placeholder="********"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                autocomplete="off"
-                                required
-                            />
+                            <div className="input-container">
+                                <Input
+                                    register={register("email", {
+                                        required: "Введите email",
+                                    })}
+                                    label={<Header className="form-header" text="Электронная почта"/>}
+                                    type="email"
+                                    placeholder="something@smth.com"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    autocomplete="email"
+                                />
+                                {errors.email && <div className="error-message">{errors.email.message}</div>}
+                            </div>
+                            <div className="input-container">
+                                <Input
+                                    register={register("password", {
+                                        required: "Введите пароль",
+                                    })}
+                                    label={<Header className="form-header" text="Пароль"/>}
+                                    type="password"
+                                    placeholder="********"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    autocomplete="off"
+                                />
+                                {errors.password && <div className="error-message">{errors.password.message}</div>}
+                            </div>    
                         </div>
                         ) : (
                         <div className="form phone-form">
-                            <Input
-                                label={<Header className="form-header" text="Телефон"/>}
-                                type="tel"
-                                placeholder="+7(XXX)XXX-XX-XX"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                autocomplete="tel"
-                                required
-                            />
-                            <Input
-                                label={<Header className="form-header" text="Пароль"/>}
-                                type="password"
-                                placeholder="********"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                autocomplete="off"
-                                required
-                            />
+                            <div className="input-container">
+                                <Input
+                                    register={register("phone", {
+                                        required: "Введите телефон",
+                                    })}
+                                    label={<Header className="form-header" text="Телефон"/>}
+                                    type="tel"
+                                    placeholder="+7(XXX)XXX-XX-XX"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    autocomplete="tel"
+                                />
+                                {errors.phone && <div className="error-message">{errors.phone.message}</div>}
+                            </div>
+                            <div className="input-container">
+                                <Input
+                                    register={register("password", {
+                                        required: "Введите пароль",
+                                    })}
+                                    label={<Header className="form-header" text="Пароль"/>}
+                                    type="password"
+                                    placeholder="********"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    autocomplete="off"
+                                />
+                                {errors.password && <div className="error-message">{errors.password.message}</div>}
+                            </div>
                         </div>
                         )}
                     </div>
@@ -91,13 +136,13 @@ const AuthForm = () => {
                     <Button
                         className="primary-button"
                         text="Войти"
-                        onClick={() => { console.log('primaryButton click') }}
+                        disabled={isSubmitting}
                         type="submit"
                     />
                     <Button
                         className="secondary-button"
                         text="Зарегистрироваться"
-                        onClick={() => { console.log('secondaryButton click') }}
+                        disabled={isSubmitting}
                         type="button"
                     />
                 </div>
