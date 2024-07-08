@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { GoEye, GoEyeClosed } from "react-icons/go";
 
 import { Button, Header, Input } from '../../components';
 
@@ -36,6 +37,8 @@ const SignUpForm = () => {
         password: '',
         confirmPassword: '',
     });
+
+    const [passwordIsVisible, setPasswordIsVisible] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -143,43 +146,59 @@ const SignUpForm = () => {
             <div className="sign-up-form__password">
                 <Header className="section-header" text="Создание пароля" style={{ marginBottom: "4px" }} />
                 <div className="input-container">
-                    <Input
-                        register={register("password", {
-                            required: "Введите пароль",
-                            minLength: {
-                                value: 8,
-                                message: "Пароль должен содержать не менее 8 символов"
-                            }
-                        })}
-                        label={<Header className="form-header" text="Введите пароль"/>}
-                        type="password"
-                        placeholder=""
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        autocomplete="off"
-                    />
+                    <div className="password-field-container">
+                        <Input
+                            register={register("password", {
+                                required: "Введите пароль",
+                                minLength: {
+                                    value: 8,
+                                    message: "Пароль должен содержать не менее 8 символов"
+                                }
+                            })}
+                            label={<Header className="form-header" text="Введите пароль"/>}
+                            type={passwordIsVisible ? "text" : "password"}
+                            placeholder=""
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            autocomplete="off"
+                        />
+                        <div 
+                            className="show-hide-icon"
+                            onClick={() => setPasswordIsVisible(!passwordIsVisible)}
+                        >
+                            {passwordIsVisible ? <GoEyeClosed /> : <GoEye />}
+                        </div>
+                    </div>
                     {errors.password && <div className="error-message">{errors.password.message}</div>}
                 </div>
                 <div className="input-container">
-                    <Input
-                        register={register("confirmPassword", {
-                            required: "Подтвердите пароль",
-                            validate: (value) => {
-                                if (formData.password === value) {
-                                    return true;
-                                }
-                                return "Пароли не совпадают";
-                            }, 
-                        })}
-                        label={<Header className="form-header" text="Повторите пароль"/>}
-                        type="password"
-                        placeholder=""
-                        name="confirmPassword"
-                        value={formData.confirmPassword}
-                        onChange={handleChange}
-                        autocomplete="off"
-                    />
+                    <div className="password-field-container">
+                        <Input
+                            register={register("confirmPassword", {
+                                required: "Подтвердите пароль",
+                                validate: (value) => {
+                                    if (formData.password === value) {
+                                        return true;
+                                    }
+                                    return "Пароли не совпадают";
+                                }, 
+                            })}
+                            label={<Header className="form-header" text="Повторите пароль"/>}
+                            type={passwordIsVisible ? "text" : "password"}
+                            placeholder=""
+                            name="confirmPassword"
+                            value={formData.confirmPassword}
+                            onChange={handleChange}
+                            autocomplete="off"
+                        />
+                        <div 
+                            className="show-hide-icon"
+                            onClick={() => setPasswordIsVisible(!passwordIsVisible)}
+                        >
+                            {passwordIsVisible ? <GoEyeClosed /> : <GoEye />}
+                        </div>
+                    </div>
                     {errors.confirmPassword && <div className="error-message">{errors.confirmPassword.message}</div>}
                 </div>    
             </div>

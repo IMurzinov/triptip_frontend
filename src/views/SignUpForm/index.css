@@ -38,3 +38,23 @@
 .input-container {
     position: relative;
 }
+
+.password-field-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.show-hide-icon {
+    box-sizing: border-box;
+    position: absolute;
+    left: 93%;
+    bottom: 1px;
+
+    padding: 8px 10px 6px;
+}
+
+.show-hide-icon:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+}

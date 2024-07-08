@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { GoEye, GoEyeClosed } from "react-icons/go";
 
 import { Toggler } from "../index";
 import { Button, Header, Input } from '../../components';
@@ -25,6 +26,8 @@ const AuthForm = () => {
             });
         }
     };
+
+    const [passwordIsVisible, setPasswordIsVisible] = useState(false);
 
     const [formData, setFormData] = useState({
         tel: "",
@@ -81,18 +84,26 @@ const AuthForm = () => {
                                 {errors.email && <div className="error-message">{errors.email.message}</div>}
                             </div>
                             <div className="input-container">
-                                <Input
-                                    register={register("password", {
-                                        required: "Введите пароль",
-                                    })}
-                                    label={<Header className="form-header" text="Пароль"/>}
-                                    type="password"
-                                    placeholder="********"
-                                    name="password"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    autocomplete="off"
-                                />
+                                <div className="password-field-container">
+                                    <Input
+                                        register={register("password", {
+                                            required: "Введите пароль",
+                                        })}
+                                        label={<Header className="form-header" text="Пароль"/>}
+                                        type={passwordIsVisible ? "text" : "password"}
+                                        placeholder="********"
+                                        name="password"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                        autocomplete="off"
+                                    />
+                                    <div
+                                        className="show-hide-icon"
+                                        onClick={() => setPasswordIsVisible(!passwordIsVisible)}
+                                    >
+                                        {passwordIsVisible ? <GoEyeClosed /> : <GoEye />}
+                                    </div>
+                                </div>
                                 {errors.password && <div className="error-message">{errors.password.message}</div>}
                             </div>    
                         </div>
@@ -114,18 +125,26 @@ const AuthForm = () => {
                                 {errors.phone && <div className="error-message">{errors.phone.message}</div>}
                             </div>
                             <div className="input-container">
-                                <Input
-                                    register={register("password", {
-                                        required: "Введите пароль",
-                                    })}
-                                    label={<Header className="form-header" text="Пароль"/>}
-                                    type="password"
-                                    placeholder="********"
-                                    name="password"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    autocomplete="off"
-                                />
+                                <div className="password-field-container">
+                                    <Input
+                                        register={register("password", {
+                                            required: "Введите пароль",
+                                        })}
+                                        label={<Header className="form-header" text="Пароль"/>}
+                                        type={passwordIsVisible ? "text" : "password"}
+                                        placeholder="********"
+                                        name="password"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                        autocomplete="off"
+                                    />
+                                    <div
+                                        className="show-hide-icon"
+                                        onClick={() => setPasswordIsVisible(!passwordIsVisible)}
+                                    >
+                                        {passwordIsVisible ? <GoEyeClosed /> : <GoEye />}
+                                    </div>
+                                </div>
                                 {errors.password && <div className="error-message">{errors.password.message}</div>}
                             </div>
                         </div>
