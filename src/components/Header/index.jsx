@@ -1,8 +1,17 @@
+import classNames from 'classnames';
+
 import './index.css';
 
-const Header = ({ text, style, className }) => {
+const Header = ({ text, style, hdrType }) => {
     return (
-        <p className={`header ${className}`} style={style}>
+        <p className={classNames(
+            'header',
+            {
+               'page-header': hdrType === 'page',
+               'section-header': hdrType === 'section',
+               'input-header': hdrType === 'input', 
+            }
+        )} style={style}>
             {text}
         </p>
     );

@@ -17,6 +17,7 @@ const AuthForm = () => {
 
     const onSubmit = async (data) => {
         try {
+            // setTimeout имитирует задержку ответа сервера для теста кнопки disabled
             await new Promise((resolve) => setTimeout(resolve, 1000));
             // throw new Error();
             console.log(data);
@@ -52,7 +53,7 @@ const AuthForm = () => {
 
     return (
         <div className="auth-form">
-            <Header className="page-header" text="Вход или регистрация" />
+            <Header hdrType="page" text="Вход или регистрация" />
             <form
                 className="auth-form__data-wrapper"
                 name="auth-form"
@@ -73,7 +74,7 @@ const AuthForm = () => {
                                     register={register("email", {
                                         required: "Введите email",
                                     })}
-                                    label={<Header className="form-header" text="Электронная почта"/>}
+                                    label={<Header hdrType="input" text="Электронная почта"/>}
                                     type="email"
                                     placeholder="something@smth.com"
                                     name="email"
@@ -89,7 +90,7 @@ const AuthForm = () => {
                                         register={register("password", {
                                             required: "Введите пароль",
                                         })}
-                                        label={<Header className="form-header" text="Пароль"/>}
+                                        label={<Header hdrType="input" text="Пароль"/>}
                                         type={passwordIsVisible ? "text" : "password"}
                                         placeholder="********"
                                         name="password"
@@ -114,7 +115,7 @@ const AuthForm = () => {
                                     register={register("phone", {
                                         required: "Введите телефон",
                                     })}
-                                    label={<Header className="form-header" text="Телефон"/>}
+                                    label={<Header hdrType="input" text="Телефон"/>}
                                     type="tel"
                                     placeholder="+7(XXX)XXX-XX-XX"
                                     name="phone"
@@ -130,7 +131,7 @@ const AuthForm = () => {
                                         register={register("password", {
                                             required: "Введите пароль",
                                         })}
-                                        label={<Header className="form-header" text="Пароль"/>}
+                                        label={<Header hdrType="input" text="Пароль"/>}
                                         type={passwordIsVisible ? "text" : "password"}
                                         placeholder="********"
                                         name="password"
@@ -153,13 +154,13 @@ const AuthForm = () => {
                 </div>
                 <div className="auth-form__buttons">
                     <Button
-                        className="primary-button"
+                        btnType="primary"
                         text="Войти"
                         disabled={isSubmitting}
                         type="submit"
                     />
                     <Button
-                        className="secondary-button"
+                        btnType="secondary"
                         text="Зарегистрироваться"
                         disabled={isSubmitting}
                         type="button"
