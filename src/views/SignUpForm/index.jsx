@@ -19,7 +19,7 @@ const SignUpForm = () => {
             // setTimeout имитирует задержку ответа сервера для теста кнопки disabled
             await new Promise((resolve) => setTimeout(resolve, 1000));
             // Позднее throw new Error() необходимо заменить на обработку ответа сервера и только в определенных случаях вызывать ошибку setError
-            throw new Error();
+            // throw new Error();
             console.log(data); 
         } catch (error) {
             setError("email", {
@@ -56,9 +56,9 @@ const SignUpForm = () => {
             method="post"
             onSubmit={handleSubmit(onSubmit)}
         >
-            <Header className="page-header" text="Регистрация" />
+            <Header hdrType="page" text="Регистрация" />
             <div className="sign-up-form__personal-data">
-                <Header className="section-header" text="Общая информация" style={{ marginBottom: "4px" }} />
+                <Header hdrType="section" text="Общая информация" style={{ marginBottom: "4px" }} />
                 <div className="input-container">
                     <Input
                         register={register("name", {
@@ -68,7 +68,7 @@ const SignUpForm = () => {
                                 message: "Только латиница или кириллица"
                             }
                         })}
-                        label={<Header className="form-header" text="Имя"/>}
+                        label={<Header hdrType="input" text="Имя"/>}
                         type="text"
                         placeholder="Иван"
                         name="name"
@@ -87,7 +87,7 @@ const SignUpForm = () => {
                                 message: "Только латиница или кириллица"
                             }
                         })}
-                        label={<Header className="form-header" text="Фамилия"/>}
+                        label={<Header hdrType="input" text="Фамилия"/>}
                         type="text"
                         placeholder="Иванов"
                         name="surname"
@@ -102,7 +102,7 @@ const SignUpForm = () => {
                         register={register("email", {
                             required: "Введите email",
                         })}
-                        label={<Header className="form-header" text="Электронная почта"/>}
+                        label={<Header hdrType="input" text="Электронная почта"/>}
                         type="email"
                         placeholder="something@smth.com"
                         name="email"
@@ -117,7 +117,7 @@ const SignUpForm = () => {
                         register={register("phone", {
                             required: "Введите номер телефона",
                         })}
-                        label={<Header className="form-header" text="Телефон"/>}
+                        label={<Header hdrType="input" text="Телефон"/>}
                         type="tel"
                         placeholder="+7(XXX)XXX-XX-XX"
                         name="phone"
@@ -132,7 +132,7 @@ const SignUpForm = () => {
                         register={register("dob", {
                             required: "Введите дату рождения",
                         })}
-                        label={<Header className="form-header" text="Дата рождения"/>}
+                        label={<Header hdrType="input" text="Дата рождения"/>}
                         type="date"
                         placeholder="20.01.1995"
                         name="dob"
@@ -155,7 +155,7 @@ const SignUpForm = () => {
                                     message: "Пароль должен содержать не менее 8 символов"
                                 }
                             })}
-                            label={<Header className="form-header" text="Введите пароль"/>}
+                            label={<Header hdrType="input" text="Введите пароль"/>}
                             type={passwordIsVisible ? "text" : "password"}
                             placeholder=""
                             name="password"
@@ -184,7 +184,7 @@ const SignUpForm = () => {
                                     return "Пароли не совпадают";
                                 }, 
                             })}
-                            label={<Header className="form-header" text="Повторите пароль"/>}
+                            label={<Header hdrType="input" text="Повторите пароль"/>}
                             type={passwordIsVisible ? "text" : "password"}
                             placeholder=""
                             name="confirmPassword"
@@ -205,13 +205,13 @@ const SignUpForm = () => {
             <div className="sign-up-form__buttons">
                 <Button
                     disabled={isSubmitting}
-                    className="primary-button"
+                    btnType="primary"
                     text="Зарегистрироваться"
                     type="submit"
                 />
                 <Button
                     disabled={isSubmitting}
-                    className="secondary-button"
+                    btnType="secondary"
                     text="Отменить"
                     type="button"
                 />
