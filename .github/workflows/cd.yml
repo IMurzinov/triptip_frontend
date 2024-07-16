@@ -36,7 +36,7 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
-          tags: ${{ secrets.DOCKERHUB_LOGIN }}/triptip_frontend:latest
+          tags: cosmosfactory/triptip_frontend:latest
 
 
   deploy:
