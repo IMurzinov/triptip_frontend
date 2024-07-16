@@ -1,17 +1,18 @@
 name: Deploy to Remote Server
+run-name: Push to ${{ github.ref_name }} by @${{ github.actor }}
+
 on:
-  workflow_run:
-    workflows: ['CI']
-    types:
-      - completed
+  push:
     branches:
-      - dev
+      - master
+
+permissions:
+    statuses: write
 
 jobs:
   build:
     name: Build and push to Docker Hub
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -46,3 +47,33 @@ jobs:
             sudo docker compose -f deploy-compose.yaml pull
             sudo docker compose -f deploy-compose.yaml build --no-cache
             sudo docker compose -f deploy-compose.yaml up -d
+
+  notify:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+        
+        - name: Determine job status
+          id: job_status
+          run: echo "JOB_STATUS=success" >> $GITHUB_ENV
+          if: success()
+  
+        - name: Set job status to failure
+          run: echo "JOB_STATUS=failure" >> $GITHUB_ENV
+          if: failure()
+          continue-on-error: true
+  
+        - name: Send Telegram message on job status
+          uses: appleboy/telegram-action@master
+          with:
+            to: ${{ secrets.TELEGRAM_TO }}
+            token: ${{ secrets.TELEGRAM_TOKEN }}
+            message: |
+              🚀 Deploy to prod was ${{ env.JOB_STATUS }}!
+              - GitHub Triggering Actor: ${{ github.actor }}
+              - Run ID: ${{ github.run_id }}
+              - Commit: ${{ github.sha }}
+              - GitHub Ref Name: ${{ github.ref_name }}
+              - GitHub Repository: ${{ github.repository }}
+          if: always()
