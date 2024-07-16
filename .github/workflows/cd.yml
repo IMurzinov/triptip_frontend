@@ -15,7 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check Docker Hub Username
-        run: echo DockerHub Username ${{ secrets.DOCKERHUB_LOGIN }}
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_LOGIN }}
+        run: echo DockerHub Username: $DOCKERHUB_USERNAME
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
