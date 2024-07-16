@@ -28,6 +28,12 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_LOGIN }}/triptip_frontend:latest
+      - name: Echo Docker Hub credentials
+        run: |
+          echo "DockerHub Username: ${{ secrets.DOCKERHUB_LOGIN }}"
+          # Avoid echoing the password or sensitive secrets directly
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_LOGIN }}
 
   deploy:
     name: Deploy to Remote Server
@@ -47,33 +53,29 @@ jobs:
             sudo docker compose -f deploy-compose.yaml pull
             sudo docker compose -f deploy-compose.yaml build --no-cache
             sudo docker compose -f deploy-compose.yaml up -d
-
-  notify:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
-        
-        - name: Determine job status
-          id: job_status
-          run: echo "JOB_STATUS=success" >> $GITHUB_ENV
-          if: success()
-  
-        - name: Set job status to failure
-          run: echo "JOB_STATUS=failure" >> $GITHUB_ENV
-          if: failure()
-          continue-on-error: true
-  
-        - name: Send Telegram message on job status
-          uses: appleboy/telegram-action@master
-          with:
-            to: ${{ secrets.TELEGRAM_TO }}
-            token: ${{ secrets.TELEGRAM_TOKEN }}
-            message: |
-              🚀 Deploy to prod was ${{ env.JOB_STATUS }}!
-              - GitHub Triggering Actor: ${{ github.actor }}
-              - Run ID: ${{ github.run_id }}
-              - Commit: ${{ github.sha }}
-              - GitHub Ref Name: ${{ github.ref_name }}
-              - GitHub Repository: ${{ github.repository }}
-          if: always()
+      - name: Send success message
+        if: success()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            🚀 Deploy to prod was successful!
+            - GitHub Triggering Actor: ${{ github.actor }}
+            - Run ID: ${{ github.run_id }}
+            - Commit: ${{ github.sha }}
+            - GitHub Ref Name: ${{ github.ref_name }}
+            - GitHub Repository: ${{ github.repository }}
+      - name: Send failure message
+        if: failure()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ❌ Deploy to prod failed!
+            - GitHub Triggering Actor: ${{ github.actor }}
+            - Run ID: ${{ github.run_id }}
+            - Commit: ${{ github.sha }}
+            - GitHub Ref Name: ${{ github.ref_name }}
+            - GitHub Repository: ${{ github.repository }}
