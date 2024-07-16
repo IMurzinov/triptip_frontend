@@ -2,6 +2,7 @@ name: Deploy to Remote Server
 run-name: Push to ${{ github.ref_name }} by @${{ github.actor }}
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
