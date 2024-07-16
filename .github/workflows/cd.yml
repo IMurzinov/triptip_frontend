@@ -14,11 +14,6 @@ jobs:
     name: Build and push to Docker Hub
     runs-on: ubuntu-latest
     steps:
-      - name: Check Docker Hub Username
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_LOGIN }}
-        run: |
-          echo "DockerHub Username: $DOCKERHUB_USERNAME"
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -31,6 +26,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
+          platforms: linux/amd64
           push: true
           tags: ${{ secrets.DOCKERHUB_LOGIN }}/triptip_frontend:latest
 
