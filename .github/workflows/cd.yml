@@ -17,7 +17,8 @@ jobs:
       - name: Check Docker Hub Username
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_LOGIN }}
-        run: echo DockerHub Username: $DOCKERHUB_USERNAME
+        run: |
+          echo "DockerHub Username: $DOCKERHUB_USERNAME"
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
