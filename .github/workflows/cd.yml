@@ -14,6 +14,12 @@ jobs:
     name: Build and push to Docker Hub
     runs-on: ubuntu-latest
     steps:
+      - name: Echo Docker Hub credentials
+        run: |
+          echo "DockerHub Username: ${{ secrets.DOCKERHUB_LOGIN }}"
+          # Avoid echoing the password or sensitive secrets directly
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_LOGIN }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -28,12 +34,7 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_LOGIN }}/triptip_frontend:latest
-      - name: Echo Docker Hub credentials
-        run: |
-          echo "DockerHub Username: ${{ secrets.DOCKERHUB_LOGIN }}"
-          # Avoid echoing the password or sensitive secrets directly
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_LOGIN }}
+
 
   deploy:
     name: Deploy to Remote Server
