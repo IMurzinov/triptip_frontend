@@ -18,9 +18,11 @@ const TripCard = ({ name, location, dateFrom, dateTo }) => {
         <div className='trip-card__header'>
             <Header
                 text={name}
-                hdrType="page"
+                hdrType="section"
             />
-            <img className='trip-card__edit-logo' src={editLogo} alt='edit_logo' />
+            <button className='trip-card__edit-button'>
+              <img className='trip-card__edit-logo' src={editLogo} alt='edit_logo' />
+            </button>
         </div>
         <div className='trip-card__info'>
             <p className=''>{location}</p>
