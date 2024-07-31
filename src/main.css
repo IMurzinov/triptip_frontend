@@ -8,6 +8,7 @@
 @import './views/SignUpForm/index.css';
 @import './views/AuthForm/index.css';
 @import './views/Toggler/index.css';
+@import './views/TripList/index.css';
 
 body, html {
     margin: 0;

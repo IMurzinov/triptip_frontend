@@ -1,17 +1,28 @@
 .trip-card {
  display: flex;
  flex-direction: column;
- gap: 20px;
+ gap: 10px;
+
+ width: 439px;
+ padding: 7px;
 }
 
 .trip-card__header {
     display: flex;
-    gap: 20px;
+    gap: 40px;
 }
 
 .trip-card__edit-logo {
-    margin-top: 8px;
-    margin-bottom: 7px;
+}
+
+.trip-card__edit-button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.trip-card__edit-button:hover {
+    cursor: pointer;
 }
 
 .trip-card__info {
