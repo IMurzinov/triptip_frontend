@@ -1,0 +1,31 @@
+.trip-card {
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+}
+
+.trip-card__header {
+    display: flex;
+    gap: 20px;
+}
+
+.trip-card__edit-logo {
+    margin-top: 8px;
+    margin-bottom: 7px;
+}
+
+.trip-card__info {
+    display: flex;
+    gap: 5px;
+
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+    color: var(--dark-grey);
+}
+
+p {
+    margin: 0;
+}

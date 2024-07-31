@@ -3,6 +3,7 @@
 @import './components/Button/index.css';
 @import './components/Header/index.css';
 @import './components/Input/index.css';
+@import './components/TripCard/index.css';
 
 @import './views/SignUpForm/index.css';
 @import './views/AuthForm/index.css';
