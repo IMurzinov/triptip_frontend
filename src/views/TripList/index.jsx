@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
 import { TripCard } from '../../components';
+import { DISPLAY_LIMIT, BASE_URL } from '../../constants/constants';
 
 import './index.css';
 
-const TRIPS_URL = "https://api.triptip.pro/trips";
-const DISPLAY_LIMIT = 10; // Кол-во поездок для отображения
+const TRIPS_URL = `${BASE_URL}/trips`;
 
 const TripList = () => {
     const [data, setData] = useState([]);
