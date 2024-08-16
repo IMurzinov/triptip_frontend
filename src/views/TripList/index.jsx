@@ -50,7 +50,7 @@ const TripList = () => {
                 <TripCard
                 key={trip.id}
                 name={trip.name}
-                location='Somewhere'
+                location={trip.region}
                 dateFrom={trip.date_from}
                 dateTo={trip.date_to}
                 />
