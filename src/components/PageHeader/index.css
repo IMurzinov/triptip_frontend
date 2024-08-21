@@ -1,0 +1,41 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 102px;
+}
+
+.header__logo-group {
+    position: relative;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.projectV-logo {
+    width: 89px;
+    height: 15px;
+}
+
+.logo {
+    width: 37px;
+    height: 19px;
+    position: absolute;
+    top: 8px;
+}
+
+.header__buttons {
+    margin-right: 72px;
+}
+
+.header__text {
+    margin-left: 72px;
+    color: var(--primary-color);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px;
+}
