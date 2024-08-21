@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 
-import { Toggler } from "../index";
-import { Button, Header, Input } from '../../components';
+import { Toggler } from "@views";
+import { Button, Header, Input } from '@components';
 
-import './index.css';
+import '@root/index.css';
 
 const AuthForm = () => {
     const {

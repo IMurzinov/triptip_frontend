@@ -1,4 +1,4 @@
-import { AuthForm, SignUpForm, TripList } from './views';
+import { AuthForm, SignUpForm, TripList } from '@views';
 
 function App() {
   return (
