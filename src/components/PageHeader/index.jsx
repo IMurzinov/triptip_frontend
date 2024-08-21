@@ -20,7 +20,7 @@ const PageHeader = () => {
     return (
         <header className="header">
             <div>
-                {/* "О Нас" + "Политика конфеденциальности" в зависимости от состояния isAuthenticated или isProfilePageOpened */}
+                {/* TODO: "О Нас" + "Политика конфеденциальности" в зависимости от состояния isAuthenticated или isProfilePageOpened */}
             </div>
             <a href="///">
                 <div className="header__logo-group">
@@ -31,7 +31,7 @@ const PageHeader = () => {
             <div className="header__buttons">
                 {isAuthenticated ? (
                     <div>
-                        {/* Добавить отображение кнопок для состояний отличных от isAutenticated === false */}
+                        {/* TODO: Добавить отображение кнопок для состояний отличных от isAutenticated === false */}
                     </div>
                 ) : (
                     <Button
@@ -39,7 +39,7 @@ const PageHeader = () => {
                         text="Войти"
                         type="button"
                     />
-                    // Добавить ссылку на страницу AuthForm по нажатию кнопки
+                    // TODO: Добавить ссылку на страницу auth по нажатию кнопки
                 )}
             </div>
         </header>
