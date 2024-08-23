@@ -1,4 +1,4 @@
-import './index.css';
+import '@root/index.css';
 
 const Toggler = ({ isEmailVisible, onDataChange }) => {
   const handleToggle = (isEmail) => {
