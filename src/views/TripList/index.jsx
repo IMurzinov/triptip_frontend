@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { TripCard } from 'components';
-import { DISPLAY_LIMIT, BASE_URL } from 'constants';
+import { DISPLAY_LIMIT, BASE_URL } from 'constants/constants';
 
 import 'views/TripList/index.css';
 
