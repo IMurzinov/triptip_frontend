@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 
-import { Button, Header, Input } from '@components';
+import { Button, Header, Input } from 'components';
 
-import '@root/index.css';
+import 'views/SignUpForm/index.css';
 
 const SignUpForm = () => {
     const { 

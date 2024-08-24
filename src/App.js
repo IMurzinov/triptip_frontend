@@ -1,5 +1,5 @@
-import { AuthForm, SignUpForm, TripList } from '@views';
-import { PageHeader } from './components';
+import { AuthForm, SignUpForm, TripList } from 'views';
+import { PageHeader } from 'components';
 
 function App() {
   return (

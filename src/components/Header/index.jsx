@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import '@root/index.css';
+import 'components/Header/index.css';
 
 const Header = ({ text, style, hdrType }) => {
     return (

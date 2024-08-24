@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import '@root/index.css';
+import 'components/Button/index.css';
 
 const Button = ({ text, onClick, style, btnType, type, disabled }) => {
     return (
