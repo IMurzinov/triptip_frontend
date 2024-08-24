@@ -1,17 +1,17 @@
-@import '@styles/variables.css';
+@import 'styles/variables.css';
 
 
-@import '@components/Button/index.css';
-@import '@components/Header/index.css';
-@import '@components/Input/index.css';
-@import '@components/TripCard/index.css';
-@import '@components/PageHeader/index.css';
+@import 'components/Button/index.css';
+@import 'components/Header/index.css';
+@import 'components/Input/index.css';
+@import 'components/TripCard/index.css';
+@import 'components/PageHeader/index.css';
 
 
-@import '@views/SignUpForm/index.css';
-@import '@views/AuthForm/index.css';
-@import '@views/Toggler/index.css';
-@import '@views/TripList/index.css';
+@import 'views/SignUpForm/index.css';
+@import 'views/AuthForm/index.css';
+@import 'views/Toggler/index.css';
+@import 'views/TripList/index.css';
 
 body, html {
     margin: 0;

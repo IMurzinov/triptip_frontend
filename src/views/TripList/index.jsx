@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
-import { TripCard } from '@components';
-import { DISPLAY_LIMIT, BASE_URL } from '@constants/constants';
+import { TripCard } from 'components';
+import { DISPLAY_LIMIT, BASE_URL } from 'constants';
 
-import '@root/index.css';
+import 'views/TripList/index.css';
 
 const TRIPS_URL = `${BASE_URL}/trips`;
 
