@@ -18,17 +18,17 @@ const PageHeader = () => {
 
 
     return (
-        <header className="header">
+        <header className="page-header">
             <div>
                 {/* TODO: "О Нас" + "Политика конфеденциальности" в зависимости от состояния isAuthenticated или isProfilePageOpened */}
             </div>
             <a href="///">
-                <div className="header__logo-group">
+                <div className="page-header__logo-group">
                     <img className="projectV-logo" src={projectVLogo} alt='triptip logo'/>
                     <img className="logo" src={logo} alt='triptip logo'/>
                 </div>
             </a>
-            <div className="header__buttons">
+            <div className="page-header__buttons">
                 {isAuthenticated ? (
                     <div>
                         {/* TODO: Добавить отображение кнопок для состояний отличных от isAutenticated === false */}
