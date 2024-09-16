@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+}
+
+.starting-page__layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.starting-page__content {
+    width: 89%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 206px;
+}
+
+.starting-page__welcome-container {
+    display: flex;
+    flex-direction: column;
+    gap: 54px;
+    align-self: stretch;
+
+    background-image: url('assets/images/world-map.svg');
+    flex-shrink: 0;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.starting-page__welcome-text {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    text-align: center;
+    font-family: Jura;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.starting-page__mojo {
+    margin: 0;
+    padding: 0;
+
+    color: var(--primary-color);
+    font-size: 44px;
+    align-self: stretch;
+}
+
+.starting-page__description {
+    margin: 0;
+    padding: 0;
+
+    color: var(--black);
+    font-size: 24px;
+    align-self: stretch;
+}
+
+.starting-page__buttons {
+    display: flex;
+    gap: 14px;
+}
+
+.starting-page__top-trips {
+
+}

@@ -1,13 +1,13 @@
 import { AuthForm, SignUpForm, TripList } from 'views';
 import { PageHeader } from 'components';
+import { StartingPage } from 'pages';
+
+import 'assets/fonts/fonts.css';
 
 function App() {
   return (
     <div className='App'>
-      <PageHeader />
-      <TripList />
-      <AuthForm />
-      <SignUpForm />
+      <StartingPage />
     </div>
   );
 }

@@ -1,0 +1,1 @@
+export { default as StartingPage } from 'pages/StartingPage';
