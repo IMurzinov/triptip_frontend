@@ -1,6 +1,6 @@
 import { Header, Userpic } from 'components';
-import likeIcon from 'assets/like-icon.svg';
-import commentIcon from 'assets/comment-icon.svg';
+import likeIcon from 'assets/images/likeIcon.svg';
+import commentIcon from 'assets/images/commentIcon.svg';
 
 import 'components/TopTripsCard/index.css';
 
