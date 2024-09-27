@@ -21,3 +21,9 @@
     line-height: 18px;
     margin-bottom: 4px;
 }
+
+.trip-card-header {
+    font-size: 20px;
+    line-height: normal;
+    color: var(--primary-color);
+}
