@@ -17,6 +17,7 @@
 
 @import 'pages/StartingPage/index.css';
 @import 'pages/AuthPage/index.css';
+@import 'pages/RegisterPage/index.css';
 
 body, html {
     margin: 0;
