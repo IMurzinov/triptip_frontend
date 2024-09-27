@@ -9,7 +9,8 @@ const Header = ({ text, style, hdrType }) => {
             {
                'page-header': hdrType === 'page',
                'section-header': hdrType === 'section',
-               'input-header': hdrType === 'input', 
+               'input-header': hdrType === 'input',
+               'trip-card-header': hdrType === 'trip', 
             }
         )} style={style}>
             {text}

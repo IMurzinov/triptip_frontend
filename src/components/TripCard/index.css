@@ -1,7 +1,7 @@
 .trip-card {
  display: flex;
  flex-direction: column;
- gap: 10px;
+ gap: 20px;
 
  width: 439px;
  padding: 7px;
