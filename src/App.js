@@ -1,13 +1,12 @@
 import { AuthForm, SignUpForm, TripList } from 'views';
-import { PageHeader } from 'components';
+import { PageHeader, Userpic } from 'components';
 
 function App() {
   return (
     <div className='App'>
-      <PageHeader />
-      <TripList />
-      <AuthForm />
-      <SignUpForm />
+      <Userpic user_id='1' size='small'/>
+      <Userpic user_id='1' size='medium'/>
+      <Userpic user_id='1' size='large'/>
     </div>
   );
 }

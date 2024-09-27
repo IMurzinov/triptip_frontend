@@ -6,6 +6,8 @@
 @import 'components/Input/index.css';
 @import 'components/TripCard/index.css';
 @import 'components/PageHeader/index.css';
+@import 'components/TopTripsCard/index.css';
+@import 'components/Userpic/index.css';
 
 
 @import 'views/SignUpForm/index.css';
