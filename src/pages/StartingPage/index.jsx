@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { TripList } from "views";
 import { PageHeader, Button, Header } from "components";
 
@@ -18,7 +20,6 @@ const StartingPage = () => {
     return (
         <div className="starting-page__layout">
             <PageHeader />
-            {/* TODO: Настроить внутри компонента PageHeader роутинг на страницу аутентификации */}
             <main className="starting-page__content">
                 <div className="starting-page__welcome-container">
                     <div className="starting-page__welcome-text">
@@ -33,18 +34,19 @@ const StartingPage = () => {
                         </p>
                     </div>
                     <div className="starting-page__buttons">
-                        <Button
-                            btnType="primary"
-                            text="Зарегистрироваться"
-                            type="button"
-                        />
+                        <Link className="link" to="/register">
+                            <Button
+                                btnType="primary"
+                                text="Зарегистрироваться"
+                                type="button"
+                            />
+                        </Link>
                         <Button
                             btnType="secondary"
                             text="Посмотреть путешествия"
                             type="button"
                             onClick={scrollTo}
                         />
-                        {/* TODO: Настроить роутинг на страницу регистрации */}
                     </div>
                 </div>
                 <div className="starting-page__top-trips">
