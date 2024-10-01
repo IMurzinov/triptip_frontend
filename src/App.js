@@ -1,12 +1,29 @@
-// import { AuthForm, SignUpForm, TripList } from 'views';
-// import { PageHeader, Userpic } from 'components';
-import { AuthPage, StartingPage, RegisterPage } from 'pages';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import { AuthPage, StartingPage, RegisterPage, NotFoundPage } from 'pages';
 
 import 'assets/fonts/fonts.css';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <StartingPage />,
+    errorElement: <NotFoundPage />,
+  },
+  {
+    path: "/auth",
+    element: <AuthPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+  }
+]); 
 
 function App() {
   return (
     <div className='App'>
+      <RouterProvider router={router} />
     </div>
   );
 }

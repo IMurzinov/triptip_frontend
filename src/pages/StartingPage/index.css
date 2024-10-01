@@ -69,6 +69,10 @@
     gap: 14px;
 }
 
+.link {
+    text-decoration: none;
+}
+
 .starting-page__top-trips {
 
 }

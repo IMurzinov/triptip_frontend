@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 
 import { Toggler } from "views";
@@ -159,12 +160,14 @@ const AuthForm = () => {
                         disabled={isSubmitting}
                         type="submit"
                     />
-                    <Button
-                        btnType="secondary"
-                        text="Зарегистрироваться"
-                        disabled={isSubmitting}
-                        type="button"
-                    />
+                    <Link className="link" to="/register">
+                        <Button
+                            btnType="secondary"
+                            text="Зарегистрироваться"
+                            disabled={isSubmitting}
+                            type="button"
+                        />
+                    </Link>
                 </div>
             </form>
         </div>
