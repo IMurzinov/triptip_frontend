@@ -1,0 +1,90 @@
+.trip-card {
+    box-sizing: content-box;
+    border: 2px solid var(--light-gray);
+    border-radius: 20px;
+    padding: 25px 30px;
+    width: 980px;
+    height: 147px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+
+
+
+}
+
+.trip-card__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+
+}
+
+.trip-card__user {
+    display: flex;
+    gap: 8px;
+}
+
+.trip-card__user-name {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.username {
+    color: var(--black);
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.nickname {
+    color: var(--dark-gray);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.trip-card__likes-n-comms {
+    display: flex;
+    gap: 32px;
+
+    color: var(--dark-gray);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.likes, .comments {
+    display: flex;
+    gap: 12px;
+}
+
+.trip-card__trip-label {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.trip-card__place-n-date {
+    display: flex;
+    gap: 5px;
+
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+    color: var(--dark-gray);
+}

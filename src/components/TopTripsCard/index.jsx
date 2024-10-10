@@ -16,15 +16,20 @@ const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_
 
     return (
       <div className="trip-card">
+
         <div className='trip-card__info'>
-          <Userpic
+
+          <div className='trip-card__user'>
+            <Userpic
             user_id={user_id}
             size='medium'  
-          />
-          <div className='trip-card__user-name'>
-            <p>{username}</p>
-            <p>{nickname}</p>
+            />
+            <div className='trip-card__user-name'>
+              <p className='username'>{username}</p>
+              <p className='nickname'>{nickname}</p>
+            </div>
           </div>
+          
           <div className='trip-card__likes-n-comms'>
             <div className='likes'>
               <img src={likeIcon} alt='trip likes' />
@@ -35,18 +40,21 @@ const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_
               <span>{comments}</span>
             </div>
           </div>
+
         </div>
-        <div className='trip-card__header'>
+
+        <div className='trip-card__trip-label'>
             <Header
                 text={name}
-                hdrType="section"
+                hdrType="trip"
             />
+            <div className='trip-card__place-n-date'>
+              <p className=''>{location}</p>
+              <p>|</p>
+              <p>{formatDate(dateFrom)} - {formatDate(dateTo)} {formatYear(dateTo)}</p>
+            </div>
         </div>
-        <div className='trip-card__info'>
-            <p className=''>{location}</p>
-            <p>|</p>
-            <p>{formatDate(dateFrom)} - {formatDate(dateTo)} {formatYear(dateTo)}</p>
-        </div>
+{/* TO-DO: Добавить отображение 3 фото поездки */}
       </div>
     );
   };
