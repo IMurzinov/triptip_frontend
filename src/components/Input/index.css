@@ -11,7 +11,7 @@
     padding: 8px 12px;
     font-size: 16px;
     color: var(--black);
-    border: 1px solid var(--grey);
+    border: 1px solid var(--gray);
     border-radius: 5px;
     box-sizing: border-box;
 }
@@ -22,7 +22,7 @@
   
   
 .form-input__field::placeholder {
-    color: var(--grey);
+    color: var(--gray);
     opacity: 1;
 }
 

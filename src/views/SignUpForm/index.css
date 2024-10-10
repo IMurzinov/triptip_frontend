@@ -58,3 +58,7 @@
     cursor: pointer;
     color: var(--primary-color);
 }
+
+.link {
+    text-decoration: none;
+}

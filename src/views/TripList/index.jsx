@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 
 import { TripCard } from 'components';
-import { DISPLAY_LIMIT, BASE_URL } from 'constants/constants';
+import { DISPLAY_LIMIT, TRIPS_URL } from 'constants/constants';
 
 import 'views/TripList/index.css';
-
-const TRIPS_URL = `${BASE_URL}/trips`;
 
 const TripList = () => {
     const [data, setData] = useState([]);
