@@ -5,3 +5,5 @@ export { default as TripCard } from 'components/TripCard';
 export { default as PageHeader } from 'components/PageHeader';
 export { default as TopTripsCard } from 'components/TopTripsCard';
 export { default as Userpic } from 'components/Userpic';
+export { default as TopTripFetchFailPlaceholder } from 'components/Placeholders/TopTripFetchFailPlaceholder';
+export { default as TopTripsEmptyPlaceholder } from 'components/Placeholders/TopTripsEmptyPlaceholder';
