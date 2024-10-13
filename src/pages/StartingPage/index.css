@@ -74,5 +74,15 @@
 }
 
 .starting-page__top-trips {
+    display: flex;
+    flex-direction: column;
+    gap: 54px;
 
+    width: 65%;
+}
+
+.top-trips__list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }

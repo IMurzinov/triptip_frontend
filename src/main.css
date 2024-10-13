@@ -8,6 +8,8 @@
 @import 'components/PageHeader/index.css';
 @import 'components/TopTripsCard/index.css';
 @import 'components/Userpic/index.css';
+@import 'components/Placeholders/TopTripFetchFailPlaceholder/index.css';
+@import 'components/Placeholders/TopTripsEmptyPlaceholder/index.css';
 
 
 @import 'views/SignUpForm/index.css';
@@ -19,6 +21,7 @@
 @import 'pages/AuthPage/index.css';
 @import 'pages/RegisterPage/index.css';
 @import 'pages/NotFoundPage/index.css';
+
 
 body, html {
     margin: 0;

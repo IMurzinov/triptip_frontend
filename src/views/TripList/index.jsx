@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 
-import { TripCard } from 'components';
-import { DISPLAY_LIMIT, BASE_URL } from 'constants/constants';
+import { fetchTrips } from "api/tripsApi";
+import { TripCard, TopTripFetchFailPlaceholder, TopTripsEmptyPlaceholder } from 'components';
+import { DISPLAY_LIMIT, TRIPS_URL, ERROR_MESSAGES } from 'constants/constants';
 
 import 'views/TripList/index.css';
-
-const TRIPS_URL = `${BASE_URL}/trips`;
 
 const TripList = () => {
     const [data, setData] = useState([]);
@@ -14,14 +13,10 @@ const TripList = () => {
 
     useEffect(() => {
 
-        const fetchTrips = async () => {
+        const loadTrips = async () => {
             setLoading(true);
             try {
-                const response = await fetch(TRIPS_URL);
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");   
-                }
-                const data = await response.json();
+                const response = await fetchTrips();
                 setData(data);
             } catch (error) {
                 setError(error);
@@ -30,7 +25,7 @@ const TripList = () => {
             }
         };
 
-        fetchTrips();
+        loadTrips();
 
     }, []);
 
@@ -39,24 +34,28 @@ const TripList = () => {
     }
     
     if (error) {
-        return <div>Error: {error.message}</div>;
+        console.log(`Error: ${error.message}`);
     }
 
     const limitedData = data.slice(0, DISPLAY_LIMIT);
-    
-    return (
+
+    {error ? (
+        <TopTripFetchFailPlaceholder />
+    ) : limitedData.length === 0 ? (
+        <TopTripsEmptyPlaceholder />
+    ) : (
         <div className="trip-list">
             {limitedData.map(trip => (
                 <TripCard
-                key={trip.id}
-                name={trip.name}
-                location={trip.region}
-                dateFrom={trip.date_from}
-                dateTo={trip.date_to}
+                    key={trip.id}
+                    name={trip.name}
+                    location={trip.region}
+                    dateFrom={trip.date_from}
+                    dateTo={trip.date_to}
                 />
             ))}
         </div>
-    );
+    )}
 };
 
 export default TripList;

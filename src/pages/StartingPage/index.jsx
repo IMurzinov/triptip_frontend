@@ -1,13 +1,51 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { TripList } from "views";
-import { PageHeader, Button, Header } from "components";
+import { fetchTrips } from "api/tripsApi";
+import { TopTripsCard } from "components";
+import { PageHeader, 
+         Button,
+         Header,
+         TopTripFetchFailPlaceholder,
+         TopTripsEmptyPlaceholder,
+        } from "components";
+import * as constants from "constants/constants";
 
 import 'pages/StartingPage/index.css';
 
 const StartingPage = () => {
 
-// TODO: Настроить корректный скролл на список поездок
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+
+        const loadTrips = async () => {
+            setLoading(true);
+            try {
+                const tripsWithUserData = await fetchTrips(true);
+                setData(tripsWithUserData);
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadTrips();
+
+    }, []);
+
+    if (loading) {
+        return <div>{constants.LOADING_MESSAGE}</div>;
+    }
+    
+    if (error) {
+        console.log(`Error: ${error.message}`)
+    }
+
+    const limitedData = data.slice(0, constants.DISPLAY_LIMIT);
 
     function scrollTo() {
         const elem = document.querySelector('.starting-page__top-trips');
@@ -50,7 +88,34 @@ const StartingPage = () => {
                     </div>
                 </div>
                 <div className="starting-page__top-trips">
-                    {/* TODO: Добавить компонент списка топ-поездок с отображением автора, лайков и комментов */}
+
+                    <Header 
+                        text="Популярные путешествия"
+                        hdrType="page"
+                    />
+
+                    {error ? (
+                            <TopTripFetchFailPlaceholder />
+                        ) : limitedData.length === 0 ? (
+                            <TopTripsEmptyPlaceholder />
+                        ) : (
+                            <div className="top-trips__list">
+                                {limitedData.map((trip) => (
+                                    <TopTripsCard
+                                        key={trip.id}
+                                        name={trip.name}
+                                        location={trip.region}
+                                        dateFrom={trip.date_from}
+                                        dateTo={trip.date_to}
+                                        likes="999"
+                                        comments="999"
+                                        user_id={trip.user.id}
+                                        username={trip.user.username}
+                                        nickname={trip.user.nickname}
+                                    />
+                                ))}
+                            </div>
+                        )}
                 </div>
             </main>
         </div>
