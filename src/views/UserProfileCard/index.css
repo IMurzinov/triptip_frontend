@@ -1,0 +1,60 @@
+.profile-card {
+    width: 409px;
+    height: 274px;
+
+    border: 1px solid var(--gray);
+    border-radius: 12px;
+
+    padding: 24px 32px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    text-align: center;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.nickname {
+    color: var(--dark-gray);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.profile-card__numbers {
+    display: flex;
+    gap: 40px;
+}
+
+.profile-card__trips {
+    display: flex;
+    gap: 8px;
+}
+
+.profile-card__friends {
+    display: flex;
+    gap: 8px;
+}
+
+.number {
+    color: var(--primary-color);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+}
