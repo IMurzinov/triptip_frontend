@@ -1,4 +1,4 @@
-import 'components/Placeholders/TopTripsEmptyPlaceholder/index.css';
+import './index.css';
 
 const TopTripsEmptyPlaceholder = () => {
     return (

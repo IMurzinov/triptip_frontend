@@ -1,7 +1,7 @@
 import { CiUser } from "react-icons/ci";
 import classNames from 'classnames';
 
-import 'components/Userpic/index.css';
+import './index.css';
 
 const Userpic = ({ userpicSrc, size }) => {
     

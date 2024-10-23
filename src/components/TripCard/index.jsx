@@ -1,7 +1,7 @@
 import { Header } from 'components';
 import editLogo from 'assets/images/edit_logo.svg';
 
-import 'components/TripCard/index.css';
+import './index.css';
 
 const TripCard = ({ name, location, dateFrom, dateTo }) => {
     const formatDate = (date) => {

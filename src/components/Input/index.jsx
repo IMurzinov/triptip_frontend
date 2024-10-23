@@ -1,4 +1,4 @@
-import 'components/Input/index.css';
+import './index.css';
 
 const Input = ({ register, label, type, placeholder, name, value, onChange, autocomplete }) => {
     return (

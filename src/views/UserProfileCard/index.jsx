@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loginSuccess } from 'features/auth/authSlice';
 import { Header, Userpic } from 'components';
 
-import 'views/UserProfileCard/index.css';
+import './index.css';
 
 const UserProfileCard = () => {
     

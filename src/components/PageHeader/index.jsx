@@ -6,7 +6,7 @@ import { Button } from 'components';
 import projectVLogo from 'assets/images/ProjectV.svg';
 import logo from 'assets/images/logo.svg';
 
-import 'components/PageHeader/index.css';
+import './index.css';
 
 
 const PageHeader = () => {

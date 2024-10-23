@@ -5,7 +5,7 @@ import { GoEye, GoEyeClosed } from "react-icons/go";
 
 import { Button, Header, Input } from 'components';
 
-import 'views/SignUpForm/index.css';
+import './index.css';
 
 const SignUpForm = () => {
     const { 
