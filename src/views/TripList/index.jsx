@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import { fetchTrips } from "api/tripsApi";
+import { fetchTrips } from 'api/tripsApi';
 import { TripCard, TopTripFetchFailPlaceholder, TopTripsEmptyPlaceholder } from 'components';
 import { DISPLAY_LIMIT, TRIPS_URL, ERROR_MESSAGES } from 'constants/constants';
 
