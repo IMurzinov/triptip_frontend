@@ -4,7 +4,7 @@ import { fetchTrips } from "api/tripsApi";
 import { TripCard, TopTripFetchFailPlaceholder, TopTripsEmptyPlaceholder } from 'components';
 import { DISPLAY_LIMIT, TRIPS_URL, ERROR_MESSAGES } from 'constants/constants';
 
-import 'views/TripList/index.css';
+import './index.css';
 
 const TripList = () => {
     const [data, setData] = useState([]);

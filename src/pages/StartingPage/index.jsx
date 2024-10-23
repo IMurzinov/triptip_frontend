@@ -11,7 +11,7 @@ import { PageHeader,
         } from "components";
 import * as constants from "constants/constants";
 
-import 'pages/StartingPage/index.css';
+import './index.css';
 
 const StartingPage = () => {
 

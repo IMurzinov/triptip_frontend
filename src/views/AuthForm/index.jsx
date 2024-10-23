@@ -6,7 +6,7 @@ import { GoEye, GoEyeClosed } from "react-icons/go";
 import { Toggler } from "views";
 import { Button, Header, Input } from 'components';
 
-import 'views/AuthForm/index.css';
+import './index.css';
 
 const AuthForm = () => {
     const {
