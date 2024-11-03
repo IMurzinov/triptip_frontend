@@ -1,22 +1,23 @@
+import React, { forwardRef } from 'react';
+
 import './index.css';
 
-const Input = ({ register, label, type, placeholder, name, value, onChange, autocomplete }) => {
+const Input = forwardRef(({ label, type, placeholder, autocomplete, ...props }, ref) => {
     return (
         <div className="form-input">
-            <label className="form-input__label">{label}
+            <label className="form-input__label">
+                {label}
                 <input
-                    {...register}
+                    ref={ref} // Пробрасываем ref прямо на <input />
                     className="form-input__field"
                     type={type}
                     placeholder={placeholder}
-                    name={name}
-                    value={value}
-                    onChange={onChange}
                     autoComplete={autocomplete}
+                    {...props} // Остальные пропсы, включая register
                 />
             </label>
         </div>
     );
-};
+});
 
 export default Input;
