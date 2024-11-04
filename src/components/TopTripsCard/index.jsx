@@ -1,8 +1,8 @@
-import { Header, Userpic } from 'components';
-import likeIcon from 'assets/images/likeIcon.svg';
-import commentIcon from 'assets/images/commentIcon.svg';
+import { Header, Userpic } from "components";
+import likeIcon from "assets/images/likeIcon.svg";
+import commentIcon from "assets/images/commentIcon.svg";
 
-import './index.css';
+import "./index.css";
 
 const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_id, username, nickname }) => {
     const formatDate = (date) => {

@@ -1,6 +1,6 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef } from "react";
 
-import './index.css';
+import "./index.css";
 
 const Input = forwardRef(({ label, type, placeholder, autocomplete, ...props }, ref) => {
     return (

@@ -3,15 +3,15 @@
 // TODO: Добавить строку для отображения ошибки в случае неверного пароля и/или логина
 // TODO: Добавить маску для ввода телефона
 
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import { GoEye, GoEyeClosed } from 'react-icons/go';
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { GoEye, GoEyeClosed } from "react-icons/go";
 
-import { Toggler } from 'views';
-import { Button, Header, Input } from 'components';
+import { Toggler } from "views";
+import { Button, Header, Input } from "components";
 
-import './index.css';
+import "./index.css";
 
 const AuthForm = () => {
 

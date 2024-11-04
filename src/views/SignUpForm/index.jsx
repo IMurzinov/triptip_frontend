@@ -2,14 +2,14 @@
 // TODO: Добавить проверку на занятость email и имени
 // TODO: Добавить маску для телефона
 
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { GoEye, GoEyeClosed } from 'react-icons/go';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { GoEye, GoEyeClosed } from "react-icons/go";
 
-import { Button, Header, Input } from 'components';
+import { Button, Header, Input } from "components"
 
-import './index.css';
+import "./index.css";
 
 const SignUpForm = () => {
     const { 
