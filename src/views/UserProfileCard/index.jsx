@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { loginSuccess } from 'features/auth/authSlice';
-import { Header, Userpic } from 'components';
+import { loginSuccess } from "features/auth/authSlice";
+import { Header, Userpic } from "components";
 
-import './index.css';
+import "./index.css";
 
 const UserProfileCard = () => {
     

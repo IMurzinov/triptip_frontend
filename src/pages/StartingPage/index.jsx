@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-import { fetchTrips } from 'api/tripsApi';
+import { fetchTrips } from "api";
 import { PageHeader, 
          Button,
          Header,
          TopTripsCard,
          TopTripFetchFailPlaceholder,
          TopTripsEmptyPlaceholder,
-        } from 'components';
-import * as constants from 'constants/constants';
+        } from "components";
+import * as constants from "constants/constants";
 
-import './index.css';
+import "./index.css";
 
 const StartingPage = () => {
 
