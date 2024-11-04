@@ -1,3 +1,8 @@
+// TODO: Решить проблему с валидацией поля при переключении вкладки тогглера
+// TODO: Добавить ссылку "Забыли пароль?"
+// TODO: Добавить строку для отображения ошибки в случае неверного пароля и/или логина
+// TODO: Добавить маску для ввода телефона
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -9,57 +14,78 @@ import { Button, Header, Input } from "components";
 import "./index.css";
 
 const AuthForm = () => {
+
     const {
         register,
         handleSubmit,
-        setError,
+        setValue,
+        watch,
         formState: { errors, isSubmitting },
-    } = useForm();
+    } = useForm({ mode: "onChange" });
 
-    const onSubmit = async (data) => {
-        try {
-            // setTimeout имитирует задержку ответа сервера для теста кнопки disabled
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-            // throw new Error();
-            console.log(data);
-        } catch (error) {
-            setError("email", {
-                message: "Неверный пароль и/или логин",
-            });
-        }
+    const onSubmit = (data) => {
+        console.log(data);
     };
 
     const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+    const [isEmailVisible, setIsEmailVisible] = useState(true);
 
-    const [formData, setFormData] = useState({
-        tel: "",
-        email: "",
-        password: "",
-    });
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        
-        setFormData((prevValue) => ({
-            ...prevValue,
-            [name]: value,
-        }))
+    const handleToggle = (isEmail) => {
+        if (isEmailVisible) {
+            setEmail(watch("email"));
+        } else {
+            setPhone(watch("phone"));
+        }
+
+        setIsEmailVisible(isEmail);
+
+        if (isEmail) {
+            setValue("email", email);
+            setValue("phone", ""); // Очищаем phone при переключении на email
+        } else {
+            setValue("phone", phone);
+            setValue("email", ""); // Очищаем email при переключении на phone
+        }
     };
-    
-  const [isEmailVisible, setIsEmailVisible] = useState(true);
 
-  const handleToggle = (isEmail) => {
-    setIsEmailVisible(isEmail);
-  };
+    const renderEmailAuth = () => {
+        return (
+            <Input
+                label={<Header hdrType="input" text="Электронная почта"/>}
+                type="email"
+                placeholder="something@smth.com"
+                {...register("email", {
+                    required: false,
+                    validate: (value) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) || "Введите корректный email",
+                })}
+                autoComplete="email"
+            />
+        );
+    };
+
+    const renderPhoneAuth = () => {
+        return (
+            <Input
+                label={<Header hdrType="input" text="Телефон"/>}
+                type="tel"
+                placeholder="+7(XXX)XXX-XX-XX"
+                {...register("phone", {
+                    required: false,
+                    validate: (value) => /^(\+)?[0-9]+$/.test(value) || "Введите корректный номер телефона",
+                })}
+                autoComplete="tel"
+            />
+        );
+    };
 
     return (
         <div className="auth-form">
             <Header hdrType="page" text="Вход или регистрация" />
-            <form
+            <form 
                 className="auth-form__data-wrapper"
-                name="auth-form"
-                action=""
-                method=""
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <div className="auth-form__data">
@@ -68,95 +94,37 @@ const AuthForm = () => {
                         onDataChange={handleToggle}
                     />
                     <div className="form-wrapper">
-                        {isEmailVisible ? (
                         <div className="form email-form">
                             <div className="input-container">
-                                <Input
-                                    register={register("email", {
-                                        required: "Введите email",
-                                    })}
-                                    label={<Header hdrType="input" text="Электронная почта"/>}
-                                    type="email"
-                                    placeholder="something@smth.com"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    autocomplete="email"
-                                />
-                                {errors.email && <div className="error-message">{errors.email.message}</div>}
+                                {isEmailVisible ? renderEmailAuth() : renderPhoneAuth()}
+                                {<div className="error-message">{isEmailVisible ? errors.email?.message : errors.phone?.message}</div>}
                             </div>
                             <div className="input-container">
                                 <div className="password-field-container">
                                     <Input
-                                        register={register("password", {
-                                            required: "Введите пароль",
-                                        })}
                                         label={<Header hdrType="input" text="Пароль"/>}
                                         type={passwordIsVisible ? "text" : "password"}
                                         placeholder="********"
-                                        name="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        autocomplete="off"
+                                        {...register("password", { required: false })}
+                                        autoComplete="current-password"
                                     />
                                     <div
                                         className="show-hide-icon"
                                         onClick={() => setPasswordIsVisible(!passwordIsVisible)}
+                                        aria-label={passwordIsVisible ? "Скрыть пароль" : "Показать пароль"}
                                     >
                                         {passwordIsVisible ? <GoEyeClosed /> : <GoEye />}
                                     </div>
                                 </div>
-                                {errors.password && <div className="error-message">{errors.password.message}</div>}
+                                {<div className="error-message">{errors.password?.message}</div>}
                             </div>    
                         </div>
-                        ) : (
-                        <div className="form phone-form">
-                            <div className="input-container">
-                                <Input
-                                    register={register("phone", {
-                                        required: "Введите телефон",
-                                    })}
-                                    label={<Header hdrType="input" text="Телефон"/>}
-                                    type="tel"
-                                    placeholder="+7(XXX)XXX-XX-XX"
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    autocomplete="tel"
-                                />
-                                {errors.phone && <div className="error-message">{errors.phone.message}</div>}
-                            </div>
-                            <div className="input-container">
-                                <div className="password-field-container">
-                                    <Input
-                                        register={register("password", {
-                                            required: "Введите пароль",
-                                        })}
-                                        label={<Header hdrType="input" text="Пароль"/>}
-                                        type={passwordIsVisible ? "text" : "password"}
-                                        placeholder="********"
-                                        name="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        autocomplete="off"
-                                    />
-                                    <div
-                                        className="show-hide-icon"
-                                        onClick={() => setPasswordIsVisible(!passwordIsVisible)}
-                                    >
-                                        {passwordIsVisible ? <GoEyeClosed /> : <GoEye />}
-                                    </div>
-                                </div>
-                                {errors.password && <div className="error-message">{errors.password.message}</div>}
-                            </div>
-                        </div>
-                        )}
                     </div>
                 </div>
                 <div className="auth-form__buttons">
                     <Button
                         btnType="primary"
-                        text="Войти"
+                        text={isSubmitting ? "Загрузка..." : "Войти"}
                         disabled={isSubmitting}
                         type="submit"
                     />
