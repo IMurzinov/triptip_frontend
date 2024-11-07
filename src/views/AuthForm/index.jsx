@@ -27,6 +27,14 @@ const AuthForm = () => {
         console.log(data);
     };
 
+    const handleFormSubmit = (e) => {
+        if (e.nativeEvent.submitter && e.nativeEvent.submitter.classList.contains("toggle-button")) {
+            e.preventDefault();
+        } else {
+            handleSubmit(onSubmit)(e);
+        }
+    };
+
     const [passwordIsVisible, setPasswordIsVisible] = useState(false);
     const [isEmailVisible, setIsEmailVisible] = useState(true);
 
@@ -86,7 +94,7 @@ const AuthForm = () => {
             <Header hdrType="page" text="Вход или регистрация" />
             <form 
                 className="auth-form__data-wrapper"
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleFormSubmit}
             >
                 <div className="auth-form__data">
                     <Toggler
@@ -105,7 +113,7 @@ const AuthForm = () => {
                                         label={<Header hdrType="input" text="Пароль"/>}
                                         type={passwordIsVisible ? "text" : "password"}
                                         placeholder="********"
-                                        {...register("password", { required: false })}
+                                        {...register("password", { required: "Введите пароль" })}
                                         autoComplete="current-password"
                                     />
                                     <div
