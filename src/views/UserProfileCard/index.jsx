@@ -1,8 +1,13 @@
+// TODO: Прописать заглушку на случай отсутствия данных по пользователю
+// TODO: Прописать отображение реальных цифр по путешествиям и друзьям
+
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { loginSuccess } from "features/auth/authSlice";
 import { Header, Userpic } from "components";
+
+import editLogo from "assets/images/edit_logo.svg";
 
 import "./index.css";
 
@@ -25,8 +30,6 @@ const UserProfileCard = () => {
         dispatch(loginSuccess(fakeUserData));
     }, [dispatch]);
 
-// TODO: Прописать заглушку на случай отсутствия данных по пользователю
-
     if (!user) {
         return <div>Не удалось загрузить информацию о пользователе</div>
     };
@@ -35,6 +38,8 @@ const UserProfileCard = () => {
     
     return (
         <div className='profile-card'>
+
+            <img className='profile-card__edit-icon' src={editLogo} alt='edit-icon'/>
 
             <Userpic 
                 userpicSrc={user.userpic}
@@ -53,8 +58,6 @@ const UserProfileCard = () => {
                     <span className='nickname'>{user.nickname}</span>
 
                 </div>
-
-{/* TODO: Прописать отображение реальных цифр по путешествиям и друзьям */}
 
 
                 <div className='profile-card__numbers'>
