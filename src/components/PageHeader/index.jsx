@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { logout } from 'features/auth/authSlice';
-import { Button } from 'components';
-import projectVLogo from 'assets/images/ProjectV.svg';
-import logo from 'assets/images/logo.svg';
+import { logout } from "features/auth/authSlice";
+import { Button } from "components";
+import projectVLogo from "assets/images/ProjectV.svg";
+import logo from "assets/images/logo.svg";
 
-import 'components/PageHeader/index.css';
+import "./index.css";
 
 
 const PageHeader = () => {

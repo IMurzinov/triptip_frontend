@@ -1,15 +1,15 @@
 // TODO: Прописать заглушку на случай отсутствия данных по пользователю
 // TODO: Прописать отображение реальных цифр по путешествиям и друзьям
 
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { loginSuccess } from 'features/auth/authSlice';
-import { Header, Userpic } from 'components';
+import { loginSuccess } from "features/auth/authSlice";
+import { Header, Userpic } from "components";
 
-import editLogo from 'assets/images/edit_logo.svg';
+import editLogo from "assets/images/edit_logo.svg";
 
-import 'views/UserProfileCard/index.css';
+import "./index.css";
 
 const UserProfileCard = () => {
     

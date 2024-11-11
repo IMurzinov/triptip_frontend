@@ -1,60 +1,62 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+// TODO: Добавить подсказку по вводу пароля, индикацию силы пароля.
+// TODO: Добавить проверку на занятость email и имени
+// TODO: Добавить маску для телефона
+
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 
-import { Button, Header, Input } from 'components';
+import { Button, Header, Input } from "components"
 
-import 'views/SignUpForm/index.css';
+import "./index.css";
 
 const SignUpForm = () => {
     const { 
         register,
         handleSubmit,
         setError,
-        formState: { errors, isSubmitting },
-    } = useForm();
+        formState: { errors, isSubmitting, isDirty }, 
+        watch,
+    } = useForm({ mode: "onChange" });
 
-    const onSubmit = async (data) => {
-        try {
-            // setTimeout имитирует задержку ответа сервера для теста кнопки disabled
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-            // Позднее throw new Error() необходимо заменить на обработку ответа сервера и только в определенных случаях вызывать ошибку setError
-            // throw new Error();
-            console.log(data); 
-        } catch (error) {
-            setError("email", {
-                message: "Этот адрес электронной почты уже зарегистрирован",
-            });
+    // navigate, handleNavigation и useEffect для создания уведомления
+    // о потере данных в случае закрытия окна без отправки формы
+
+    const navigate = useNavigate();
+
+    const handleNavigation = (path) => {
+        if (isDirty && !window.confirm("Вы действительно хотите покинуть страницу? Несохранённые данные будут потеряны.")) {
+            return;
         }
+        navigate(path);
     };
 
-    const [formData, setFormData] = useState({
-        name: '',
-        surname: '',
-        email: '',
-        phone: '',
-        dob: '',
-        password: '',
-        confirmPassword: '',
-    });
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            if (isDirty) {
+                event.preventDefault();
+                event.returnValue = '';
+            }
+        }
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+
+    },  [isDirty]);
+
+    const onSubmit = (data) => {
+        console.log(data);
+    };
 
     const [passwordIsVisible, setPasswordIsVisible] = useState(false);
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevValue) => ({
-            ...prevValue,
-            [name]: value,
-        }));
-    };
     
     return (
         <form
             className="sign-up-form"
-            name="sign-up-form"
-            action=""
-            method="post"
             onSubmit={handleSubmit(onSubmit)}
         >
             <Header hdrType="page" text="Регистрация" />
@@ -62,86 +64,80 @@ const SignUpForm = () => {
                 <Header hdrType="section" text="Общая информация" style={{ marginBottom: "4px" }} />
                 <div className="input-container">
                     <Input
-                        register={register("name", {
-                            required: "Введите имя",
-                            pattern: {
-                                value: /^[a-zA-Zа-яА-ЯёЁ]+$/,
-                                message: "Только латиница или кириллица"
-                            }
-                        })}
                         label={<Header hdrType="input" text="Имя"/>}
                         type="text"
                         placeholder="Иван"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
+                        {...register("name", {
+                            required: "Введите имя",
+                            validate: (value) => {
+                                return /^[a-zA-Zа-яА-ЯёЁ\s]+$/u.test(value) || "Только латиница или кириллица";
+                                }
+                            }
+                        )}
                         autocomplete="given-name"
                     />
-                    {errors.name && <div className="error-message">{errors.name.message}</div>}
+                    <div className="error-message">{errors.name?.message}</div>
                 </div>
                 <div className="input-container">
                     <Input
-                        register={register("surname", {
-                            required: "Введите фамилию",
-                            pattern: {
-                                value: /^[a-zA-Zа-яА-ЯёЁ]+$/,
-                                message: "Только латиница или кириллица"
-                            }
-                        })}
                         label={<Header hdrType="input" text="Фамилия"/>}
                         type="text"
                         placeholder="Иванов"
-                        name="surname"
-                        value={formData.surname}
-                        onChange={handleChange}
+                        {...register("surname", {
+                            required: "Введите фамилию",
+                            validate: (value) => {
+                                return /^[a-zA-Zа-яА-ЯёЁ]+$/u.test(value) || "Только латиница или кириллица";
+                                }
+                            }
+                        )}
                         autocomplete="family-name"
                     />
-                    {errors.surname && <div className="error-message">{errors.surname.message}</div>}
+                    <div className="error-message">{errors.surname?.message}</div>
                 </div>
                 <div className="input-container">
                     <Input
-                        register={register("email", {
-                            required: "Введите email",
-                        })}
                         label={<Header hdrType="input" text="Электронная почта"/>}
                         type="email"
                         placeholder="something@smth.com"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
+                        {...register("email", {
+                            required: "Введите email",
+                            validate: (value) => {
+                                return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) || "Введите корректный email";
+                                }
+                            }
+                        )}
                         autocomplete="email"
                     />
-                    {errors.email && <div className="error-message">{errors.email.message}</div>}
+                    <div className="error-message">{errors.email?.message}</div>
                 </div>
                 <div className="input-container">
                     <Input
-                        register={register("phone", {
-                            required: "Введите номер телефона",
-                        })}
                         label={<Header hdrType="input" text="Телефон"/>}
                         type="tel"
                         placeholder="+7(XXX)XXX-XX-XX"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
+                        {...register("phone", {
+                            required: "Введите номер телефона",
+                            validate: (value) => {
+                                return /^(\+)?[0-9]+$/.test(value) || "Введите корректный номер телефона";
+                                }
+                            }
+                        )}
                         autocomplete="tel"
                     />
-                    {errors.phone && <div className="error-message">{errors.phone.message}</div>}
+                    <div className="error-message">{errors.phone?.message}</div>
                 </div>
                 <div className="input-container">
                     <Input
-                        register={register("dob", {
-                            required: "Введите дату рождения",
-                        })}
                         label={<Header hdrType="input" text="Дата рождения"/>}
                         type="date"
-                        placeholder="20.01.1995"
-                        name="dob"
-                        value={formData.dob}
-                        onChange={handleChange}
+                        placeholder="20.01.1995"                    
+                        {...register("dob", {
+                            required: "Введите дату рождения",
+                            }
+                        )}
                         autocomplete="off"
                     />
-                    {errors.dob && <div className="error-message">{errors.dob.message}</div>}
+                    <div className="error-message">{errors.dob?.message}</div>
                 </div>
             </div>
             <div className="sign-up-form__password">
@@ -149,75 +145,68 @@ const SignUpForm = () => {
                 <div className="input-container">
                     <div className="password-field-container">
                         <Input
-                            register={register("password", {
-                                required: "Введите пароль",
-                                minLength: {
-                                    value: 8,
-                                    message: "Пароль должен содержать не менее 8 символов"
-                                }
-                            })}
                             label={<Header hdrType="input" text="Введите пароль"/>}
                             type={passwordIsVisible ? "text" : "password"}
-                            placeholder=""
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            autocomplete="off"
+                            placeholder=""                        
+                            {...register("password", {
+                                required: "Введите пароль",
+                                validate: (value) => {
+                                    return value.length >= 8 || "Пароль должен содержать не менее 8 символов";
+                                    }
+                                }
+                            )}
+                            autocomplete="new-password"
                         />
                         <div 
                             className="show-hide-icon"
                             onClick={() => setPasswordIsVisible(!passwordIsVisible)}
+                            aria-label={passwordIsVisible ? "Скрыть пароль" : "Показать пароль"}
                         >
                             {passwordIsVisible ? <GoEyeClosed /> : <GoEye />}
                         </div>
                     </div>
-                    {errors.password && <div className="error-message">{errors.password.message}</div>}
+                    <div className="error-message">{errors.password?.message}</div>
                 </div>
                 <div className="input-container">
                     <div className="password-field-container">
                         <Input
-                            register={register("confirmPassword", {
-                                required: "Подтвердите пароль",
-                                validate: (value) => {
-                                    if (formData.password === value) {
-                                        return true;
-                                    }
-                                    return "Пароли не совпадают";
-                                }, 
-                            })}
                             label={<Header hdrType="input" text="Повторите пароль"/>}
                             type={passwordIsVisible ? "text" : "password"}
-                            placeholder=""
-                            name="confirmPassword"
-                            value={formData.confirmPassword}
-                            onChange={handleChange}
+                            placeholder=""                        
+                            {...register("confirmPassword", {
+                                required: "Подтвердите пароль",
+                                validate: (value) => {
+                                    return value === watch("password") || "Пароли не совпадают";
+                                    }, 
+                                }
+                            )}
                             autocomplete="off"
                         />
                         <div 
                             className="show-hide-icon"
                             onClick={() => setPasswordIsVisible(!passwordIsVisible)}
+                            aria-label={passwordIsVisible ? "Скрыть пароль" : "Показать пароль"}
                         >
                             {passwordIsVisible ? <GoEyeClosed /> : <GoEye />}
                         </div>
                     </div>
-                    {errors.confirmPassword && <div className="error-message">{errors.confirmPassword.message}</div>}
+                    <div className="error-message">{errors.confirmPassword?.message}</div>
                 </div>    
             </div>
             <div className="sign-up-form__buttons">
                 <Button
-                    disabled={isSubmitting}
                     btnType="primary"
-                    text="Зарегистрироваться"
+                    text={isSubmitting ? "Отправляю..." : "Зарегистрироваться"}
                     type="submit"
+                    disabled={isSubmitting}
                 />
-                <Link className="link" to={-1}>
-                    <Button
-                        disabled={isSubmitting}
-                        btnType="secondary"
-                        text="Отменить"
-                        type="button"
-                    />
-                </Link>
+                <Button
+                    btnType="secondary"
+                    text="Отменить"
+                    type="button"
+                    disabled={isSubmitting}
+                    onClick={() => handleNavigation(-1)}
+                />
             </div>
         </form>
     );

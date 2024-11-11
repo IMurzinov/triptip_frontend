@@ -1,4 +1,4 @@
-import 'components/Placeholders/TopTripFetchFailPlaceholder/index.css';
+import "./index.css";
 
 const TopTripFetchFailPlaceholder = () => {
     return (
