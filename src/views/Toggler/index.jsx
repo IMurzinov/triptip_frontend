@@ -1,29 +1,28 @@
 import "./index.css";
 
-const Toggler = ({ isEmailVisible, onDataChange }) => {
+const Toggler = ({ options, selectedOption, onOptionChange }) => {
 
-  const handleToggle = (isEmail) => {
-    onDataChange(isEmail);
-  };
+    // Функция для рендера кнопок переключателя
+    const renderButton = (option) => {
+        const isActive = option.value === selectedOption;
+        return (
+            <button
+                key={option.value}
+                className={`toggle-button ${isActive ? 'active' : ''}`}
+                onClick={() => onOptionChange(option.value)}
+            >
+                {option.label}
+            </button>
+        );
+    };
 
-  return (
-    <div className="auth-switcher">
-      <div className="toggle-buttons">
-        <button 
-          className={`toggle-button ${!isEmailVisible ? 'active' : ''}`} 
-          onClick={() => handleToggle(false)}
-        >
-          По номеру телефона
-        </button>
-        <button 
-          className={`toggle-button ${isEmailVisible ? 'active' : ''}`} 
-          onClick={() => handleToggle(true)}
-        >
-          По электронной почте
-        </button>
-      </div>
-    </div>
-  );
+    return (
+        <div className="auth-switcher">
+            <div className="toggle-buttons">
+                {options.map(renderButton)}
+            </div>
+        </div>
+    );
 };
 
 export default Toggler;

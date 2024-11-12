@@ -1,4 +1,3 @@
-// TODO: Решить проблему с валидацией поля при переключении вкладки тогглера
 // TODO: Добавить ссылку "Забыли пароль?"
 // TODO: Добавить строку для отображения ошибки в случае неверного пароля и/или логина
 // TODO: Добавить маску для ввода телефона
@@ -36,21 +35,21 @@ const AuthForm = () => {
     };
 
     const [passwordIsVisible, setPasswordIsVisible] = useState(false);
-    const [isEmailVisible, setIsEmailVisible] = useState(true);
+    const [selectedOption, setSelectedOption] = useState("email");
 
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
 
-    const handleToggle = (isEmail) => {
-        if (isEmailVisible) {
+    const handleToggle = (option) => {
+        if (selectedOption === "email") {
             setEmail(watch("email"));
         } else {
             setPhone(watch("phone"));
         }
 
-        setIsEmailVisible(isEmail);
+        setSelectedOption(option);
 
-        if (isEmail) {
+        if (option === "email") {
             setValue("email", email);
             setValue("phone", ""); // Очищаем phone при переключении на email
         } else {
@@ -89,6 +88,11 @@ const AuthForm = () => {
         );
     };
 
+    const options = [
+        { label: 'По номеру телефона', value: 'phone' },
+        { label: 'По электронной почте', value: 'email' },
+    ];
+
     return (
         <div className="auth-form">
             <Header hdrType="page" text="Вход или регистрация" />
@@ -98,14 +102,15 @@ const AuthForm = () => {
             >
                 <div className="auth-form__data">
                     <Toggler
-                        isEmailVisible={isEmailVisible}
-                        onDataChange={handleToggle}
+                        options={options}
+                        selectedOption={selectedOption}
+                        onOptionChange={handleToggle}
                     />
                     <div className="form-wrapper">
                         <div className="form email-form">
                             <div className="input-container">
-                                {isEmailVisible ? renderEmailAuth() : renderPhoneAuth()}
-                                {<div className="error-message">{isEmailVisible ? errors.email?.message : errors.phone?.message}</div>}
+                                {selectedOption === "email" ? renderEmailAuth() : renderPhoneAuth()}
+                                {<div className="error-message">{selectedOption === "email" ? errors.email?.message : errors.phone?.message}</div>}
                             </div>
                             <div className="input-container">
                                 <div className="password-field-container">
