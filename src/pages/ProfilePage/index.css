@@ -1,0 +1,41 @@
+.profile-page-layout {
+    width: 1168px;
+    height: 773px;
+    margin: 30px 72px 107px 200px;
+}
+
+.profile-page__header {
+
+}
+
+.profile-page__user-card {
+
+}
+
+.profile-page__toggler {
+    width: 100%;
+    display: flex;
+}
+
+.toggler__security {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.password__change, .account__delete {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px
+}
+
+p {
+    color: var(--black);
+    font-family: 'Inter';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

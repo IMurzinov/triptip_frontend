@@ -1,5 +1,8 @@
 // TODO: Прописать заглушку на случай отсутствия данных по пользователю
 // TODO: Прописать отображение реальных цифр по путешествиям и друзьям
+// TODO: Добавить стили иконки edit, чтобы её не было, когда карточка не своя
+// TODO: Обернуть edit в кнопку
+// TODO: Продумать, в каком месте должны подтягиваться данные пользователя для заполнения карточки. Через пропсы?
 
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,7 +14,7 @@ import editLogo from "assets/images/edit_logo.svg";
 
 import "./index.css";
 
-const UserProfileCard = () => {
+const UserProfileCard = ({style}) => {
     
     const dispatch = useDispatch();
 
@@ -37,7 +40,7 @@ const UserProfileCard = () => {
 
     
     return (
-        <div className='profile-card'>
+        <div className='profile-card' style={style}>
 
             <img className='profile-card__edit-icon' src={editLogo} alt='edit-icon'/>
 

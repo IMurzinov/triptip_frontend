@@ -35,7 +35,7 @@
 .page-header__text {
     margin-left: 72px;
     color: var(--primary-color);
-    font-family: Inter;
+    font-family: 'Inter';
     font-size: 14px;
     font-style: normal;
     font-weight: 600;

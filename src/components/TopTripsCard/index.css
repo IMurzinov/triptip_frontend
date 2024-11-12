@@ -10,7 +10,7 @@
     flex-direction: column;
     gap: 34px;
 
-    font-family: Inter;
+    font-family: 'Inter';
     font-style: normal;
     line-height: normal;
 }
@@ -61,6 +61,11 @@
 .likes, .comments {
     display: flex;
     gap: 12px;
+}
+
+.likes-icon, .comments-icon {
+    width: 24px;
+    height: 24px;
 }
 
 .trip-card__trip-label {

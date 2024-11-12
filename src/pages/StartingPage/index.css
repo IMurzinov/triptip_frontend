@@ -40,7 +40,7 @@
     gap: 32px;
 
     text-align: center;
-    font-family: Jura;
+    font-family: 'Jura';
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -53,6 +53,11 @@
     color: var(--primary-color);
     font-size: 44px;
     align-self: stretch;
+
+    font-family: 'Jura';
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .starting-page__description {
@@ -62,6 +67,11 @@
     color: var(--black);
     font-size: 24px;
     align-self: stretch;
+
+    font-family: 'Jura';
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .starting-page__buttons {
