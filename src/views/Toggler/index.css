@@ -1,13 +1,12 @@
 .auth-switcher {
     width: 100%;
-    max-width: 502px;
 }
   
 .toggle-buttons {
     display: flex;
     gap: 0;
     position: relative;
-    border-bottom: 2px solid var(--light-grey);
+    border-bottom: 2px solid var(--light-gray);
     margin-bottom: 12px;
 }
   
@@ -18,7 +17,7 @@
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
 
-    font-family: Inter, sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

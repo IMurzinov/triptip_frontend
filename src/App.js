@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { AuthPage, StartingPage, RegisterPage, NotFoundPage } from 'pages';
+import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage } from 'pages';
 
 
 import 'assets/fonts/fonts.css';
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
-  }
+  },
 ]); 
 
 function App() {

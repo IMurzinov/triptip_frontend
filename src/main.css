@@ -1,5 +1,5 @@
+@import 'assets/fonts/fonts.css';
 @import 'styles/variables.css';
-
 
 @import 'components/Button/index.css';
 @import 'components/Header/index.css';
@@ -11,7 +11,6 @@
 @import 'components/Placeholders/TopTripFetchFailPlaceholder/index.css';
 @import 'components/Placeholders/TopTripsEmptyPlaceholder/index.css';
 
-
 @import 'views/SignUpForm/index.css';
 @import 'views/AuthForm/index.css';
 @import 'views/Toggler/index.css';
@@ -22,12 +21,13 @@
 @import 'pages/AuthPage/index.css';
 @import 'pages/RegisterPage/index.css';
 @import 'pages/NotFoundPage/index.css';
+@import 'pages/ProfilePage/index.css';
 
 
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Inter, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: white;
   }
   

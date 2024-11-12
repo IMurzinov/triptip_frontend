@@ -32,11 +32,11 @@ const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_
           
           <div className='trip-card__likes-n-comms'>
             <div className='likes'>
-              <img src={likeIcon} alt='trip likes' />
+              <img className="likes-icon" src={likeIcon} alt='trip likes' />
               <span>{likes}</span>
             </div>
             <div className='comments'>
-              <img src={commentIcon} alt='trip comments' />
+              <img className="comments-icon" src={commentIcon} alt='trip comments' />
               <span>{comments}</span>
             </div>
           </div>
