@@ -5,6 +5,7 @@ import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage } from 
 
 import 'assets/fonts/fonts.css';
 
+
 const router = createBrowserRouter([
   {
     path: "/",
