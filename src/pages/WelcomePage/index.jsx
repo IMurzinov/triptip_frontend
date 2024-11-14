@@ -13,7 +13,7 @@ import * as constants from "constants/constants";
 
 import "./index.css";
 
-const StartingPage = () => {
+const WelcomePage = () => {
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ const StartingPage = () => {
         const loadTrips = async () => {
             setLoading(true);
             try {
-                const tripsWithUserData = await fetchTrips(true);
+                const tripsWithUserData = await fetchTrips();
                 setData(tripsWithUserData);
             } catch (error) {
                 setError(error);
@@ -109,9 +109,9 @@ const StartingPage = () => {
                                         dateTo={trip.date_to}
                                         likes="999"
                                         comments="999"
-                                        user_id={trip.user.id}
-                                        username={trip.user.username}
-                                        nickname={trip.user.nickname}
+                                        user_id={trip.author.id}
+                                        firstLastname={trip.author.first_name + ' ' + trip.author.last_name}
+                                        username={trip.author.username}
                                     />
                                 ))}
                             </div>
@@ -122,4 +122,4 @@ const StartingPage = () => {
     )
 };
 
-export default StartingPage;
+export default WelcomePage;

@@ -34,17 +34,23 @@
     gap: 4px;
 }
 
-.username {
+.first-last-name {
     color: var(--black);
-    font-size: 18px;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-style: normal;
     font-weight: 500;
+    line-height: normal;
     text-transform: capitalize;
 }
 
-.nickname {
-    color: var(--dark-gray);
+.username {
+    color: var(--dark-gray, #7187A8);
+    font-family: 'Inter';
     font-size: 14px;
+    font-style: normal;
     font-weight: 400;
+    line-height: normal;
     text-transform: capitalize;
 }
 
