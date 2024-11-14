@@ -1,3 +1,5 @@
+// TODO: Переписать отображение имени, фамилии и юзернейма
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -12,7 +14,6 @@ import { PageHeader,
 import * as constants from "constants/constants";
 
 import "./index.css";
-
 
 const StartingPage = () => {
 
@@ -111,7 +112,7 @@ const StartingPage = () => {
                                         likes="999"
                                         comments="999"
                                         user_id={trip.author.id}
-                                        firstLastname={trip.author.first_name + ' ' + trip.author.last_name}
+                                        firstLastName={trip.author.username}
                                         username={trip.author.username}
                                     />
                                 ))}

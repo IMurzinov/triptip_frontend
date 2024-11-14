@@ -1,3 +1,5 @@
+// TODO: Добавить отображение 3 фото поездки
+
 import { Header, Userpic } from "components";
 import likeIcon from "assets/images/likeIcon.svg";
 import commentIcon from "assets/images/commentIcon.svg";
@@ -54,7 +56,6 @@ const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_
               <p>{formatDate(dateFrom)} - {formatDate(dateTo)} {formatYear(dateTo)}</p>
             </div>
         </div>
-{/* TO-DO: Добавить отображение 3 фото поездки */}
       </div>
     );
   };
