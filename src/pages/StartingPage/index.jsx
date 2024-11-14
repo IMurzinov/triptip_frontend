@@ -13,7 +13,7 @@ import * as constants from "constants/constants";
 
 import "./index.css";
 
-const WelcomePage = () => {
+const StartingPage = () => {
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -122,4 +122,4 @@ const WelcomePage = () => {
     )
 };
 
-export default WelcomePage;
+export default StartingPage;
