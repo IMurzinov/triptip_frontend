@@ -13,6 +13,7 @@ import * as constants from "constants/constants";
 
 import "./index.css";
 
+
 const StartingPage = () => {
 
     const [data, setData] = useState([]);
