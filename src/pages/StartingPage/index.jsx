@@ -1,3 +1,5 @@
+// TODO: Переписать отображение имени, фамилии и юзернейма
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -24,7 +26,7 @@ const StartingPage = () => {
         const loadTrips = async () => {
             setLoading(true);
             try {
-                const tripsWithUserData = await fetchTrips(true);
+                const tripsWithUserData = await fetchTrips();
                 setData(tripsWithUserData);
             } catch (error) {
                 setError(error);
@@ -109,9 +111,9 @@ const StartingPage = () => {
                                         dateTo={trip.date_to}
                                         likes="999"
                                         comments="999"
-                                        user_id={trip.user.id}
-                                        username={trip.user.username}
-                                        nickname={trip.user.nickname}
+                                        user_id={trip.author.id}
+                                        firstLastName={trip.author.username}
+                                        username={trip.author.username}
                                     />
                                 ))}
                             </div>

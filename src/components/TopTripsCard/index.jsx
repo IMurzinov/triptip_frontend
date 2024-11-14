@@ -1,10 +1,12 @@
+// TODO: Добавить отображение 3 фото поездки
+
 import { Header, Userpic } from "components";
 import likeIcon from "assets/images/likeIcon.svg";
 import commentIcon from "assets/images/commentIcon.svg";
 
 import "./index.css";
 
-const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_id, username, nickname }) => {
+const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_id, username, firstLastName }) => {
     const formatDate = (date) => {
         const options = { day: 'numeric', month: 'long' };
         return new Date(date).toLocaleDateString('ru-RU', options);
@@ -25,8 +27,8 @@ const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_
             size='medium'  
             />
             <div className='trip-card__user-name'>
+              <p className='first-last-name'>{firstLastName}</p>
               <p className='username'>{username}</p>
-              <p className='nickname'>{nickname}</p>
             </div>
           </div>
           
@@ -54,7 +56,6 @@ const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_
               <p>{formatDate(dateFrom)} - {formatDate(dateTo)} {formatYear(dateTo)}</p>
             </div>
         </div>
-{/* TO-DO: Добавить отображение 3 фото поездки */}
       </div>
     );
   };
