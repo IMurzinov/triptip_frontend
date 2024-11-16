@@ -58,9 +58,10 @@ const SignUpForm = () => {
             if (!watch(field)) {
                 unregister(field);
             }
-            unregister("confirmPassword");
         })
 
+        unregister("confirmPassword");
+        
         handleSubmit(onSubmit)();
     };
 
@@ -84,9 +85,9 @@ const SignUpForm = () => {
                         type="text"
                         placeholder="Иван"
                         {...register("first_name", {
-                            // validate: (value) => {
-                            //     return /^[a-zA-Zа-яА-ЯёЁ\s]+$/u.test(value) || "Только латиница или кириллица";
-                            //     }
+                            validate: (value) => {
+                                return /^[a-zA-Zа-яА-ЯёЁ\s]+$/u.test(value) || "Только латиница или кириллица";
+                                }
                             }
                         )}
                         autocomplete="given-name"
@@ -99,9 +100,9 @@ const SignUpForm = () => {
                         type="text"
                         placeholder="Иванов"
                         {...register("last_name", {
-                            // validate: (value) => {
-                            //     return /^[a-zA-Zа-яА-ЯёЁ]+$/u.test(value) || "Только латиница или кириллица";
-                            //     }
+                            validate: (value) => {
+                                return /^[a-zA-Zа-яА-ЯёЁ]+$/u.test(value) || "Только латиница или кириллица";
+                                }
                             }
                         )}
                         autocomplete="family-name"
