@@ -16,6 +16,7 @@ const AuthForm = () => {
 
     const {
         register,
+        unregister,
         handleSubmit,
         setValue,
         watch,
@@ -25,11 +26,18 @@ const AuthForm = () => {
     const onSubmit = (data) => {
         console.log(data);
     };
-
+    
+    const fields = ["email", "phone", "password"];
+    
     const handleFormSubmit = (e) => {
         if (e.nativeEvent.submitter && e.nativeEvent.submitter.classList.contains("toggle-button")) {
             e.preventDefault();
         } else {
+            fields.forEach((field) => {
+                if (!watch(field)) {
+                    unregister(field);
+                }
+            })
             handleSubmit(onSubmit)(e);
         }
     };
@@ -39,6 +47,8 @@ const AuthForm = () => {
 
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+
+ 
 
     const handleToggle = (option) => {
         if (selectedOption === "email") {
