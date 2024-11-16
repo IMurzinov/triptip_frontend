@@ -14,6 +14,7 @@ import "./index.css";
 const SignUpForm = () => {
     const { 
         register,
+        unregister,
         handleSubmit,
         setError,
         formState: { errors, isSubmitting, isDirty }, 
@@ -48,6 +49,21 @@ const SignUpForm = () => {
 
     },  [isDirty]);
 
+    const fields = ["first_name", "last_name", "username", "email"];
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+
+        fields.forEach((field) => {
+            if (!watch(field)) {
+                unregister(field);
+            }
+            unregister("confirmPassword");
+        })
+
+        handleSubmit(onSubmit)();
+    };
+
     const onSubmit = (data) => {
         console.log(data);
     };
@@ -57,7 +73,7 @@ const SignUpForm = () => {
     return (
         <form
             className="sign-up-form"
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleFormSubmit}
         >
             <Header hdrType="page" text="Регистрация" />
             <div className="sign-up-form__personal-data">
@@ -67,32 +83,46 @@ const SignUpForm = () => {
                         label={<Header hdrType="input" text="Имя"/>}
                         type="text"
                         placeholder="Иван"
-                        {...register("name", {
-                            required: "Введите имя",
-                            validate: (value) => {
-                                return /^[a-zA-Zа-яА-ЯёЁ\s]+$/u.test(value) || "Только латиница или кириллица";
-                                }
+                        {...register("first_name", {
+                            // validate: (value) => {
+                            //     return /^[a-zA-Zа-яА-ЯёЁ\s]+$/u.test(value) || "Только латиница или кириллица";
+                            //     }
                             }
                         )}
                         autocomplete="given-name"
                     />
-                    <div className="error-message">{errors.name?.message}</div>
+                    <div className="error-message">{errors.first_name?.message}</div>
                 </div>
                 <div className="input-container">
                     <Input
                         label={<Header hdrType="input" text="Фамилия"/>}
                         type="text"
                         placeholder="Иванов"
-                        {...register("surname", {
-                            required: "Введите фамилию",
-                            validate: (value) => {
-                                return /^[a-zA-Zа-яА-ЯёЁ]+$/u.test(value) || "Только латиница или кириллица";
-                                }
+                        {...register("last_name", {
+                            // validate: (value) => {
+                            //     return /^[a-zA-Zа-яА-ЯёЁ]+$/u.test(value) || "Только латиница или кириллица";
+                            //     }
                             }
                         )}
                         autocomplete="family-name"
                     />
-                    <div className="error-message">{errors.surname?.message}</div>
+                    <div className="error-message">{errors.last_name?.message}</div>
+                </div>
+                <div className="input-container">
+                    <Input
+                        label={<Header hdrType="input" text="Имя пользователя"/>}
+                        type="text"
+                        placeholder="username"
+                        {...register("username", {
+                            required: "Введите имя пользователя",
+                            validate: (value) => {
+                                return /^[A-Za-z\s]+$/u.test(value) || "Только латиница";
+                                }
+                            }
+                        )}
+                        autocomplete="username"
+                    />
+                    <div className="error-message">{errors.username?.message}</div>
                 </div>
                 <div className="input-container">
                     <Input
@@ -110,7 +140,7 @@ const SignUpForm = () => {
                     />
                     <div className="error-message">{errors.email?.message}</div>
                 </div>
-                <div className="input-container">
+                {/* <div className="input-container">
                     <Input
                         label={<Header hdrType="input" text="Телефон"/>}
                         type="tel"
@@ -125,8 +155,8 @@ const SignUpForm = () => {
                         autocomplete="tel"
                     />
                     <div className="error-message">{errors.phone?.message}</div>
-                </div>
-                <div className="input-container">
+                </div> */}
+                {/* <div className="input-container">
                     <Input
                         label={<Header hdrType="input" text="Дата рождения"/>}
                         type="date"
@@ -138,7 +168,7 @@ const SignUpForm = () => {
                         autocomplete="off"
                     />
                     <div className="error-message">{errors.dob?.message}</div>
-                </div>
+                </div> */}
             </div>
             <div className="sign-up-form__password">
                 <Header className="section-header" text="Создание пароля" style={{ marginBottom: "4px" }} />
