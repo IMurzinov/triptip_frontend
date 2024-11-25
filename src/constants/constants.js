@@ -3,6 +3,7 @@ export const BASE_URL = "https://api.triptip.pro"
 export const URL = {
   TRIPS: `${BASE_URL}/trips`,
   GET_USER: `${BASE_URL}/users`,
+  REGISTER: `${BASE_URL}/auth/register`,
 };
 
 export const ERROR_MESSAGES = {

@@ -1,13 +1,15 @@
 // TODO: Добавить подсказку по вводу пароля, индикацию силы пароля.
 // TODO: Добавить проверку на занятость email и имени
 // TODO: Добавить маску для телефона
+// TODO: Убрать все ненужные console.log()
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 
-import { Button, Header, Input } from "components"
+import { Button, Header, Input } from "components";
+import { userRegistration } from "api";
 
 import "./index.css";
 
@@ -65,8 +67,16 @@ const SignUpForm = () => {
         handleSubmit(onSubmit)();
     };
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+
         console.log(data);
+
+        try {
+            const result = await userRegistration(data);
+            console.log("Регистрация прошла успешно!", result);
+        } catch (error) {
+            console.error("Ошибка:", error);
+        }
     };
 
     const [passwordIsVisible, setPasswordIsVisible] = useState(false);
@@ -117,7 +127,7 @@ const SignUpForm = () => {
                         {...register("username", {
                             required: "Введите имя пользователя",
                             validate: (value) => {
-                                return /^[A-Za-z\s]+$/u.test(value) || "Только латиница";
+                                return /^[A-Za-z@_-]+$/u.test(value) || `Только латиница и символы "@", "-", "_"` ;
                                 }
                             }
                         )}
