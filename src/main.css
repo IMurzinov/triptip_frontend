@@ -22,6 +22,7 @@
 @import 'pages/RegisterPage/index.css';
 @import 'pages/NotFoundPage/index.css';
 @import 'pages/ProfilePage/index.css';
+@import 'pages/WelcomePage/index.css';
 
 
 body, html {

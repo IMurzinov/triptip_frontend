@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage } from 'pages';
+import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage, WelcomePage } from 'pages';
 
 
 import 'assets/fonts/fonts.css';
@@ -19,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "/welcome",
+    element: <WelcomePage />,
   },
 ]); 
 
