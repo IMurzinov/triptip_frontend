@@ -6,6 +6,13 @@ export const URL = {
   REGISTER: `${BASE_URL}/auth/register`,
 };
 
+export const AUTH = {
+  REGISTER: `${BASE_URL}/auth/register`,
+  LOGIN: `${BASE_URL}/auth/login`,
+  REFRESH: `${BASE_URL}/auth/refresh`,
+  LOGOUT: `${BASE_URL}/auth/logout`,
+};
+
 export const ERROR_MESSAGES = {
   NETWORK_ERROR: "Network response was not ok.",
   USERPIC_FETCH_FAILED: "Failed to fetch userpic",

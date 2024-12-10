@@ -1,7 +1,7 @@
-import { URL } from "constants/constants";
+import { AUTH } from "constants/constants";
 
 const userRegistration = async (data) => {
-    const response = await fetch(URL.REGISTER, {
+    const response = await fetch(AUTH.REGISTER, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -14,7 +14,8 @@ const userRegistration = async (data) => {
         throw new Error(error.message || "Ошибка регистрации");
     }
 
-    return response.json();
+    const result = await response.text();
+    return result ? JSON.parse(result) : null;
 };
 
 export default userRegistration;
