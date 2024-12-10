@@ -6,10 +6,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 
+import { loginSuccess } from "features/auth/authSlice";
 import { Button, Header, Input } from "components";
-import { userRegistration } from "api";
+import { userRegistration, auth } from "api";
 
 import "./index.css";
 
@@ -27,6 +29,7 @@ const SignUpForm = () => {
     // о потере данных в случае закрытия окна без отправки формы
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleNavigation = (path) => {
         if (isDirty && !window.confirm("Вы действительно хотите покинуть страницу? Несохранённые данные будут потеряны.")) {
@@ -72,10 +75,23 @@ const SignUpForm = () => {
         console.log(data);
 
         try {
+            // Регистрация
             const result = await userRegistration(data);
-            console.log("Регистрация прошла успешно!", result);
+
+            // Авторизация
+            const loginResponse = await auth(data);
+
+            // Обновление состояния authSlice
+            dispatch(loginSuccess({ user: loginResponse.user }));
+            
+            // Перенаправление
+            navigate("/welcome");
+
         } catch (error) {
-            console.error("Ошибка:", error);
+            console.error("Ошибка:", error.message);
+
+            // Установка ошибки на сервере
+            setError("server", { message: error.message || "Произошла ошибка" });
         }
     };
 
