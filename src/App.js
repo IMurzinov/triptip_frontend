@@ -1,9 +1,9 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage, WelcomePage } from 'pages';
+import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage, WelcomePage } from "pages";
+import { ProtectedRoute } from "components";
 
-
-import 'assets/fonts/fonts.css';
+import "assets/fonts/fonts.css";
 
 
 const router = createBrowserRouter([
@@ -22,9 +22,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/welcome",
-    element: <WelcomePage />,
+    element: (
+      <ProtectedRoute>
+        <WelcomePage />
+      </ProtectedRoute>
+    ),
   },
-]); 
+]);
 
 function App() {
   return (
