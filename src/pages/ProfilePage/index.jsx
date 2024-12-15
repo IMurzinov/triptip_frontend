@@ -68,7 +68,7 @@ const ProfilePage = () => {
     };
 
     return <div className="profile-page-layout">
-            {/* <PageHeader/> */}
+            <PageHeader/>
             <Header className="profile-page__header" text="Личный кабинет" hdrType="page"/>
             <UserProfileCard className="profile-page__user-card" style={{margin: "41px 0 53px"}} />
             <Toggler

@@ -3,10 +3,14 @@
 // TODO: Добавить маску для ввода телефона
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 
+import { loginSuccess } from "features/auth/authSlice";
+import { auth } from "api";
 import { Toggler } from "views";
 import { Button, Header, Input } from "components";
 
@@ -20,11 +24,26 @@ const AuthForm = () => {
         handleSubmit,
         setValue,
         watch,
+        setError,
         formState: { errors, isSubmitting },
     } = useForm({ mode: "onChange" });
 
-    const onSubmit = (data) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const onSubmit = async (data) => {
         console.log(data);
+
+        try {
+            const loginResponse = await auth(data);
+            dispatch(loginSuccess({ user: loginResponse.user }));
+            navigate(`/profile/${data.username}`);
+        } catch (error) {
+            console.error("Ошибка:", error.message);
+
+            // Установка ошибки на сервере
+            setError("server", { message: error.message || "Произошла ошибка" });
+        }
     };
     
     const fields = ["email", "phone", "password"];
