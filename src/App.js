@@ -5,7 +5,6 @@ import { ProtectedRoute } from "components";
 
 import "assets/fonts/fonts.css";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +24,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <WelcomePage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/profile/:username",
+    element: (
+      <ProtectedRoute>
+        <ProfilePage/>
       </ProtectedRoute>
     ),
   },

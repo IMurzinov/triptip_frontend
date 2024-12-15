@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 import { Button, Header, PageHeader } from "components";
 import { UserProfileCard, Toggler } from "views";
@@ -6,6 +7,8 @@ import { UserProfileCard, Toggler } from "views";
 import "./index.css";
 
 const ProfilePage = () => {
+
+    const { username } = useParams();
 
     const handleToggle = (option) => {
         
