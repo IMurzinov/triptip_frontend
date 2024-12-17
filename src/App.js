@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage, WelcomePage } from "pages";
-import { ProtectedRoute } from "components";
+import { ProtectedRoute, AuthCheck } from "components";
 
 import "assets/fonts/fonts.css";
 
@@ -40,6 +40,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className='App'>
+      <AuthCheck />
       <RouterProvider router={router} />
     </div>
   );

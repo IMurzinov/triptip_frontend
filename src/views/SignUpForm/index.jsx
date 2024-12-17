@@ -72,8 +72,6 @@ const SignUpForm = () => {
 
     const onSubmit = async (data) => {
 
-        console.log(data);
-
         try {
             // Регистрация
             const result = await userRegistration(data);

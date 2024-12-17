@@ -1,8 +1,12 @@
-import { mainFetch } from "api";
+import { apiClient } from "api";
 import { URL, ERROR_MESSAGES } from "constants/constants";
 
 const fetchUserData = async (userID) => {
-    return await mainFetch(`${URL.GET_USER}/${userID}`, ERROR_MESSAGES.USER_FETCH_FAILED);
+    try {
+        return await apiClient(`${URL.GET_USER}/${userID}`);
+    } catch (error) {
+        throw new Error(ERROR_MESSAGES.USER_FETCH_FAILED);
+    }
 };
 
 export default fetchUserData;
