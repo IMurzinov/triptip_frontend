@@ -32,15 +32,14 @@ const AuthForm = () => {
     const dispatch = useDispatch();
 
     const onSubmit = async (data) => {
-        console.log(data);
 
         try {
             const loginResponse = await auth(data);
+            localStorage.setItem('isAuthenticated', 'true');
             dispatch(loginSuccess({ user: loginResponse.user }));
             navigate(`/profile/${data.username}`);
         } catch (error) {
             console.error("Ошибка:", error.message);
-
             // Установка ошибки на сервере
             setError("server", { message: error.message || "Произошла ошибка" });
         }
