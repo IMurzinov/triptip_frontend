@@ -4,10 +4,8 @@
 // TODO: Обернуть edit в кнопку
 // TODO: Продумать, в каком месте должны подтягиваться данные пользователя для заполнения карточки. Через пропсы?
 
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { loginSuccess } from "features/auth/authSlice";
 import { Header, Userpic } from "components";
 
 import editLogo from "assets/images/edit_logo.svg";
@@ -19,19 +17,6 @@ const UserProfileCard = ({style}) => {
     const dispatch = useDispatch();
 
     const user = useSelector((state) => state.auth.user);
-
-    useEffect(() => {
-        const fakeUserData = {
-            id: 3,
-            username: "Amelia Earhart",
-            nickname: "FlyinGirl",
-            email: "amelia_earhart@bk.ru",
-            userpic: "https://californiamuseum.org/wp-content/uploads/amelia-earhart-1.jpg",
-            bio: "contact me for flights across any oceans in the world, be sure to bring your own life vest",
-        };
-
-        dispatch(loginSuccess(fakeUserData));
-    }, [dispatch]);
 
     if (!user) {
         return <div>Не удалось загрузить информацию о пользователе</div>
