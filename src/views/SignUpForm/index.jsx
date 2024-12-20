@@ -80,7 +80,7 @@ const SignUpForm = () => {
             const loginResponse = await auth(data);
 
             // Обновление состояния authSlice
-            dispatch(loginSuccess({ user: loginResponse.user }));
+            dispatch(loginSuccess({ user: loginResponse.user_data }));
             
             // Перенаправление
             navigate("/welcome");
