@@ -8,4 +8,3 @@ export { default as Userpic } from 'components/Userpic';
 export { default as TopTripFetchFailPlaceholder } from 'components/Placeholders/TopTripFetchFailPlaceholder';
 export { default as TopTripsEmptyPlaceholder } from 'components/Placeholders/TopTripsEmptyPlaceholder';
 export { default as ProtectedRoute } from 'components/ProtectedRoute';
-export { default as AuthCheck } from 'components/AuthCheck';

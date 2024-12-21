@@ -36,7 +36,7 @@ const AuthForm = () => {
         try {
             const loginResponse = await auth(data);
             dispatch(loginSuccess({ user: loginResponse.user_data }));
-            navigate(`/profile/${loginResponse.user_data}`);
+            navigate(`/profile/${loginResponse.user_data.username}`);
         } catch (error) {
             console.error("Ошибка:", error.message);
             // Установка ошибки на сервере
