@@ -32,7 +32,7 @@ const PageHeader = () => {
             <div className="page-header__buttons">
                 {isAuthenticated ? (
                     <div>
-                        {/* TODO: Добавить отображение кнопок для состояний отличных от isAutenticated === false */}
+                        {/* TODO: Добавить отображение кнопок для состояния isAutenticated === true */}
                     </div>
                 ) : (
                     <Link className="link" to="/auth">

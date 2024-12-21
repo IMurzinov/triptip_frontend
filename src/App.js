@@ -1,7 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
+import { Provider } from "react-redux";
+
 
 import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage, WelcomePage } from "pages";
-import { ProtectedRoute, AuthCheck } from "components";
+import { ProtectedRoute } from "components";
+import { store, persistor } from "store";
 
 import "assets/fonts/fonts.css";
 
@@ -37,12 +41,17 @@ const router = createBrowserRouter([
   },
 ]);
 
+// Основной компонент приложения
 function App() {
   return (
-    <div className='App'>
-      <AuthCheck />
-      <RouterProvider router={router} />
-    </div>
+    <Provider store={store}>
+      {/* PersistGate обеспечивает восстановление состояния */}
+      <PersistGate loading={<div>Загрузка...</div>} persistor={persistor}>
+        <div className="App">
+          <RouterProvider router={router} />
+        </div>
+      </PersistGate>
+    </Provider>
   );
 }
 

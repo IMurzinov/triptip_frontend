@@ -20,7 +20,7 @@ const AuthCheck = () => {
                     const response = await apiClient(AUTH.REFRESH, { method: 'POST' });
                     console.log("Отправили запрос на refresh, обновляем стейт пользователя");
                     // Успешное обновление токена и получение данных пользователя
-                    dispatch(loginSuccess({ user: response.user }));
+                    dispatch(loginSuccess({ user: response.user_data })); 
                 } catch (error) {
                     console.error("Ошибка обновления токена:", error.message);
                     

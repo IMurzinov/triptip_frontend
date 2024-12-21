@@ -35,7 +35,6 @@ const AuthForm = () => {
 
         try {
             const loginResponse = await auth(data);
-            localStorage.setItem('isAuthenticated', 'true');
             dispatch(loginSuccess({ user: loginResponse.user_data }));
             navigate(`/profile/${loginResponse.user_data}`);
         } catch (error) {
