@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 
 
 import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage, WelcomePage } from "pages";
-import { ProtectedRoute } from "components";
+import { ProtectedRoute, EntranceAuthCheck } from "components";
 import { store, persistor } from "store";
 
 import "assets/fonts/fonts.css";
@@ -12,7 +12,11 @@ import "assets/fonts/fonts.css";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <StartingPage />,
+    element: (
+      <EntranceAuthCheck>
+        <StartingPage />
+      </EntranceAuthCheck>
+    ),
     errorElement: <NotFoundPage />,
   },
   {
