@@ -67,18 +67,20 @@ const ProfilePage = () => {
         security: securityRender,
     };
 
-    return <div className="profile-page-layout">
-            <PageHeader/>
-            <Header className="profile-page__header" text="Личный кабинет" hdrType="page"/>
-            <UserProfileCard className="profile-page__user-card" style={{margin: "41px 0 53px"}} />
-            <Toggler
-                className="profile-page__toggler"
-                options={options}
-                selectedOption={selectedOption}
-                onOptionChange={handleToggle}
-            />
-            {renderFunctions[selectedOption] && renderFunctions[selectedOption]()}
-        </div>
+    return <div className="profile-page-container">
+                <PageHeader/>
+                <div className="profile-page-layout">
+                    <Header className="profile-page__header" text="Личный кабинет" hdrType="page"/>
+                    <UserProfileCard className="profile-page__user-card" style={{margin: "41px 0 53px"}} />
+                    <Toggler
+                        className="profile-page__toggler"
+                        options={options}
+                        selectedOption={selectedOption}
+                        onOptionChange={handleToggle}
+                    />
+                    {renderFunctions[selectedOption] && renderFunctions[selectedOption]()}
+                </div>
+            </div>
 };
 
 export default ProfilePage;

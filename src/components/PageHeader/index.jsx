@@ -1,10 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import { logout } from "features/auth/authSlice";
 import { Button } from "components";
-import projectVLogo from "assets/images/ProjectV.svg";
+import plus from "assets/images/plus.svg";
 import logo from "assets/images/logo.svg";
+import friendPlugOne from "assets/images/friendPlugOne.svg";
+import friendPlugTwo from "assets/images/friendPlugTwo.svg";
+import friendPlugThree from "assets/images/friendPlugThree.svg";
 
 import "./index.css";
 
@@ -15,35 +18,85 @@ const PageHeader = () => {
 
     const handleLogout = () => {
         dispatch(logout());
+        return <Navigate to="/" replace />
     }
 
-
-    return (
-        <header className="page-header">
-            <div>
-                {/* TODO: "О Нас" + "Политика конфеденциальности" в зависимости от состояния isAuthenticated или isProfilePageOpened */}
-            </div>
-            <Link to="/">
-                <div className="page-header__logo-group">
-                    <img className="projectV-logo" src={projectVLogo} alt='triptip logo'/>
-                    <img className="logo" src={logo} alt='triptip logo'/>
-                </div>
-            </Link>
-            <div className="page-header__buttons">
-                {isAuthenticated ? (
-                    <div>
-                        {/* TODO: Добавить отображение кнопок для состояния isAutenticated === true */}
+    const authenticatedHeaderRender = () => {
+        return (
+            <div className="page-header__container">
+                <nav className="page-header__friends-group">
+                    <div className="friends-avatar">
+                        <img className="friend one" src={friendPlugOne} alt='friend avatar'/>
+                        <img className="friend two" src={friendPlugTwo} alt='friend avatar'/>
+                        <img className="friend three" src={friendPlugThree} alt='friend avatar'/>
                     </div>
-                ) : (
-                    <Link className="link" to="/auth">
+                    <Link className="link" to="">
+                        <Button
+                            btnType="plain"
+                            text="Друзья"
+                            type="button"
+                        />
+                    </Link>
+                </nav>
+                <Link to="/">
+                    <div className="page-header__logo-group">
+                        <img className="logo" src={logo} alt='triptip logo'/>
+                    </div>
+                </Link>
+                <nav className="page-header__buttons">
+                    <Link className="link" to="/">
+                        <Button
+                            onClick={handleLogout}
+                            btnType="secondary"
+                            text="Выйти"
+                            type="button"
+                        />
+                    </Link>
+                    <Link className="link" to="">
+                        <Button
+                            btnType="primary"
+                            icon={plus}
+                            text="Создать поездку"
+                            type="button"
+                        />
+                    </Link>
+                </nav>
+            </div>
+        );
+    };
+
+    const notAuthenticatedHeaderRender = () => {
+        return (
+            <div className="page-header__container">
+                <Link to="/">
+                    <div className="page-header__logo-group">
+                        <img className="logo" src={logo} alt='triptip logo'/>
+                    </div>
+                </Link>
+                <nav className="page-header__buttons">
+                    <Link className="link" to="/register">
                         <Button
                             btnType="secondary"
+                            text="Зарегистрироваться"
+                            type="button"
+                        />
+                    </Link>
+                    <Link className="link" to="/auth">
+                        <Button
+                            btnType="primary"
                             text="Войти"
                             type="button"
                         />
                     </Link>
-                )}
+                </nav>
             </div>
+        );
+    };
+
+
+    return (
+        <header className="page-header">
+            {isAuthenticated ? ( authenticatedHeaderRender() ) : ( notAuthenticatedHeaderRender() )}
         </header>
     );
 };

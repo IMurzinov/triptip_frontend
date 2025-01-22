@@ -7,7 +7,7 @@ const Header = ({ text, style, hdrType }) => {
         <p className={classNames(
             'header',
             {
-               'page-header': hdrType === 'page',
+               'main-header': hdrType === 'page',
                'section-header': hdrType === 'section',
                'input-header': hdrType === 'input',
                'trip-card-header': hdrType === 'trip', 
