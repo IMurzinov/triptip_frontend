@@ -4,7 +4,7 @@ import { Link, Navigate } from "react-router-dom";
 import { logout } from "features/auth/authSlice";
 import { Button } from "components";
 import plus from "assets/images/plus.svg";
-import logo from "assets/images/logo.svg";
+import logo from "assets/images/logo-v2.svg";
 import friendPlugOne from "assets/images/friendPlugOne.svg";
 import friendPlugTwo from "assets/images/friendPlugTwo.svg";
 import friendPlugThree from "assets/images/friendPlugThree.svg";
