@@ -10,6 +10,7 @@
 @import 'components/Userpic/index.css';
 @import 'components/Placeholders/TopTripFetchFailPlaceholder/index.css';
 @import 'components/Placeholders/TopTripsEmptyPlaceholder/index.css';
+@import 'components/Footer/index.css';
 
 @import 'views/SignUpForm/index.css';
 @import 'views/AuthForm/index.css';
@@ -32,8 +33,12 @@ body, html {
     background-color: white;
   }
   
-  #root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}

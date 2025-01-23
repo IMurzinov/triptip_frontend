@@ -1,12 +1,15 @@
 import { AuthForm } from "views";
-import { PageHeader } from "components";
+import { PageHeader, Footer } from "components";
 
 import "./index.css";
 
 const AuthPage = () => {
     return <div className='auth-page__layout'>
         <PageHeader />
-        <AuthForm />
+        <main>
+            <AuthForm />
+        </main>
+        <Footer />
     </div>;
 };
 
