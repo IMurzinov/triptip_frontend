@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Button, Header, PageHeader } from "components";
+import { Button, Header, PageHeader, Footer } from "components";
 import { UserProfileCard, Toggler } from "views";
 
 import "./index.css";
@@ -69,7 +69,7 @@ const ProfilePage = () => {
 
     return <div className="profile-page-container">
                 <PageHeader/>
-                <div className="profile-page-layout">
+                <main className="profile-page-layout">
                     <Header className="profile-page__header" text="Личный кабинет" hdrType="page"/>
                     <UserProfileCard className="profile-page__user-card" style={{margin: "41px 0 53px"}} />
                     <Toggler
@@ -79,7 +79,8 @@ const ProfilePage = () => {
                         onOptionChange={handleToggle}
                     />
                     {renderFunctions[selectedOption] && renderFunctions[selectedOption]()}
-                </div>
+                </main>
+                <Footer />
             </div>
 };
 

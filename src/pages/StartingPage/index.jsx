@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { fetchTrips } from "api";
-import { PageHeader, 
+import { PageHeader,
+         Footer,
          Button,
          Header,
          TopTripsCard,
@@ -120,6 +121,7 @@ const StartingPage = () => {
                         )}
                 </div>
             </main>
+            <Footer />
         </div>
     )
 };
