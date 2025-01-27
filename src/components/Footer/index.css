@@ -43,3 +43,11 @@
     width: 20px;
     height: 20px;
 }
+
+.link {
+    text-decoration: none;
+}
+
+.link:hover {
+    cursor: pointer;
+}
