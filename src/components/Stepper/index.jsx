@@ -38,7 +38,9 @@ const Stepper = ({ currentStep }) => {
                 step
               )}
             </div>
-            {index < 2 && <hr className="divider" />} 
+            {index < 2 && (
+              <hr className={`divider ${step < currentStep ? "completed" : ""}`} />
+            )} 
           </div>
         ))}
       </div>
