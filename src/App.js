@@ -45,7 +45,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-// Основной компонент приложения
 function App() {
   return (
     <Provider store={store}>
