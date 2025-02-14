@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 16px;
     align-items: center;
+    margin-left: -94px;
 }
 
 .stepper {
@@ -59,6 +60,10 @@
     background-color: var(--snow-gray-3);
     border: none;
     margin: 0;
+}
+
+.divider.completed {
+    background-color: var(--primary-color);
 }
 
 .stepper-text {

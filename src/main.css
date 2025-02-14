@@ -18,6 +18,7 @@
 @import 'views/Toggler/index.css';
 @import 'views/TripList/index.css';
 @import 'views/UserProfileCard/index.css';
+@import 'views/TripCreate/index.css';
 
 @import 'pages/StartingPage/index.css';
 @import 'pages/AuthPage/index.css';
