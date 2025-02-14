@@ -11,6 +11,7 @@
 @import 'components/Placeholders/TopTripFetchFailPlaceholder/index.css';
 @import 'components/Placeholders/TopTripsEmptyPlaceholder/index.css';
 @import 'components/Footer/index.css';
+@import 'components/Stepper/index.css';
 
 @import 'views/SignUpForm/index.css';
 @import 'views/AuthForm/index.css';
