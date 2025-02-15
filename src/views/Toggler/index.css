@@ -30,6 +30,6 @@
     
 }
   
-.toggle-button.active {
+.toggle-button.active-button {
     border-bottom: 2px solid var(--primary-color);
 }
