@@ -1,5 +1,5 @@
 import drag from "assets/images/drag.svg";
-import { Header, Input } from "components";
+import { Header, Input, ImgUploader } from "components";
 
 import "./index.css";
 
@@ -30,11 +30,12 @@ const CreateLocation = () => {
                 <div className="drag-n-drop-area">
                     <div className="drag-n-drop-description">
                         <Header hdrType="input" text="Добавьте фотографии"/>
-                        <p className="text">
+                        <p className="drag-n-drop-text">
                             Так ваше путешествие привлечет больше внимания пользователей, 
                             а вам будет интереснее возвращаться к воспоминаниям о поездки спустя время
                         </p>
                     </div>
+                    <ImgUploader />
                 </div>
             </div>
         </div>

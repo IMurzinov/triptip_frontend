@@ -44,7 +44,7 @@ const ImgUploader = ({ locationId = 'mockLocationId', uploadUrl = 'http://localh
     const defaultRender = () => (
         <>
             <img src={imgIcon} className="img-icon" alt="Upload icon" />
-            <p className="text">Перетяните или нажмите</p>
+            <p className="uploader-text">Перетяните или нажмите</p>
         </>
     );
 
