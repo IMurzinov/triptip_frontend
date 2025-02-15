@@ -1,0 +1,75 @@
+.file-uploader-container {
+    display: flex;
+    height: 204px;
+    padding: 21px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    align-self: stretch;
+
+    border-radius: 32px;
+    border: 1px solid var(--gray);
+    background: #FFF;
+}
+
+.file-uploader-container:hover {
+    cursor: pointer;
+}
+
+.text {
+    color: var(--primary-color, #FF4F18);
+    font-family: "Inter";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.images-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.uploaded-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.uploaded-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.delete-button {
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 0;
+    right: -9999px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-icon {
+    opacity: 1;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -12px;
+    right: 9986px;
+    border: none;
+    cursor: pointer;
+}
