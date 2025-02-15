@@ -8,7 +8,7 @@ const Toggler = ({ options, selectedOption, onOptionChange }) => {
         return (
             <button
                 key={option.value}
-                className={`toggle-button ${isActive ? 'active' : ''}`}
+                className={`toggle-button ${isActive ? 'active-button' : ''}`}
                 onClick={() => onOptionChange(option.value)}
             >
                 {option.label}

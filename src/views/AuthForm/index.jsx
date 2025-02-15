@@ -115,8 +115,10 @@ const AuthForm = () => {
         );
     };
 
+// Uncomment line 121 to get back toggler button
+
     const options = [
-        { label: 'По номеру телефона', value: 'phone' },
+        // { label: 'По номеру телефона', value: 'phone' },
         { label: 'По электронной почте', value: 'email' },
     ];
 
