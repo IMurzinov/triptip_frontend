@@ -77,7 +77,7 @@
     gap: 16px;
 }
 
-.text {
+.drag-n-drop-text {
     color: var(--gray);
     font-family: "Inter";
     font-size: 14px;
