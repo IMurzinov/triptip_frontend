@@ -43,7 +43,7 @@
     color: var(--snow-gray-7);
 }
 
-.active {
+.current {
     border: none;
     background-color: var(--primary-color);
     color: var(--arctic-green-1);
