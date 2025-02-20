@@ -13,3 +13,4 @@ export { default as EntranceAuthCheck } from 'components/EntranceAuthCheck';
 export { default as Stepper } from 'components/Stepper';
 export { default as CreateLocation } from 'components/CreateLocation';
 export { default as ImgUploader } from 'components/ImgUploader';
+export { default as CreateTripRoute } from 'components/CreateTripRoute';
