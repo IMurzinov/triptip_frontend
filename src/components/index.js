@@ -14,3 +14,4 @@ export { default as Stepper } from 'components/Stepper';
 export { default as CreateLocation } from 'components/CreateLocation';
 export { default as ImgUploader } from 'components/ImgUploader';
 export { default as CreateTripRoute } from 'components/CreateTripRoute';
+export { default as LocationList } from 'components/LocationList';

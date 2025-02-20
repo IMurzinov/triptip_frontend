@@ -15,6 +15,7 @@
 @import 'components/CreateLocation/index.css';
 @import 'components/CreateTripRoute/index.css';
 @import 'components/ImgUploader/index.css';
+@import 'components/LocationList/index.css';
 
 @import 'views/SignUpForm/index.css';
 @import 'views/AuthForm/index.css';

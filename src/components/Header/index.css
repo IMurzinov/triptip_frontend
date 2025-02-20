@@ -27,3 +27,9 @@
     line-height: normal;
     color: var(--primary-color);
 }
+
+.location-header {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+}

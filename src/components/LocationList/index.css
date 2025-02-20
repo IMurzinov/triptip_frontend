@@ -1,0 +1,45 @@
+.location-list-container {
+    width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: flex-start;
+
+    padding: 32px;
+
+    border-radius: 20px;
+    background: var(--light-gray);
+}
+
+.location {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    cursor: grab;
+}
+
+.location__header {
+    display: flex;
+    gap: 13px;
+}
+
+.location__name {
+    color: var(--black);
+    font-family: "Inter";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.drag-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.location-list__buttons {
+    display: flex;
+    gap: 14px;
+}
+
