@@ -1,0 +1,7 @@
+.trip-details {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+
+    width: 64%;
+}

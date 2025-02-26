@@ -23,6 +23,7 @@
 @import 'views/TripList/index.css';
 @import 'views/UserProfileCard/index.css';
 @import 'views/TripCreate/index.css';
+@import 'views/TripInit/index.css';
 
 @import 'pages/StartingPage/index.css';
 @import 'pages/AuthPage/index.css';
