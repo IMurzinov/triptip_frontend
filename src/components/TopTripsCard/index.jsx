@@ -51,9 +51,9 @@ const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_
                 hdrType="trip"
             />
             <div className='trip-card__place-n-date'>
-              <p className=''>{location}</p>
-              <p>|</p>
-              <p>{formatDate(dateFrom)} - {formatDate(dateTo)} {formatYear(dateTo)}</p>
+              <p className='trip-card__location'>{location}</p>
+              <p className="trip-card__divider">|</p>
+              <p className="trip-card__period">{formatDate(dateFrom)} - {formatDate(dateTo)} {formatYear(dateTo)}</p>
             </div>
         </div>
       </div>
