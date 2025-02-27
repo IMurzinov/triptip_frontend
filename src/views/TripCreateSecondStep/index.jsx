@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import { Button, Input, Header, Stepper } from "components";
+import { Button, Header, Stepper } from "components";
 
 import "./index.css";
 
-const TripCreate = () => {
+const SecondStep = () => {
     const [currentStep, setCurrentStep] = useState(1);
 
     const nextStep = () => {
@@ -60,5 +60,5 @@ const TripCreate = () => {
     );
 };
 
-export default TripCreate;
+export default SecondStep;
 
