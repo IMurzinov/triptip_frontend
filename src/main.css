@@ -32,6 +32,7 @@
 @import 'pages/NotFoundPage/index.css';
 @import 'pages/ProfilePage/index.css';
 @import 'pages/WelcomePage/index.css';
+@import 'pages/TripCreatePage/index.css';
 
 
 body, html {

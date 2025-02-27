@@ -9,6 +9,9 @@
 
     border-radius: 20px;
     background: var(--light-gray);
+
+    position: fixed;
+    left: 961px;
 }
 
 .location {

@@ -52,7 +52,7 @@ const PageHeader = () => {
                             type="button"
                         />
                     </Link>
-                    <Link className="link" to="">
+                    <Link className="link" to="/createyourtrip">
                         <Button
                             btnType="primary"
                             icon={plus}

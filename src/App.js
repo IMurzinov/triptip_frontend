@@ -3,7 +3,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 
 
-import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage, WelcomePage } from "pages";
+import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage, WelcomePage, TripCreatePage } from "pages";
 import { ProtectedRoute, EntranceAuthCheck } from "components";
 import { store, persistor } from "store";
 
@@ -40,6 +40,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <ProfilePage/>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/createyourtrip",
+    element: (
+      <ProtectedRoute>
+        <TripCreatePage />
       </ProtectedRoute>
     ),
   },

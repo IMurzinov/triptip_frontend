@@ -1,20 +1,4 @@
-/* Общие стили страницы */
-.trip-creation-page {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 24px 36px;
-    gap: 137px;
-}
-
-/* Верхняя панель с кнопкой и степпером */
-.trip-main {
-    display: flex;
-    flex-direction: column;
-    gap: 64px;
-}
-
-.trip-nav, .trip-content {
+.second-step-container {
     display: flex;
     flex-direction: column;
     gap: 52px;

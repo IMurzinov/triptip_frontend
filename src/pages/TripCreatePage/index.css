@@ -1,0 +1,32 @@
+.trip-create-page__layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.trip-create-page__content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 24px 36px;
+    gap: 137px;
+}
+
+.trip-create-page__main {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+}
+
+.trip-create-page__nav, .trip-content {
+    display: flex;
+    flex-direction: column;
+    gap: 52px;
+}
+
+.buttons {
+    display: flex;
+    gap: 14px;
+}
+
