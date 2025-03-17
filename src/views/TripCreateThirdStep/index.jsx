@@ -88,6 +88,7 @@ const ThirdStep = ({ onTripSubmit, onTripDraftSave, onPrevStep }) => {
                 <Button
                     btnType="primary"
                     text="Опубликовать"
+                    type="submit"
                 />
             </div>
         </div>

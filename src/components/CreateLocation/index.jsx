@@ -1,9 +1,13 @@
+import { useFormContext } from 'react-hook-form';
+
 import drag from "assets/images/drag.svg";
 import { Header, Input, ImgUploader } from "components";
 
 import "./index.css";
 
 const CreateLocation = () => {
+    const { register } = useFormContext();
+
     return (
         <div className="location-container">
             <img src={drag} className="drag-icon" alt="drag icon" />
@@ -17,6 +21,7 @@ const CreateLocation = () => {
                     label={<Header hdrType="input" text="Локация"/>}
                     type="text"
                     placeholder="Введите название города или страны"
+                    {...register('locationName', { required: true })}
                 />
                 <div className="location-textarea">
                     <label><Header hdrType="input" text="Расскажите самое интересное, что с вами случилось"/></label>
@@ -25,6 +30,7 @@ const CreateLocation = () => {
                         autocomplete="off"
                         placeholder="И не стесняйтесь!"
                         resize="off"
+                        {...register('locationStory', { required: true })}
                     ></textarea>
                 </div>
                 <div className="drag-n-drop-area">
