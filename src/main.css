@@ -40,7 +40,7 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
-    background-color: white;
+    background-color: var(--background-color);
   }
   
 #root {
@@ -51,4 +51,5 @@ body, html {
 
 main {
   flex-grow: 1;
+  padding-top: 102px;
 }
