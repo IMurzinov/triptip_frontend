@@ -4,6 +4,8 @@
     gap: 16px;
     align-items: center;
     margin-left: -94px;
+
+    align-self: flex-start;
 }
 
 .stepper {

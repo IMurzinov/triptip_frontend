@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Footer, PageHeader, Button, Stepper, Header } from "components";
-import { FirstStep, SecondStep } from "views";
+import { FirstStep, SecondStep, ThirdStep } from "views";
 
 import "./index.css";
 
@@ -26,8 +26,8 @@ const TripCreatePage = () => {
                     return <FirstStep onNextStep={nextStep} />;
                 case 2:
                     return <SecondStep onNextStep={nextStep} onPrevStep={prevStep} />;
-                // case 3:
-                //     return <ThirdStep onPrevStep={prevStep} />;
+                case 3:
+                    return <ThirdStep onPrevStep={prevStep} />;
                 // default:
                 //     return <div>Unknown step</div>;
             }
