@@ -15,6 +15,7 @@ const TripInit = () => {
                     type="text"
                     placeholder="Например, “Удивительные путешествия Даши путешественницы”"
                     {...register('tripName', { required: true })}
+                    autoComplete="off"
                 />
             </div>
             <div className="trip-details__dates">
@@ -23,6 +24,7 @@ const TripInit = () => {
                     type="text"
                     placeholder="17.07.2024 - 24.07.2024"
                     {...register('tripDates', { required: true })}
+                    autoComplete="off"
                 />
             </div>
         </div>

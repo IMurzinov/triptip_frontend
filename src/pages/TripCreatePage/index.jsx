@@ -7,38 +7,49 @@ import { FirstStep, SecondStep, ThirdStep } from "views";
 import "./index.css";
 
 const TripCreatePage = () => {
-        const [currentStep, setCurrentStep] = useState(1);
-        const methods = useForm({ mode: "onChange" });
+    const [currentStep, setCurrentStep] = useState(1);
+    const methods = useForm({
+        mode: "onChange",
+        defaultValues: {
+            // В массиве locations уже есть один объект
+            locations: [
+              {
+                locationName: "",
+                locationStory: "",
+              },
+            ],
+          },
+    });
 
-        const nextStep = () => {
-            if (currentStep < 3) {
-                setCurrentStep(currentStep + 1);
-            }
-        };
-    
-        const prevStep = () => {
-            if (currentStep > 1) {
-                setCurrentStep(currentStep - 1);
-            }
+    const nextStep = () => {
+        if (currentStep < 3) {
+            setCurrentStep(currentStep + 1);
         }
+    };
 
-        const renderStep = () => {
-            switch (currentStep) {
-                case 1:
-                    return <FirstStep onNextStep={nextStep} />;
-                case 2:
-                    return <SecondStep onNextStep={nextStep} onPrevStep={prevStep} />;
-                case 3:
-                    return <ThirdStep onPrevStep={prevStep} />;
-                // default:
-                //     return <div>Unknown step</div>;
-            }
-        };
+    const prevStep = () => {
+        if (currentStep > 1) {
+            setCurrentStep(currentStep - 1);
+        }
+    }
 
-        const onSubmit = (data) => {
-            console.log('Form data:', data);
-            // Здесь будет обработано финальное отправление формы
-        };
+    const renderStep = () => {
+        switch (currentStep) {
+            case 1:
+                return <FirstStep onNextStep={nextStep} />;
+            case 2:
+                return <SecondStep onNextStep={nextStep} onPrevStep={prevStep} />;
+            case 3:
+                return <ThirdStep onPrevStep={prevStep} />;
+            // default:
+            //     return <div>Unknown step</div>;
+        }
+    };
+
+    const onSubmit = (data) => {
+        console.log('Form data:', data);
+        // Здесь будет обработано финальное отправление формы
+    };
 
     return (
         <FormProvider {...methods}>

@@ -1,11 +1,20 @@
 import { useState } from "react";
+import { useFieldArray } from "react-hook-form";
 
 import { Button, CreateLocation, CreateTripRoute, LocationList } from "components";
 
 import "./index.css";
+import { useFormContext } from "react-hook-form";
 
 const SecondStep = ({ onNextStep, onPrevStep }) => {
     const [step, setStep] = useState('second');
+
+    const { control, watch } = useFormContext();
+
+    const { fields, append, remove } = useFieldArray({
+        control,
+        name: "locations",
+    });
 
     const goToThirdStep = () => {
         onNextStep();
@@ -17,11 +26,29 @@ const SecondStep = ({ onNextStep, onPrevStep }) => {
         setStep('first');
     };
 
+    const watchLocations = watch("locations", []);
+
+    const handleAddLocation = () => {
+        append({
+            locationName: "",
+            locationStory: "",
+        });
+    };
+
     return (
         <div className="second-step-container">
-            <LocationList />
+            <LocationList 
+                onAddLocation={handleAddLocation}
+                fields={fields}
+                watchLocations={watchLocations}
+            />
             <div className="trip-fields">
-                <CreateLocation />
+                {fields.map((field, index) => (
+                    <CreateLocation
+                        key={field.id}  // у каждого field есть id, который нужен для корректного рендеринга
+                        index={index}   // передаём индекс, чтобы в CreateLocation знать, куда регистрировать поля
+                    />
+                ))}
             </div>
             <div className="buttons">
                 <Button
