@@ -5,15 +5,15 @@ import { Header, Input, ImgUploader } from "components";
 
 import "./index.css";
 
-const CreateLocation = () => {
+const CreateLocation = ({ index }) => {
     const { register } = useFormContext();
 
     return (
         <div className="location-container">
             <img src={drag} className="drag-icon" alt="drag icon" />
             <div className="location-content">
-                <Header
-                    text="Первая остановка"
+                <Header 
+                    text={`Остановка №${index + 1}`}
                     hdrType="section"
                 />
                 <Input
@@ -21,7 +21,8 @@ const CreateLocation = () => {
                     label={<Header hdrType="input" text="Локация"/>}
                     type="text"
                     placeholder="Введите название города или страны"
-                    {...register('locationName', { required: true })}
+                    {...register(`locations.${index}.locationName`, { required: true })}
+                    autoComplete="off"
                 />
                 <div className="location-textarea">
                     <label><Header hdrType="input" text="Расскажите самое интересное, что с вами случилось"/></label>
@@ -30,7 +31,8 @@ const CreateLocation = () => {
                         autocomplete="off"
                         placeholder="И не стесняйтесь!"
                         resize="off"
-                        {...register('locationStory', { required: true })}
+                        {...register(`locations.${index}.locationStory`, { required: true })}
+                        autoComplete="off"
                     ></textarea>
                 </div>
                 <div className="drag-n-drop-area">

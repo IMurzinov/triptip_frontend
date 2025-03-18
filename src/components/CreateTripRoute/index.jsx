@@ -24,6 +24,7 @@ const CreateTripRoute = () => {
                         placeholder="Расскажите, как уехали или приехали в это место, нюансы с транспортом, например, что билет на автобус надо было покупать заранее на сайте или может вам вообще пришлось добираться на собачьей упряжке..."
                         resize="off"
                         {...register('tripRouteDescription', { required: true })}
+                        autoComplete="off"
                     ></textarea>
                 </div>
                 <div className="drag-n-drop-area">

@@ -5,23 +5,29 @@ import { Header, Button } from "components";
 
 import "./index.css";
 
-const LocationList = (locationList) => {
+const LocationList = ({ watchLocations, onAddLocation, fields }) => {
     return (
         <div className="location-list-container">
             <Header
                 text="Структура"
                 hdrType="section"
             />
-            <div className="location">
-                <div className="location__header">
-                    <img src={drag} className="drag-icon" alt="drag icon" />
-                    <Header 
-                        text="Первая остановка"
-                        hdrType="location"
-                    />
-                </div>
-                <p className="location__name">Локация</p>
-            </div>
+            {fields.map((field, index) => {
+                const locationName =
+                watchLocations?.[index]?.locationName?.trim() || "";
+                return (
+                    <div className="location" key={field.id}>
+                        <div className="location__header">
+                        <img src={drag} className="drag-icon" alt="drag icon" />
+                        <Header
+                            // Если локация пуста, пишем какую-нибудь заглушку
+                            text={locationName || `Остановка №${index + 1}`}
+                            hdrType="location"
+                        />
+                        </div>
+                    </div>
+                );
+            })}
             <div className="location-list__buttons">
                 <Button
                     text="Добавить маршрут"
@@ -30,6 +36,7 @@ const LocationList = (locationList) => {
                 <Button
                     text="Добавить локацию"
                     btnType="primary"
+                    onClick={onAddLocation}
                 />
             </div>
         </div>

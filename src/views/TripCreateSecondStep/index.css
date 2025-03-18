@@ -5,7 +5,9 @@
 }
 
 .trip-fields {
-
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 
 .buttons {
