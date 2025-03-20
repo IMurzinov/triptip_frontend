@@ -12,8 +12,9 @@ const TripCreatePage = () => {
         mode: "onChange",
         defaultValues: {
             // В массиве locations уже есть один объект
-            locations: [
+            tripElements: [
               {
+                type: "location",
                 locationName: "",
                 locationStory: "",
               },

@@ -5,7 +5,7 @@ import { Header, ImgUploader } from "components";
 
 import "./index.css";
 
-const CreateTripRoute = () => {
+const CreateTripRoute = ({ index }) => {
     const { register } = useFormContext();
 
     return (
@@ -23,7 +23,7 @@ const CreateTripRoute = () => {
                         autocomplete="off"
                         placeholder="Расскажите, как уехали или приехали в это место, нюансы с транспортом, например, что билет на автобус надо было покупать заранее на сайте или может вам вообще пришлось добираться на собачьей упряжке..."
                         resize="off"
-                        {...register('tripRouteDescription', { required: true })}
+                        {...register(`tripElements.${index}.tripRouteDescription`, { required: true })}
                         autoComplete="off"
                     ></textarea>
                 </div>

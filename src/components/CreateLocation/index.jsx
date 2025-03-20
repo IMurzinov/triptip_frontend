@@ -21,7 +21,7 @@ const CreateLocation = ({ index }) => {
                     label={<Header hdrType="input" text="Локация"/>}
                     type="text"
                     placeholder="Введите название города или страны"
-                    {...register(`locations.${index}.locationName`, { required: true })}
+                    {...register(`tripElements.${index}.locationName`, { required: true })}
                     autoComplete="off"
                 />
                 <div className="location-textarea">
@@ -31,7 +31,7 @@ const CreateLocation = ({ index }) => {
                         autocomplete="off"
                         placeholder="И не стесняйтесь!"
                         resize="off"
-                        {...register(`locations.${index}.locationStory`, { required: true })}
+                        {...register(`tripElements.${index}.locationStory`, { required: true })}
                         autoComplete="off"
                     ></textarea>
                 </div>
