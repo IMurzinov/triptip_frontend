@@ -13,7 +13,7 @@ const SecondStep = ({ onNextStep, onPrevStep }) => {
 
     const { fields, append, remove } = useFieldArray({
         control,
-        name: "locations",
+        name: "tripElements",
     });
 
     const goToThirdStep = () => {
@@ -26,12 +26,24 @@ const SecondStep = ({ onNextStep, onPrevStep }) => {
         setStep('first');
     };
 
-    const watchLocations = watch("locations", []);
+    const watchTripElements = watch("tripElements", []);
 
     const handleAddLocation = () => {
         append({
+            type: "location",
             locationName: "",
             locationStory: "",
+        });
+    };
+
+    const handleAddRoute = () => {
+        if (fields.length > 0 && fields[fields.length - 1].type === "route") {
+            return
+        }
+
+        append({
+            type: "route",
+            tripRouteDescription: ""
         });
     };
 
@@ -39,16 +51,30 @@ const SecondStep = ({ onNextStep, onPrevStep }) => {
         <div className="second-step-container">
             <LocationList 
                 onAddLocation={handleAddLocation}
+                onAddRoute={handleAddRoute}
                 fields={fields}
-                watchLocations={watchLocations}
+                watchTripElements={watchTripElements}
             />
             <div className="trip-fields">
-                {fields.map((field, index) => (
-                    <CreateLocation
-                        key={field.id}  // у каждого field есть id, который нужен для корректного рендеринга
-                        index={index}   // передаём индекс, чтобы в CreateLocation знать, куда регистрировать поля
-                    />
-                ))}
+                {fields.map((field, index) => {
+                    if (field.type === "location") {
+                        return (
+                            <CreateLocation
+                                key={field.id}
+                                index={index}
+                            />
+                        );
+                    }
+                    if (field.type === "route") {
+                        return (
+                            <CreateTripRoute
+                                key={field.id}
+                                index={index}
+                            />
+                        );
+                    }
+                    return null;
+                })}
             </div>
             <div className="buttons">
                 <Button
