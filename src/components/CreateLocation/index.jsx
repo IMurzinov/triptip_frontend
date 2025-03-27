@@ -10,7 +10,6 @@ const CreateLocation = ({ index }) => {
 
     return (
         <div className="location-container">
-            <img src={drag} className="drag-icon" alt="drag icon" />
             <div className="location-content">
                 <Header 
                     text={`Остановка №${index + 1}`}
