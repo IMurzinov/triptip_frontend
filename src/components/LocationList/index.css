@@ -46,3 +46,8 @@
     gap: 14px;
 }
 
+.location-list-droppable {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
