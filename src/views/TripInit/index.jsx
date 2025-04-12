@@ -65,7 +65,7 @@ const TripInit = () => {
           onChange={handleDateChange}
           dateFormat="dd.MM.yyyy"
           placeholderText="17.07.2024 - 24.07.2024"
-          // Чтобы календарь не схлопывался сразу после выбора первой даты:
+          // Чтобы календарь не схлопывался сразу после выбора даты:
           shouldCloseOnSelect={false}
           customInput={<CustomInput />}
           calendarClassName="trip-datepicker" 
