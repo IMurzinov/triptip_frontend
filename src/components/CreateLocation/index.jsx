@@ -27,7 +27,7 @@ const CreateLocation = ({ index }) => {
                     <label><Header hdrType="input" text="Расскажите самое интересное, что с вами случилось"/></label>
                     <textarea
                         className="text-area"
-                        autocomplete="off"
+                        autoСomplete="off"
                         placeholder="И не стесняйтесь!"
                         resize="off"
                         {...register(`tripElements.${index}.locationStory`, { required: true })}

@@ -114,7 +114,7 @@ const SignUpForm = () => {
                                 }
                             }
                         )}
-                        autocomplete="given-name"
+                        autoСomplete="given-name"
                     />
                     <div className="error-message">{errors.first_name?.message}</div>
                 </div>
@@ -129,7 +129,7 @@ const SignUpForm = () => {
                                 }
                             }
                         )}
-                        autocomplete="family-name"
+                        autoСomplete="family-name"
                     />
                     <div className="error-message">{errors.last_name?.message}</div>
                 </div>
@@ -145,7 +145,7 @@ const SignUpForm = () => {
                                 }
                             }
                         )}
-                        autocomplete="username"
+                        autoСomplete="username"
                     />
                     <div className="error-message">{errors.username?.message}</div>
                 </div>
@@ -161,7 +161,7 @@ const SignUpForm = () => {
                                 }
                             }
                         )}
-                        autocomplete="email"
+                        autoСomplete="email"
                     />
                     <div className="error-message">{errors.email?.message}</div>
                 </div>
@@ -210,7 +210,7 @@ const SignUpForm = () => {
                                     }
                                 }
                             )}
-                            autocomplete="new-password"
+                            autoСomplete="new-password"
                         />
                         <div 
                             className="show-hide-icon"
@@ -235,7 +235,7 @@ const SignUpForm = () => {
                                     }, 
                                 }
                             )}
-                            autocomplete="off"
+                            autoСomplete="off"
                         />
                         <div 
                             className="show-hide-icon"

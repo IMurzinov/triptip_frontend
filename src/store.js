@@ -7,7 +7,7 @@ import authReducer from "features/auth/authSlice";
 const persistConfig = {
     key: "auth",
     storage,
-    whitelist: ["isAuthenticated", "user"], // Сохраняем только эти поля
+    whitelist: ["isAuthenticated", "user", "token", "refreshToken"], // Сохраняем только эти поля
 };
 
 // Создаем persistedReducer
