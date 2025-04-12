@@ -35,7 +35,11 @@ const AuthForm = () => {
 
         try {
             const loginResponse = await auth(data);
-            dispatch(loginSuccess({ user: loginResponse.user_data }));
+            dispatch(loginSuccess({ 
+                user: loginResponse.user_data,
+                token: loginResponse.access_token,
+                refreshToken: loginResponse.refresh_token,
+             }));
             navigate(`/profile/${loginResponse.user_data.username}`);
         } catch (error) {
             console.error("Ошибка:", error.message);

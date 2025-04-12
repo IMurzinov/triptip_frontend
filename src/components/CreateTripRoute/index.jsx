@@ -20,7 +20,7 @@ const CreateTripRoute = ({ index }) => {
                     <label><Header hdrType="input" text="Расскажите самое интересное, что с вами случилось"/></label>
                     <textarea
                         className="text-area"
-                        autocomplete="off"
+                        autoСomplete="off"
                         placeholder="Расскажите, как уехали или приехали в это место, нюансы с транспортом, например, что билет на автобус надо было покупать заранее на сайте или может вам вообще пришлось добираться на собачьей упряжке..."
                         resize="off"
                         {...register(`tripElements.${index}.tripRouteDescription`, { required: true })}

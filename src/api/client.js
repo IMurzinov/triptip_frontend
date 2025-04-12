@@ -1,4 +1,6 @@
 import { AUTH } from "constants/constants";
+import { store } from "store.js";
+import { refreshSuccess, logout } from "features/auth/authSlice";
 
 // Переменные для очереди на обновление токена
 let isRefreshing = false; // Индикатор, обновляется ли сейчас токен
@@ -21,10 +23,43 @@ const refreshToken = async () => {
         isRefreshing = true;
 
         try {
-            // Запрос на обновление токена
-            await apiClient(AUTH.REFRESH, { method: 'POST' });
+            // 1) Берём refresh_token из Redux
+            const state = store.getState();
+            const currentRefreshToken = state.auth.refreshToken;
+            if (!currentRefreshToken) {
+                throw new Error("No refresh_token in store");
+            }
+
+            // 2) Запрашиваем обновление
+            const response = await fetch(AUTH.REFRESH, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                refresh_token: currentRefreshToken,
+                }),
+                credentials: "include", 
+            });
+
+            if (!response.ok) {
+                // рефреш-токен уже не валиден -> логаут
+                store.dispatch(logout());
+                throw new Error("Refresh token invalid or expired");
+            }
+
+            // 3) Получаем новый access_token (и, при необходимости, новый refresh_token)
+            const data = await response.json();
+            const newAccessToken = data.access_token;
+            const newRefreshToken = data.refresh_token;
+
+            // 4) Диспатчим refreshSuccess, чтобы обновить в Redux
+            store.dispatch(refreshSuccess({
+                accessToken: newAccessToken,
+                refreshToken: newRefreshToken, // если бэкенд возвращает обновлённый refresh_token
+            }));
+
+            // 5) Уведомляем все запросы, что токен обновлён
             isRefreshing = false;
-            onTokenRefreshed(); // Уведомляем все запросы из очереди
+            onTokenRefreshed();
         } catch (error) {
             isRefreshing = false;
             throw error; // Обработка ошибки обновления токена
@@ -34,11 +69,17 @@ const refreshToken = async () => {
 
 // Основная функция API клиента
 const apiClient = async (endpoint, { method = 'GET', headers = {}, body } = {}) => {
+    const token = store.getState().auth.token;
+    const finalHeaders = {
+        ...headers,
+    };
+    if (token) {
+        finalHeaders['Authorization'] = `Bearer ${token}`;
+    }
+
     const options = {
         method,
-        headers: {
-            ...headers, // Пользовательские заголовки
-        },
+        headers: finalHeaders,
         credentials: 'include', // Работа с httpOnly куки
     };
 
@@ -53,30 +94,39 @@ const apiClient = async (endpoint, { method = 'GET', headers = {}, body } = {}) 
     }
 
     try {
-        const response = await fetch(`${endpoint}`, options);
-
+        const response = await fetch(endpoint, options);
+    
         if (!response.ok) {
-            if (response.status === 401) {
-                // Если токен истек, добавляем запрос в очередь и обновляем токен
-                return new Promise((resolve, reject) => {
-                    addRefreshSubscriber(() => resolve(apiClient(endpoint, { method, headers, body })));
-
-                    // Если обновление токена еще не началось, запускаем процесс
-                    if (!isRefreshing) {
-                        refreshToken().catch(reject); // Если обновление не удалось, отклоняем запрос
-                    }
+          // Если получили 401 — значит, access_token просрочен или невалиден
+          if (response.status === 401) {
+            return new Promise((resolve, reject) => {
+              // Добавляем запрос в очередь (refreshSubscribers),
+              // чтобы повторить его после обновления
+              addRefreshSubscriber(() => {
+                resolve(apiClient(endpoint, { method, headers, body }));
+              });
+    
+              // Если обновление еще не запущено, запускаем
+              if (!isRefreshing) {
+                refreshToken().catch((err) => {
+                  // Если рефреш не удался — выкидываем ошибку и делаем логаут
+                  store.dispatch(logout());
+                  reject(err);
                 });
-            }
-
-            // Если другая ошибка, выбрасываем исключение
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'Произошла ошибка');
+              }
+            });
+          }
+    
+          // Иные HTTP-ошибки
+          const errorData = await response.json();
+          throw new Error(errorData.message || "Произошла ошибка");
         }
-
-        return await response.json(); // Возвращаем успешный результат
-    } catch (error) {
-        throw error; // Пробрасываем ошибки для дальнейшей обработки
-    }
+    
+        // Если всё ок
+        return await response.json();
+      } catch (error) {
+        throw error;
+      }
 };
 
 export default apiClient;

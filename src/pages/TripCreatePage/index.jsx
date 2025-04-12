@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
+import { parse, format } from "date-fns";
 
 import { Footer, PageHeader, Button, Stepper, Header } from "components";
 import { FirstStep, SecondStep, ThirdStep } from "views";
 
+import apiClient from "api/client";
 import { URL } from "constants/constants";
 
 import "./index.css";
@@ -57,90 +59,83 @@ const TripCreatePage = () => {
   // 4. Финальный сабмит (шаг 3 -> «Опубликовать»).
   const onSubmit = async (data) => {
     console.log("Form data:", data);
-    // data.tripName, data.tripDates, data.tripElements
     try {
-      // (A) Парсим даты (если формат "2025-04-11" уже готов, то можно взять напрямую)
-      // Предположим, пользователь вводит: "17.07.2025 - 24.07.2025"
-      // Пример простого парсинга (будьте готовы обрабатывать ошибки и иные форматы).
+      // (A) Парсим даты
       let [dateFrom, dateTo] = ["", ""];
       if (data.tripDates.includes("-")) {
         const parts = data.tripDates.split("-");
-        dateFrom = parts[0].trim() || "";
-        dateTo = parts[1].trim() || "";
+        const rawFrom = parts[0].trim();
+        const rawTo   = parts[1].trim();
+
+        // Сначала разбираем как dd.MM.yyyy:
+        const parsedFrom = parse(rawFrom, 'dd.MM.yyyy', new Date());
+        const parsedTo   = parse(rawTo, 'dd.MM.yyyy', new Date());
+
+        // Затем форматируем в yyyy-MM-dd
+        dateFrom = format(parsedFrom, 'yyyy-MM-dd');
+        dateTo   = format(parsedTo, 'yyyy-MM-dd');
       }
 
-      // (B) Создаём поездку
-      const tripResp = await fetch(URL.TRIPS, {
+      // (B) Создаём поездку. Вместо fetch -> apiClient:
+      const tripResp = await apiClient(URL.TRIPS, {
         method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+        body: {
           name: data.tripName,
-          description: "", // Пока пустая
-          region: "Asia",  // Пока хардкод
-          date_from: dateFrom, 
+          description: "",  // Пока пустая
+          region: "Asia",   // Пока хардкод
+          date_from: dateFrom,
           date_to: dateTo,
-        }),
+        },
       });
 
-      if (!tripResp.ok) {
-        throw new Error("Не удалось создать поездку");
-      }
-      const tripCreated = await tripResp.json();
-      const tripId = tripCreated.id; // Предположим, что сервер возвращает trip_id
+      console.log('Поездка создана с id: ', tripResp.id);
+      // tripResp — это результат, уже распарсенный как JSON
+      const tripId = tripResp.id; // Предположим, что сервер возвращает { id: ... }
 
-      // (C) Мапа для хранения {tempId -> location_id} (чтобы знать, какой маршрут к какой локации относится)
+      // (C) Храним {index -> location_id}, чтобы связывать маршруты с локациями
       const locationMap = {};
 
-      // (D) Обходим всё в order (т.е. так, как лежит в tripElements)
+      // (D) Обходим всё в order, как лежит в tripElements
       for (let i = 0; i < data.tripElements.length; i++) {
         const elem = data.tripElements[i];
 
+        // --- Если это локация ---
         if (elem.type === "location") {
-          // 1) Создаём локацию
-          const locResp = await fetch(`${URL.TRIPS}/${tripId}/locations`, {
+          const locResp = await apiClient(`${URL.TRIPS}/${tripId}/locations`, {
             method: "POST",
-            credentials: "include",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
+            body: {
               name: elem.locationName,
               description: elem.locationStory || "",
-            }),
+            },
           });
-          if (!locResp.ok) {
-            throw new Error("Не удалось создать локацию");
-          }
-          const locCreated = await locResp.json();
-          const locationId = locCreated.id;
+          console.log('Локация создана с id: ', locResp.id);
+          const locationId = locResp.id;
 
-          // 2) Если есть фотографии — отправляем каждую
-          //    Предположим, вы храните их в elem.photos
+          // Загрузка фотографий (если есть)
           if (elem.photos && elem.photos.length > 0) {
             for (const photoFile of elem.photos) {
               const formData = new FormData();
               formData.append("file", photoFile);
 
-              const photoResp = await fetch(`${URL.TRIPS}/location/${locationId}/highlight`, {
+              // При отправке FormData не указываем Content-Type,
+              // apiClient должен пропустить установку "application/json"
+              await apiClient(`${URL.TRIPS}/location/${locationId}/highlight`, {
                 method: "POST",
-                credentials: "include",
+                // Если в apiClient есть логика, которая автоматически ставит
+                // "Content-Type: application/json", то нужно обойти это.
+                // Например, можно передать пустые headers:
+                headers: {},
                 body: formData,
               });
-              if (!photoResp.ok) {
-                throw new Error("Не удалось загрузить фото локации");
-              }
             }
           }
 
-          // 3) Сохраняем связку
+          // Запоминаем айди локации
           locationMap[i] = locationId;
 
+        // --- Если это маршрут ---
         } else if (elem.type === "route") {
-          // 1) Нужно понять, после какой локации идёт этот маршрут.
-          //    Допустим, route идёт после предыдущей локации в списке (или у вас другая логика).
-          //    У вас в коде нет поля `originLocationIndex`,
-          //    поэтому можно считать, что маршрут с index=i идёт после ближайшей локации слева.
-          //    Пример (линейная логика): смотрим назад, ищем location.
-
+          // 1) Ищем предыдущую локацию в массиве
           let originIndex = -1;
           for (let j = i - 1; j >= 0; j--) {
             if (data.tripElements[j].type === "location") {
@@ -151,48 +146,38 @@ const TripCreatePage = () => {
           if (originIndex < 0) {
             throw new Error("Не найдена предыдущая локация для маршрута");
           }
-
           const originLocationId = locationMap[originIndex];
           if (!originLocationId) {
             throw new Error("Ошибка: не найден location_id для маршрута");
           }
 
           // 2) Создаём маршрут
-          const routeResp = await fetch(`${URL.TRIPS}/locations/${originLocationId}/route`, {
+          const routeResp = await apiClient(`${URL.TRIPS}/locations/${originLocationId}/route`, {
             method: "POST",
-            credentials: "include",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
+            body: {
               description: elem.tripRouteDescription || "",
-              origin_id: originLocationId, // по условию
-            }),
+              origin_id: originLocationId,
+            },
           });
-          if (!routeResp.ok) {
-            throw new Error("Не удалось создать маршрут");
-          }
-          const routeCreated = await routeResp.json();
-          const routeId = routeCreated.id;
+          console.log('Маршрут создан с id: ', routeResp.id);
+          const routeId = routeResp.id;
 
-          // 3) Загружаем фотографии маршрута (если есть)
+          // 3) Фотографии маршрута (если есть)
           if (elem.photos && elem.photos.length > 0) {
             for (const routePhoto of elem.photos) {
               const formData = new FormData();
               formData.append("file", routePhoto);
 
-              const routePhotoResp = await fetch(`${URL.TRIPS}/route/${routeId}/highlight`, {
+              await apiClient(`${URL.TRIPS}/route/${routeId}/highlight`, {
                 method: "POST",
-                credentials: "include",
+                headers: {},
                 body: formData,
               });
-              if (!routePhotoResp.ok) {
-                throw new Error("Не удалось загрузить фото маршрута");
-              }
             }
           }
         }
       }
 
-      // Если всё успешно:
       console.log(`Успешно создана поездка c trip_id = ${tripId}`);
     } catch (err) {
       console.error("Ошибка при создании поездки:", err);
