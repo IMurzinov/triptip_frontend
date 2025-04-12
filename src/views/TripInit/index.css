@@ -5,3 +5,14 @@
 
     width: 64%;
 }
+
+.trip-datepicker .react-datepicker__day--in-range,
+.trip-datepicker .react-datepicker__day--range-start,
+.trip-datepicker .react-datepicker__day--range-end,
+.trip-datepicker .react-datepicker__day:hover,
+.trip-datepicker .react-datepicker__day--in-range:hover,
+.trip-datepicker .react-datepicker__day--range-start:hover,
+.trip-datepicker .react-datepicker__day--range-end:hover {
+    background-color: var(--primary-color);
+    color: #000;
+}
