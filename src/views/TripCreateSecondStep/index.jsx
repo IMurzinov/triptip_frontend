@@ -41,9 +41,6 @@ const SecondStep = ({ onNextStep, onPrevStep }) => {
   };
 
   const handleAddRoute = () => {
-    // Если уже есть подряд идущий route, можно либо игнорировать, либо предотвратить
-    if (disableAddRoute) return;
-
     append({
       type: "route",
       tripRouteDescription: "",
@@ -58,6 +55,7 @@ const SecondStep = ({ onNextStep, onPrevStep }) => {
         onAddRoute={handleAddRoute}
         fields={fields}
         watchTripElements={watchTripElements}
+        disableAddRouteBtn={disableAddRoute}
       />
       <div className="trip-fields">
         {fields.map((field, index) => {

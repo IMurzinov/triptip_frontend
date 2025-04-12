@@ -10,7 +10,7 @@ import { Header, Button } from "components";
 
 import "./index.css";
 
-const LocationList = ({ fields, onAddLocation, onAddRoute }) => {
+const LocationList = ({ fields, onAddLocation, onAddRoute, disableAddRouteBtn }) => {
   const { control, getValues, watch } = useFormContext();
   const { move } = useFieldArray({ control, name: "tripElements" });
 
@@ -122,6 +122,7 @@ const LocationList = ({ fields, onAddLocation, onAddRoute }) => {
           text="Добавить маршрут"
           btnType="primary"
           onClick={onAddRoute}
+          disabled={disableAddRouteBtn}
         />
         <Button
           text="Добавить локацию"

@@ -4,8 +4,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { Footer, PageHeader, Button, Stepper, Header } from "components";
 import { FirstStep, SecondStep, ThirdStep } from "views";
 
-import { URL } from "constants/constants"; 
-// Предположим, что в constants.js у вас есть URL.TRIPS = "https://api.triptip.pro/trips" и т.д.
+import { URL } from "constants/constants";
 
 import "./index.css";
 
@@ -16,8 +15,8 @@ const TripCreatePage = () => {
   const methods = useForm({
     mode: "onChange",
     defaultValues: {
-      tripName: "",   // <-- сами поля для первого шага
-      tripDates: "",  // <-- сами поля для первого шага
+      tripName: "",
+      tripDates: "",
       tripElements: [
         {
           type: "location",
@@ -30,7 +29,6 @@ const TripCreatePage = () => {
     },
   });
 
-  // 2. Переходы по шагам
   const nextStep = () => {
     if (currentStep < 3) {
       setCurrentStep(currentStep + 1);
@@ -43,7 +41,6 @@ const TripCreatePage = () => {
     }
   };
 
-  // 3. Рендерим текущий шаг
   const renderStep = () => {
     switch (currentStep) {
       case 1:
@@ -59,6 +56,7 @@ const TripCreatePage = () => {
 
   // 4. Финальный сабмит (шаг 3 -> «Опубликовать»).
   const onSubmit = async (data) => {
+    console.log("Form data:", data);
     // data.tripName, data.tripDates, data.tripElements
     try {
       // (A) Парсим даты (если формат "2025-04-11" уже готов, то можно взять напрямую)
@@ -70,11 +68,11 @@ const TripCreatePage = () => {
         dateFrom = parts[0].trim() || "";
         dateTo = parts[1].trim() || "";
       }
-      // На практике лучше использовать date-fns или moment для парсинга.
 
       // (B) Создаём поездку
       const tripResp = await fetch(URL.TRIPS, {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: data.tripName,
@@ -102,6 +100,7 @@ const TripCreatePage = () => {
           // 1) Создаём локацию
           const locResp = await fetch(`${URL.TRIPS}/${tripId}/locations`, {
             method: "POST",
+            credentials: "include",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               name: elem.locationName,
@@ -123,6 +122,7 @@ const TripCreatePage = () => {
 
               const photoResp = await fetch(`${URL.TRIPS}/location/${locationId}/highlight`, {
                 method: "POST",
+                credentials: "include",
                 body: formData,
               });
               if (!photoResp.ok) {
@@ -160,6 +160,7 @@ const TripCreatePage = () => {
           // 2) Создаём маршрут
           const routeResp = await fetch(`${URL.TRIPS}/locations/${originLocationId}/route`, {
             method: "POST",
+            credentials: "include",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               description: elem.tripRouteDescription || "",
@@ -180,6 +181,7 @@ const TripCreatePage = () => {
 
               const routePhotoResp = await fetch(`${URL.TRIPS}/route/${routeId}/highlight`, {
                 method: "POST",
+                credentials: "include",
                 body: formData,
               });
               if (!routePhotoResp.ok) {
