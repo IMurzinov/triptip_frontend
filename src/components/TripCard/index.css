@@ -3,16 +3,13 @@
  flex-direction: column;
  gap: 20px;
 
- width: 439px;
+ width: 100%;
  padding: 7px;
 }
 
 .trip-card__header {
     display: flex;
     gap: 40px;
-}
-
-.trip-card__edit-logo {
 }
 
 .trip-card__edit-button {
