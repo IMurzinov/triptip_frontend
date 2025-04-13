@@ -34,7 +34,7 @@ const ProfilePage = () => {
             <div className="toggler__trips">
                 <TripList 
                     tripsData={userTrips}
-                    tripsCount={true}
+                    tripsCount={userTripsCount}
                 />
             </div>
         );
