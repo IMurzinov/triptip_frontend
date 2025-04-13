@@ -10,7 +10,9 @@ import { Link } from "react-router-dom";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 
 import { loginSuccess } from "features/auth/authSlice";
-import { auth } from "api";
+import { tripsAdd } from "features/userTrips/userTripsSlice";
+import { auth, apiClient } from "api";
+import { URL } from "constants/constants";
 import { Toggler } from "views";
 import { Button, Header, Input } from "components";
 
@@ -32,13 +34,18 @@ const AuthForm = () => {
     const dispatch = useDispatch();
 
     const onSubmit = async (data) => {
-
         try {
             const loginResponse = await auth(data);
+            const getUserTripUrl = `${URL.GET_USER}/${loginResponse.user_data.id}/trips`;
+            const tripFetchResponse = await apiClient(getUserTripUrl);
             dispatch(loginSuccess({ 
                 user: loginResponse.user_data,
                 token: loginResponse.access_token,
                 refreshToken: loginResponse.refresh_token,
+             }));
+             dispatch(tripsAdd({
+                trips: tripFetchResponse.trips,
+                totalCount: tripFetchResponse.total_count,
              }));
             navigate(`/profile/${loginResponse.user_data.username}`);
         } catch (error) {

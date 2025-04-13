@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import "./index.css";
 
-const Input = forwardRef(({ label, type, placeholder, autoComplete, ...props }, ref) => {
+const Input = forwardRef(({ label, type, placeholder, autocomplete, ...props }, ref) => {
   return (
     <div className="form-input">
       <label className="form-input__label">
@@ -11,7 +11,7 @@ const Input = forwardRef(({ label, type, placeholder, autoComplete, ...props }, 
           className="form-input__field"
           type={type}
           placeholder={placeholder}
-          autoComplete={autoComplete}
+          autoComplete={autocomplete}
           {...props}
         />
       </label>

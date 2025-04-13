@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { useForm, FormProvider } from "react-hook-form";
 import { parse, format } from "date-fns";
 
 import { Footer, PageHeader, Button, Stepper, Header } from "components";
 import { FirstStep, SecondStep, ThirdStep } from "views";
+import { tripsAdd } from "features/userTrips/userTripsSlice";
 
 import apiClient from "api/client";
 import { URL } from "constants/constants";
@@ -12,6 +15,11 @@ import "./index.css";
 
 const TripCreatePage = () => {
   const [currentStep, setCurrentStep] = useState(1);
+
+  const userId = useSelector(state => state.auth.user.id);
+  const username = useSelector(state => state.auth.user.username);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // 1. Инициализируем форму
   const methods = useForm({
@@ -76,7 +84,7 @@ const TripCreatePage = () => {
         dateTo   = format(parsedTo, 'yyyy-MM-dd');
       }
 
-      // (B) Создаём поездку. Вместо fetch -> apiClient:
+      // (B) Создаём поездку:
       const tripResp = await apiClient(URL.TRIPS, {
         method: "POST",
         body: {
@@ -178,7 +186,18 @@ const TripCreatePage = () => {
         }
       }
 
+      // (E) Обновляем список поездок в стейте юзера
+      const getUserTripUrl = `${URL.GET_USER}/${userId}/trips`;
+      const tripFetchResponse = await apiClient(getUserTripUrl);
+      dispatch(tripsAdd({
+        trips: tripFetchResponse.trips,
+        totalCount: tripFetchResponse.total_count,
+      }));
+
+      // (F) Перенаправляем обратно на страницу профиля
       console.log(`Успешно создана поездка c trip_id = ${tripId}`);
+      navigate(`/profile/${username}`);
+
     } catch (err) {
       console.error("Ошибка при создании поездки:", err);
       console.log(`Ошибка: ${err.message || "Что-то пошло не так"}`);
