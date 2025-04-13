@@ -17,22 +17,22 @@ const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_
       };
 
     return (
-      <div className="trip-card">
+      <div className="top-trip-card">
 
-        <div className='trip-card__info'>
+        <div className='top-trip-card__info'>
 
-          <div className='trip-card__user'>
+          <div className='top-trip-card__user'>
             <Userpic
             user_id={user_id}
             size='medium'  
             />
-            <div className='trip-card__user-name'>
+            <div className='top-trip-card__user-name'>
               <p className='first-last-name'>{firstLastName}</p>
               <p className='username'>{username}</p>
             </div>
           </div>
           
-          <div className='trip-card__likes-n-comms'>
+          <div className='top-trip-card__likes-n-comms'>
             <div className='likes'>
               <img className="likes-icon" src={likeIcon} alt='trip likes' />
               <span>{likes}</span>
@@ -45,15 +45,15 @@ const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_
 
         </div>
 
-        <div className='trip-card__trip-label'>
+        <div className='top-trip-card__trip-label'>
             <Header
                 text={name}
                 hdrType="trip"
             />
-            <div className='trip-card__place-n-date'>
-              <p className='trip-card__location'>{location}</p>
-              <p className="trip-card__divider">|</p>
-              <p className="trip-card__period">{formatDate(dateFrom)} - {formatDate(dateTo)} {formatYear(dateTo)}</p>
+            <div className='top-trip-card__place-n-date'>
+              <p className='top-trip-card__location'>{location}</p>
+              <p className="top-trip-card__divider">|</p>
+              <p className="top-trip-card__period">{formatDate(dateFrom)} - {formatDate(dateTo)} {formatYear(dateTo)}</p>
             </div>
         </div>
       </div>
