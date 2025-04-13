@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 
 import { logout } from "features/auth/authSlice";
+import { cleanUserTrips } from "features/userTrips/userTripsSlice";
 import { Button } from "components";
 import plus from "assets/images/plus.svg";
 import logo from "assets/images/logo-v2.svg";
@@ -17,6 +18,7 @@ const PageHeader = () => {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
+        dispatch(cleanUserTrips());
         dispatch(logout());
         return <Navigate to="/" replace />
     }

@@ -3,20 +3,29 @@ import { persistStore, persistReducer as createPersistReducer } from "redux-pers
 import storage from "redux-persist/lib/storage"; // Используем localStorage
 
 import authReducer from "features/auth/authSlice";
+import userTripsReducer from "features/userTrips/userTripsSlice";
 
-const persistConfig = {
+const authPersistConfig = {
     key: "auth",
     storage,
     whitelist: ["isAuthenticated", "user", "token", "refreshToken"], // Сохраняем только эти поля
 };
 
+const userTripsPersistConfig = {
+    key: "userTrips",
+    storage,
+    whitelist: ["trips", "totalCount"],
+};
+
 // Создаем persistedReducer
-const persistedReducer = createPersistReducer(persistConfig, authReducer);
+const authPersistedReducer = createPersistReducer(authPersistConfig, authReducer);
+const userTripsPersistedReducer = createPersistReducer(userTripsPersistConfig, userTripsReducer);
 
 // Настраиваем хранилище
 const store = configureStore({
     reducer: {
-        auth: persistedReducer, // Указываем ключ auth для persistedReducer
+        auth: authPersistedReducer, // Указываем ключ auth для persistedReducer
+        userTrips: userTripsPersistedReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
