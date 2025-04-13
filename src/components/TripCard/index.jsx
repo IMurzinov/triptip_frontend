@@ -1,5 +1,4 @@
 import { Header } from "components";
-import editLogo from "assets/images/edit_logo.svg"
 
 import "./index.css";
 
@@ -20,9 +19,6 @@ const TripCard = ({ name, location, dateFrom, dateTo }) => {
                 text={name}
                 hdrType="trip"
             />
-            <button className='trip-card__edit-button'>
-              <img className='trip-card__edit-logo' src={editLogo} alt='edit_logo' />
-            </button>
         </div>
         <div className='trip-card__info'>
             <p className=''>{location}</p>

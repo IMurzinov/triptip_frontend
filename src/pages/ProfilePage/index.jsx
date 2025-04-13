@@ -1,19 +1,22 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { Button, Header, PageHeader, Footer } from "components";
-import { UserProfileCard, Toggler } from "views";
+import { UserProfileCard, Toggler, TripList } from "views";
 
 import "./index.css";
 
 const ProfilePage = () => {
 
-    const { username } = useParams();
+    const userTrips = useSelector(state => state.userTrips.trips);
+    const userTripsCount = useSelector(state => state.userTrips.tripsCount);
+
+    console.log(userTrips);
+    console.log(userTripsCount);
 
     const handleToggle = (option) => {
-        
         setSelectedOption(option);
-
     };
 
     const [selectedOption, setSelectedOption] = useState('security');
@@ -27,7 +30,14 @@ const ProfilePage = () => {
     ];
 
     const tripsRender = () => {
-
+        return (
+            <div className="toggler__trips">
+                <TripList 
+                    tripsData={userTrips}
+                    tripsCount={true}
+                />
+            </div>
+        );
     };
 
     const friendsRender = () => {
