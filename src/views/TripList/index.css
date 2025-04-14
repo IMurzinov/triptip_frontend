@@ -1,7 +1,17 @@
 .trip-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 32px;
+    max-height: 447px;
+    overflow-y: scroll;
 
     width: 100%;
+
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+}
+
+.trip-list::-webkit-scrollbar {
+    display: none;
 }
