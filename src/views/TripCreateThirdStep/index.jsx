@@ -14,17 +14,17 @@ const ThirdStep = ({ onTripSubmit, onTripDraftSave, onPrevStep }) => {
 
   return (
     <div className="third-step-container">
-      {/* Если нужно, позже добавьте выбор тегов и т.д. */}
+      {/* Позже добавить выбор тегов и т.д. */}
       <div className="third-step__buttons">
         <Button
           btnType="secondary"
           text="Назад"
           onClick={goToSecondStep}
         />
-        <Button
+        {/* <Button
           btnType="secondary"
           text="Сохранить как черновик"
-        />
+        /> */}
         {/* type="submit" запустит onSubmit в TripCreatePage */}
         <Button
           btnType="primary"

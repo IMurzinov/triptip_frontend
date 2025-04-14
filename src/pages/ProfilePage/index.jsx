@@ -9,7 +9,10 @@ import "./index.css";
 const ProfilePage = () => {
 
     const userTrips = useSelector(state => state.userTrips.trips);
-    const userTripsCount = useSelector(state => state.userTrips.tripsCount);
+    const userTripsCount = userTrips.length;
+
+    console.log(userTrips);
+    console.log(userTripsCount);
 
     const handleToggle = (option) => {
         setSelectedOption(option);
@@ -19,9 +22,9 @@ const ProfilePage = () => {
 
     const options = [
         { label: 'Путешествия', value: 'trips' },
-        { label: 'Друзья', value: 'friends' },
-        { label: 'Лайки и комментарии', value: 'social' },
-        { label: 'Совместное', value: 'joint' },
+        // { label: 'Друзья', value: 'friends' },
+        // { label: 'Лайки и комментарии', value: 'social' },
+        // { label: 'Совместное', value: 'joint' },
         { label: 'Безопасность', value: 'security' },
     ];
 
@@ -36,17 +39,17 @@ const ProfilePage = () => {
         );
     };
 
-    const friendsRender = () => {
+    // const friendsRender = () => {
 
-    };
+    // };
 
-    const socialActionsRender = () => {
+    // const socialActionsRender = () => {
 
-    };
+    // };
 
-    const jointRender = () => {
+    // const jointRender = () => {
 
-    };
+    // };
 
     const securityRender = () => {
         return (
@@ -67,9 +70,9 @@ const ProfilePage = () => {
 
     const renderFunctions = {
         trips: tripsRender,
-        friends: friendsRender,
-        social: socialActionsRender,
-        joint: jointRender,
+        // friends: friendsRender,
+        // social: socialActionsRender,
+        // joint: jointRender,
         security: securityRender,
     };
 

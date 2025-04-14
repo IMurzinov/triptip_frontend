@@ -27,10 +27,6 @@ const SecondStep = ({ onNextStep, onPrevStep }) => {
 
   const watchTripElements = watch("tripElements", []);
 
-  // Кнопка «Добавить маршрут» неактивна, если последний элемент уже маршрут
-  const lastField = fields[fields.length - 1];
-  const disableAddRoute = lastField && lastField.type === "route";
-
   const handleAddLocation = () => {
     append({
       type: "location",
@@ -51,11 +47,8 @@ const SecondStep = ({ onNextStep, onPrevStep }) => {
   return (
     <div className="second-step-container">
       <LocationList
-        onAddLocation={handleAddLocation}
-        onAddRoute={handleAddRoute}
         fields={fields}
         watchTripElements={watchTripElements}
-        disableAddRouteBtn={disableAddRoute}
       />
       <div className="trip-fields">
         {fields.map((field, index) => {
@@ -70,7 +63,7 @@ const SecondStep = ({ onNextStep, onPrevStep }) => {
       </div>
       <div className="buttons">
         <Button text="Назад" btnType="secondary" onClick={goToFirstStep} />
-        <Button text="Сохранить как черновик" btnType="secondary" />
+        {/* <Button text="Сохранить как черновик" btnType="secondary" /> */}
         <Button text="Следующий шаг" btnType="primary" onClick={goToThirdStep} />
       </div>
     </div>
