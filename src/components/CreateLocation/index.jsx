@@ -1,6 +1,5 @@
 import { useFormContext } from 'react-hook-form';
 
-import drag from "assets/images/drag.svg";
 import { Header, Input, ImgUploader } from "components";
 
 import "./index.css";
@@ -11,10 +10,6 @@ const CreateLocation = ({ index }) => {
     return (
         <div className="location-container">
             <div className="location-content">
-                <Header 
-                    text={`Остановка №${index + 1}`}
-                    hdrType="section"
-                />
                 <Input
                     className="input-field"
                     label={<Header hdrType="input" text="Локация"/>}

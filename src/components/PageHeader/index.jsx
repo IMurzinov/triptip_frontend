@@ -26,7 +26,7 @@ const PageHeader = () => {
     const authenticatedHeaderRender = () => {
         return (
             <div className="page-header__container">
-                <nav className="page-header__friends-group">
+                {/* <nav className="page-header__friends-group">
                     <div className="friends-avatar">
                         <img className="friend one" src={friendPlugOne} alt='friend avatar'/>
                         <img className="friend two" src={friendPlugTwo} alt='friend avatar'/>
@@ -39,21 +39,21 @@ const PageHeader = () => {
                             type="button"
                         />
                     </Link>
-                </nav>
+                </nav> */}
+                <Link className="link" to="/">
+                    <Button
+                        onClick={handleLogout}
+                        btnType="secondary"
+                        text="Выйти"
+                        type="button"
+                    />
+                </Link>
                 <Link to="/">
                     <div className="page-header__logo-group">
                         <img className="logo" src={logo} alt='triptip logo'/>
                     </div>
                 </Link>
                 <nav className="page-header__buttons">
-                    <Link className="link" to="/">
-                        <Button
-                            onClick={handleLogout}
-                            btnType="secondary"
-                            text="Выйти"
-                            type="button"
-                        />
-                    </Link>
                     <Link className="link" to="/createyourtrip">
                         <Button
                             btnType="primary"

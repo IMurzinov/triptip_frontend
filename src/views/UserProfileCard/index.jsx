@@ -13,6 +13,10 @@ import editLogo from "assets/images/edit_logo.svg";
 import "./index.css";
 
 const UserProfileCard = ({style}) => {
+
+    let userTrips = useSelector(state => state.userTrips.trips);
+    let tripsCount = userTrips.length;
+    
     
     const dispatch = useDispatch();
 
@@ -54,17 +58,17 @@ const UserProfileCard = ({style}) => {
 
                         <p className='trips'>Путешествия</p>
 
-                        <span className='number'>6</span>
+                        <span className='number'>{tripsCount}</span>
 
                     </div>
 
-                    <div className='profile-card__friends'>
+                    {/* <div className='profile-card__friends'>
 
                         <p className='friends'>Друзья</p>
 
                         <span className='number'>120</span>
 
-                    </div>
+                    </div> */}
 
                 </div>
 
