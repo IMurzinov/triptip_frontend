@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 
 import { Button, Header, PageHeader, Footer } from "components";
 import { UserProfileCard, Toggler, TripList } from "views";
@@ -11,9 +10,6 @@ const ProfilePage = () => {
 
     const userTrips = useSelector(state => state.userTrips.trips);
     const userTripsCount = useSelector(state => state.userTrips.tripsCount);
-
-    console.log(userTrips);
-    console.log(userTripsCount);
 
     const handleToggle = (option) => {
         setSelectedOption(option);
@@ -34,7 +30,7 @@ const ProfilePage = () => {
             <div className="toggler__trips">
                 <TripList 
                     tripsData={userTrips}
-                    tripsCount={userTripsCount}
+                    tripsCount={true}
                 />
             </div>
         );
@@ -57,12 +53,12 @@ const ProfilePage = () => {
             <div className="toggler__security">
                 <div className="password__change">
                     <Header text="Изменение пароля" hdrType="section"/>
-                    <p>Текст про изменение пароля</p>
+                    <p className="password__change-text">Текст про изменение пароля</p>
                     <Button text="Изменить пароль" btnType="secondary"/>
                 </div>
                 <div className="account__delete">
                     <Header text="Удаление аккаунта" hdrType="section"/>
-                    <p>Текст про удаление аккаунта типа бла бла бла вы очень для нас важны пажалувста не надо</p>
+                    <p className="account__delete-text">Текст про удаление аккаунта типа бла бла бла вы очень для нас важны пажалувста не надо</p>
                     <Button text="Удалить аккаунт" btnType="danger"/>
                 </div>
             </div>
