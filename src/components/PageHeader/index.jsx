@@ -6,9 +6,9 @@ import { cleanUserTrips } from "features/userTrips/userTripsSlice";
 import { Button } from "components";
 import plus from "assets/images/plus.svg";
 import logo from "assets/images/logo-v2.svg";
-import friendPlugOne from "assets/images/friendPlugOne.svg";
-import friendPlugTwo from "assets/images/friendPlugTwo.svg";
-import friendPlugThree from "assets/images/friendPlugThree.svg";
+// import friendPlugOne from "assets/images/friendPlugOne.svg";
+// import friendPlugTwo from "assets/images/friendPlugTwo.svg";
+// import friendPlugThree from "assets/images/friendPlugThree.svg";
 
 import "./index.css";
 

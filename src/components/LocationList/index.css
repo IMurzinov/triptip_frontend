@@ -2,12 +2,12 @@
     width: 440px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 1.6rem;
     align-items: flex-start;
 
-    padding: 32px;
+    padding: 2rem;
 
-    border-radius: 20px;
+    border-radius: 1.25rem;
     background: var(--light-gray);
 
     position: fixed;

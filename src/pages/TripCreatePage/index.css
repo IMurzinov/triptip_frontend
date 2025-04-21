@@ -27,6 +27,7 @@
 
 .trip-content {
     width: 74%;
+    max-width: 672px;
 }
 
 .buttons {
