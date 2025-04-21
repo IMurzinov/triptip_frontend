@@ -25,6 +25,10 @@
     gap: 52px;
 }
 
+.trip-content {
+    width: 74%;
+}
+
 .buttons {
     display: flex;
     gap: 14px;

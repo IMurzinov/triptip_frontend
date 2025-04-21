@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 27px;
 
-    width: 64%;
+    width: 100%;
 }
 
 .trip-datepicker .react-datepicker__day--in-range,
@@ -15,4 +15,8 @@
 .trip-datepicker .react-datepicker__day--range-end:hover {
     background-color: var(--primary-color);
     color: #000;
+}
+
+.trip-details__name {
+    width: 81%;
 }

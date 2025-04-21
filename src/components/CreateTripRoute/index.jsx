@@ -1,6 +1,5 @@
 import { useFormContext } from 'react-hook-form';
 
-import drag from "assets/images/drag.svg";
 import { Header, ImgUploader } from "components";
 
 import "./index.css";
@@ -10,7 +9,6 @@ const CreateTripRoute = ({ index }) => {
 
     return (
         <div className="route-container">
-            <img src={drag} className="drag-icon" alt="drag icon" />
             <div className="route-content">
                 <Header
                     text="Маршрут"
