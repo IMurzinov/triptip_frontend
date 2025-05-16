@@ -17,12 +17,6 @@
     align-items: center;
 }
 
-.drag-icon {
-    width: 32px;
-    height: 32px;
-    cursor: grab;
-}
-
 .location-content {
     display: flex;
     flex-direction: column;
