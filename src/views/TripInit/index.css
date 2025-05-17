@@ -4,6 +4,7 @@
     gap: 27px;
 
     width: 100%;
+    max-width: 765px;
 }
 
 .trip-datepicker .react-datepicker__day--in-range,

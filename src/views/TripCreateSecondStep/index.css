@@ -1,13 +1,29 @@
 .second-step-container {
     display: flex;
+    gap: 1.4rem;
+    width: 91%;
+    max-width: 1200px;
+}
+
+.trip-fields__wrapper {
+    display: flex;
     flex-direction: column;
     gap: 52px;
+
+    width: 54%;
+    min-width: 620px;
 }
 
 .trip-fields {
     display: flex;
     flex-direction: column;
     gap: 32px;
+
+    width: 100%;
+}
+
+.location-and-routes-cards__wrapper {
+    width: 100%;
 }
 
 .buttons {

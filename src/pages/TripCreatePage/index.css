@@ -25,9 +25,13 @@
     gap: 52px;
 }
 
+.trip-create-page__nav {
+    width: 95%;
+    align-items: flex-start;
+}
+
 .trip-content {
-    width: 74%;
-    max-width: 672px;
+    width: 74vw;
 }
 
 .buttons {
