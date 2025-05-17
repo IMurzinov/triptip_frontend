@@ -15,7 +15,7 @@
 } */
 
 .location-list-container {
-    width: 440px;
+    min-width: 440px;
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
@@ -24,6 +24,8 @@
     border-radius: 1.25rem;
     background: var(--light-gray);
     /* position & top теперь управляются из inline-стиля */
+
+    align-self: flex-start;
 }
 
 .location {

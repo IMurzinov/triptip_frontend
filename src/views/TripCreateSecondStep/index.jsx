@@ -66,58 +66,59 @@ const SecondStep = ({ onNextStep, onPrevStep }) => {
 
   return (
     <div className="second-step-container">
+      <div className="trip-fields__wrapper">
+        <div className="trip-fields">
+          {fields.map((field, index) => {
+            const nextField = fields[index + 1];
+            return (
+              // оборачиваем все в див с рефом
+              <div
+                key={field.id}
+                ref={el => (itemRefs.current[index] = el)}
+                className="location-and-routes-cards__wrapper"
+              >
+                {field.type === "location" && (
+                  <>
+                    <CreateLocation index={index} />
+                    {nextField?.type !== "route" && (
+                      <AddRoute onAddRoute={() => handleAddRouteAt(index + 1)} />
+                    )}
+                    {!nextField && (
+                      <AddLocation onAddLocation={() => handleAddLocationAt(index + 1)} />
+                    )}
+                  </>
+                )}
+
+                {field.type === "route" && (
+                  <>
+                    <CreateTripRoute index={index} />
+                    {!nextField && (
+                      <AddLocation onAddLocation={() => handleAddLocationAt(index + 1)} />
+                    )}
+                  </>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <div className="buttons">
+          <Button
+            text="Назад"
+            btnType="secondary"
+            onClick={goToFirstStep}
+          />
+          <Button
+            text="Следующий шаг"
+            btnType="primary"
+            onClick={goToThirdStep}
+          />
+        </div>
+      </div>
       <LocationList
         fields={fields}
         watchTripElements={watchTripElements}
         scrollTo={scrollToIndex}
       />
-
-      <div className="trip-fields">
-        {fields.map((field, index) => {
-          const nextField = fields[index + 1];
-          return (
-            // оборачиваем все в див с рефом
-            <div
-              key={field.id}
-              ref={el => (itemRefs.current[index] = el)}
-            >
-              {field.type === "location" && (
-                <>
-                  <CreateLocation index={index} />
-                  {nextField?.type !== "route" && (
-                    <AddRoute onAddRoute={() => handleAddRouteAt(index + 1)} />
-                  )}
-                  {!nextField && (
-                    <AddLocation onAddLocation={() => handleAddLocationAt(index + 1)} />
-                  )}
-                </>
-              )}
-
-              {field.type === "route" && (
-                <>
-                  <CreateTripRoute index={index} />
-                  {!nextField && (
-                    <AddLocation onAddLocation={() => handleAddLocationAt(index + 1)} />
-                  )}
-                </>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      <div className="buttons">
-        <Button
-          text="Назад"
-          btnType="secondary"
-          onClick={goToFirstStep}
-        />
-        <Button
-          text="Следующий шаг"
-          btnType="primary"
-          onClick={goToThirdStep}
-        />
-      </div>
     </div>
   );
 };

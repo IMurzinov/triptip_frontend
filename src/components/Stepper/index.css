@@ -1,25 +1,30 @@
 .stepper-container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
     align-items: center;
-    margin-left: -94px;
 
-    align-self: flex-start;
+    align-self: stretch;
+
+    width: 100%;
 }
 
 .stepper {
     display: flex;
-    gap: 16px;
+    gap: 1rem;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+
+    width: 100%;
 }
 
 .stepper-item {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 1rem;
+
+    width: 33%;
 }
 
 .step {
@@ -62,6 +67,8 @@
     background-color: var(--snow-gray-3);
     border: none;
     margin: 0;
+
+    width: 87%;
 }
 
 .divider.completed {
@@ -70,8 +77,9 @@
 
 .stepper-text {
  display: flex;
- gap: 311px;
- margin-left: 94px;
+ gap: 23rem;
+
+ width: 100%;
 }
 
 .text-group {
