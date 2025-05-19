@@ -3,10 +3,9 @@
 // TODO: Добавить маску для ввода телефона
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 
 import { loginSuccess } from "features/auth/authSlice";
@@ -19,7 +18,6 @@ import { Button, Header, Input } from "components";
 import "./index.css";
 
 const AuthForm = () => {
-
     const {
         register,
         unregister,
