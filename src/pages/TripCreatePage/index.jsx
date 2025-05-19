@@ -211,7 +211,12 @@ const TripCreatePage = () => {
         <div className="trip-create-page__layout">
           <PageHeader />
           <main className="trip-create-page__content">
-            <Button text="« Назад" btnType="plain" className="back-button" />
+            <Button
+              text="« Назад"
+              btnType="plain"
+              className="back-button"
+              onClick={() => navigate(-1)}
+            />
             <div className="trip-create-page__main">
               <div className="trip-create-page__nav">
                 <Header text="Создание поездки" hdrType="page" />
