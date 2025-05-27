@@ -11,6 +11,9 @@
     border-radius: 32px;
     border: 1px solid var(--gray);
     background: #FFF;
+
+    position: relative;
+    z-index: 0;
 }
 
 .file-uploader-container:hover {

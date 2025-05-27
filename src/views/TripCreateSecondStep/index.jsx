@@ -42,7 +42,7 @@ const SecondStep = ({ onNextStep, onPrevStep }) => {
     insert(index, {
       type: "route",
       tripRouteDescription: "",
-      // photos: []
+      photos: [],
     });
   };
 
@@ -52,7 +52,7 @@ const SecondStep = ({ onNextStep, onPrevStep }) => {
       type: "location",
       locationName: "",
       locationStory: "",
-      // photos: []
+      photos: [],
     });
   };
 
