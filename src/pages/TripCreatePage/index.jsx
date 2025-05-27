@@ -66,6 +66,7 @@ const TripCreatePage = () => {
 
   // 4. Финальный сабмит (шаг 3 -> «Опубликовать»).
   const onSubmit = async (data) => {
+    let locationCounter = 1;
     console.log("Form data:", data);
     try {
       // (A) Парсим даты
@@ -114,8 +115,10 @@ const TripCreatePage = () => {
             body: {
               name: elem.locationName,
               description: elem.locationStory || "",
+              sequence_id: locationCounter,
             },
           });
+          locationCounter += 1;
           console.log('Локация создана с id: ', locResp.id);
           const locationId = locResp.id;
 
