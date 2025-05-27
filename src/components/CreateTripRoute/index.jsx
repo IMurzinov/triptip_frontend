@@ -33,7 +33,7 @@ const CreateTripRoute = ({ index }) => {
                             а вам будет интереснее возвращаться к воспоминаниям о поездки спустя время
                         </p>
                     </div>
-                    <ImgUploader />
+                    <ImgUploader index={index}/>
                 </div>
             </div>
         </div>

@@ -32,8 +32,7 @@ const TripCreatePage = () => {
           type: "location",
           locationName: "",
           locationStory: "",
-          // Можно также хранить здесь массив фотографий, если ImgUploader кладёт их в RHForm
-          // photos: []
+          photos: [],
         },
       ],
     },
@@ -97,8 +96,6 @@ const TripCreatePage = () => {
         },
       });
 
-      console.log('Поездка создана с id: ', tripResp.id);
-      // tripResp — это результат, уже распарсенный как JSON
       const tripId = tripResp.id; // Предположим, что сервер возвращает { id: ... }
 
       // (C) Храним {index -> location_id}, чтобы связывать маршруты с локациями
@@ -123,21 +120,16 @@ const TripCreatePage = () => {
           const locationId = locResp.id;
 
           // Загрузка фотографий (если есть)
-          if (elem.photos && elem.photos.length > 0) {
-            for (const photoFile of elem.photos) {
-              const formData = new FormData();
-              formData.append("file", photoFile);
-
-              // При отправке FormData не указываем Content-Type,
-              // apiClient должен пропустить установку "application/json"
-              await apiClient(`${URL.TRIPS}/location/${locationId}/highlight`, {
-                method: "POST",
-                // Если в apiClient есть логика, которая автоматически ставит
-                // "Content-Type: application/json", то нужно обойти это.
-                // Например, можно передать пустые headers:
-                headers: {},
-                body: formData,
-              });
+          if (elem.photos?.length) {
+            for (const file of elem.photos) {
+              const fd = new FormData();
+              fd.append('file', file);
+              fd.append('name', elem.locationName);
+              fd.append('description', '');
+              await apiClient(
+                `${URL.TRIPS}/location/${locationId}/highlight`,
+                { method: 'POST', body: fd }
+              );
             }
           }
 
@@ -174,16 +166,16 @@ const TripCreatePage = () => {
           const routeId = routeResp.id;
 
           // 3) Фотографии маршрута (если есть)
-          if (elem.photos && elem.photos.length > 0) {
-            for (const routePhoto of elem.photos) {
-              const formData = new FormData();
-              formData.append("file", routePhoto);
-
-              await apiClient(`${URL.TRIPS}/route/${routeId}/highlight`, {
-                method: "POST",
-                headers: {},
-                body: formData,
-              });
+          if (elem.photos?.length) {
+            for (const file of elem.photos) {
+              const fd = new FormData();
+              fd.append('file', file);
+              fd.append('name', '');
+              fd.append('description', elem.tripRouteDescription);
+              await apiClient(
+                `${URL.TRIPS}/route/${routeId}/highlight`,
+                { method: 'POST', body: fd }
+              );
             }
           }
         }

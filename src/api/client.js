@@ -84,12 +84,20 @@ const apiClient = async (endpoint, { method = 'GET', headers = {}, body } = {}) 
     };
 
     // Обработка тела запроса
-    if (body) {
-        if (headers['Content-Type'] === 'application/x-www-form-urlencoded') {
-            options.body = new URLSearchParams(body).toString(); // Кодируем тело в URL-кодировку
-        } else {
-            options.body = JSON.stringify(body); // Преобразуем тело в JSON
-            options.headers['Content-Type'] = 'application/json'; // Устанавливаем заголовок
+    if (body != null) {
+        // 1) Если это FormData — берём его «как есть»
+        if (body instanceof FormData) {
+        options.body = body;
+        // !!! не трогаем finalHeaders['Content-Type']
+        }
+        // 2) Если нужны URL-encoded поля
+        else if (headers['Content-Type'] === 'application/x-www-form-urlencoded') {
+        options.body = new URLSearchParams(body).toString();
+        }
+        // 3) Всё остальное — JSON
+        else {
+        options.body = JSON.stringify(body);
+        options.headers['Content-Type'] = 'application/json';
         }
     }
 

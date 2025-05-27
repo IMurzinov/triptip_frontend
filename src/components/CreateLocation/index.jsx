@@ -37,7 +37,7 @@ const CreateLocation = ({ index }) => {
                             а вам будет интереснее возвращаться к воспоминаниям о поездке спустя время
                         </p>
                     </div>
-                    <ImgUploader />
+                    <ImgUploader index={index}/>
                 </div>
             </div>
         </div>
