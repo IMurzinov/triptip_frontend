@@ -34,7 +34,7 @@ const AuthForm = () => {
     const onSubmit = async (data) => {
         try {
             const loginResponse = await auth(data);
-            const getUserTripUrl = `${URL.GET_USER}/${loginResponse.user_data.id}/trips`;
+            const getUserTripUrl = `${URL.GET_USERS}/${loginResponse.user_data.id}/trips`;
             const tripFetchResponse = await apiClient(getUserTripUrl);
             dispatch(loginSuccess({ 
                 user: loginResponse.user_data,
@@ -45,7 +45,7 @@ const AuthForm = () => {
                 trips: tripFetchResponse.trips,
                 totalCount: tripFetchResponse.total_count,
              }));
-            navigate(`/profile/${loginResponse.user_data.username}`);
+            navigate(`/profile/${loginResponse.user_data.id}`);
         } catch (error) {
             console.error("Ошибка:", error.message);
             // Установка ошибки на сервере

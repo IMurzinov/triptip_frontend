@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { logout } from "features/auth/authSlice";
 import { cleanUserTrips } from "features/userTrips/userTripsSlice";
@@ -16,11 +16,12 @@ import "./index.css";
 const PageHeader = () => {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         dispatch(cleanUserTrips());
         dispatch(logout());
-        return <Navigate to="/" replace />
+        navigate("/", { replace: true });
     }
 
     const authenticatedHeaderRender = () => {
@@ -40,14 +41,12 @@ const PageHeader = () => {
                         />
                     </Link>
                 </nav> */}
-                <Link className="link" to="/">
-                    <Button
-                        onClick={handleLogout}
-                        btnType="secondary"
-                        text="Выйти"
-                        type="button"
-                    />
-                </Link>
+                <Button
+                    onClick={handleLogout}
+                    btnType="secondary"
+                    text="Выйти"
+                    type="button"
+                />
                 <Link to="/">
                     <div className="page-header__logo-group">
                         <img className="logo" src={logo} alt='triptip logo'/>

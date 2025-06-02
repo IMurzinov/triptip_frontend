@@ -1,4 +1,5 @@
 // TODO: Добавить отображение 3 фото поездки
+import { Link } from "react-router-dom";
 
 import { Header, Userpic } from "components";
 import likeIcon from "assets/images/likeIcon.svg";
@@ -26,10 +27,12 @@ const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_
             user_id={user_id}
             size='medium'  
             />
-            <div className='top-trip-card__user-name'>
-              <p className='first-last-name'>{firstLastName}</p>
+            <Link
+              to={`/profile/${user_id}`}
+              className="username-link"
+            >
               <p className='username'>{username}</p>
-            </div>
+            </Link>
           </div>
           
           <div className='top-trip-card__likes-n-comms'>
