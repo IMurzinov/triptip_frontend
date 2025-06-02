@@ -3,6 +3,7 @@ import { TripCard, TopTripsEmptyPlaceholder } from "components";
 import "./index.css";
 
 const TripList = ({ tripsData, tripsCount }) => {
+    console.log(tripsData);
     return (
         tripsCount > 0 ? 
             ( 

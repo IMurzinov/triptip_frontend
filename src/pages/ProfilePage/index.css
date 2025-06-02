@@ -35,7 +35,7 @@
     gap: 24px
 }
 
-.password__change-text, .account__delete-text {
+.password__change-text, .account__delete-text, .security-info-prohibited {
     color: var(--black);
     font-family: 'Inter';
     font-size: 14px;

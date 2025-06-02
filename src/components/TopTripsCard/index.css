@@ -35,28 +35,19 @@
     gap: 8px;
 }
 
-.top-trip-card__user-name {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+.username-link {
+    align-self: center;
+
+    text-decoration: none; 
+    color: inherit;
 }
 
-.first-last-name {
+.username {
     color: var(--black, #141517);
     font-family: "Inter";
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: normal;
-    text-transform: capitalize;
-}
-
-.username {
-    color: var(--dark-gray, #7187A8);
-    font-family: "Inter";
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
     line-height: normal;
     text-transform: capitalize;
 }
