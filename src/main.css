@@ -36,6 +36,7 @@
 @import 'pages/ProfilePage/index.css';
 @import 'pages/WelcomePage/index.css';
 @import 'pages/TripCreatePage/index.css';
+@import 'pages/TripGuidePage/index.css';
 
 
 body, html {

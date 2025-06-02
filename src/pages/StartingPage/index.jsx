@@ -106,6 +106,7 @@ const StartingPage = () => {
                                 {limitedData.map((trip) => (
                                     <TopTripsCard
                                         key={trip.id}
+                                        tripId={trip.id}
                                         name={trip.name}
                                         location={trip.region}
                                         dateFrom={trip.date_from}

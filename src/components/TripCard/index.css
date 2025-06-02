@@ -12,6 +12,13 @@
  padding: 25px 30px;
 }
 
+.trip-guide-link {
+    cursor: pointer;
+
+    text-decoration: none;
+    color: inherit;
+}
+
 .trip-card__header {
     display: flex;
     gap: 40px;
