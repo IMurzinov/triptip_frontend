@@ -10,7 +10,7 @@ const TripGuidePage = () => {
         <div className="trip-guide-page__layout">
             <PageHeader />
             <main className="trip-guide-page__content">
-
+                <p>Скоро здесь будет отчет о поездке с id = {id}</p>
             </main>
             <Footer />
         </div>

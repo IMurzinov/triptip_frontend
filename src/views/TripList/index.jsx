@@ -11,6 +11,7 @@ const TripList = ({ tripsData, tripsCount }) => {
                     {tripsData.map(trip => (
                         <TripCard
                             key={trip.id}
+                            tripId={trip.id}
                             name={trip.name}
                             location={trip.region}
                             dateFrom={trip.date_from}

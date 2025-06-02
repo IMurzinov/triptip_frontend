@@ -15,6 +15,13 @@
     line-height: normal;
 }
 
+.trip-guide-link {
+    cursor: pointer;
+
+    text-decoration: none;
+    color: inherit;
+}
+
 .top-trip-card__info {
     display: flex;
     justify-content: space-between;

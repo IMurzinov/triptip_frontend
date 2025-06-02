@@ -7,7 +7,9 @@ import commentIcon from "assets/images/commentIcon.svg";
 
 import "./index.css";
 
-const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_id, username, firstLastName }) => {
+const TopTripsCard = ({ tripId, name, location, dateFrom, dateTo, likes, comments, user_id, username, firstLastName }) => {
+    console.log("Ключ key => ", tripId);
+
     const formatDate = (date) => {
         const options = { day: 'numeric', month: 'long' };
         return new Date(date).toLocaleDateString('ru-RU', options);
@@ -19,13 +21,11 @@ const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_
 
     return (
       <div className="top-trip-card">
-
         <div className='top-trip-card__info'>
-
           <div className='top-trip-card__user'>
             <Userpic
-            user_id={user_id}
-            size='medium'  
+              user_id={user_id}
+              size='medium'  
             />
             <Link
               to={`/profile/${user_id}`}
@@ -45,14 +45,18 @@ const TopTripsCard = ({ name, location, dateFrom, dateTo, likes, comments, user_
               <span>{comments}</span>
             </div>
           </div>
-
         </div>
-
         <div className='top-trip-card__trip-label'>
-            <Header
-                text={name}
-                hdrType="trip"
-            />
+            <Link
+              to={`/trip/${tripId}`}
+              className="trip-guide-link"
+            >
+              <Header
+                  text={name}
+                  hdrType="trip"
+              />
+            </Link>
+            
             <div className='top-trip-card__place-n-date'>
               <p className='top-trip-card__location'>{location}</p>
               <p className="top-trip-card__divider">|</p>
