@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const EntranceAuthCheck = ({ children }) => {
-    const username = useSelector((state) => state.auth.user?.username);
+    const userId = useSelector((state) => state.auth.user?.id);
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (isAuthenticated && username) {
-            navigate(`/profile/${username}`, { replace: true });
+        if (isAuthenticated && userId) {
+            navigate(`/profile/${userId}`, { replace: true });
         }
-    }, [isAuthenticated, username, navigate]);
+    }, [isAuthenticated, userId, navigate]);
 
     // Если пользователь не залогинен, рендерим переданные children
     return !isAuthenticated ? children : null;

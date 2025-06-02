@@ -83,7 +83,7 @@ const SignUpForm = () => {
             dispatch(loginSuccess({ user: loginResponse.user_data }));
             
             // Перенаправление
-            navigate("/welcome");
+            navigate(`/profile/${loginResponse.user_data.id}`);
 
         } catch (error) {
             console.error("Ошибка:", error.message);

@@ -182,7 +182,7 @@ const TripCreatePage = () => {
       }
 
       // (E) Обновляем список поездок в стейте юзера
-      const getUserTripUrl = `${URL.GET_USER}/${userId}/trips`;
+      const getUserTripUrl = `${URL.GET_USERS}/${userId}/trips`;
       const tripFetchResponse = await apiClient(getUserTripUrl);
       dispatch(tripsAdd({
         trips: tripFetchResponse.trips,
