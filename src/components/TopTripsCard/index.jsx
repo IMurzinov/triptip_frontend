@@ -8,7 +8,6 @@ import commentIcon from "assets/images/commentIcon.svg";
 import "./index.css";
 
 const TopTripsCard = ({ tripId, name, location, dateFrom, dateTo, likes, comments, user_id, username, firstLastName }) => {
-    console.log("Ключ key => ", tripId);
 
     const formatDate = (date) => {
         const options = { day: 'numeric', month: 'long' };
