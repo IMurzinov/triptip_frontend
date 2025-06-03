@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Button, Header, PageHeader, Footer } from "components";
 import { UserProfileCard, Toggler, TripList } from "views";
 import { apiClient } from "api";
-import { URL, BASE_URL } from "constants/constants";
+import { URL } from "constants/constants";
 
 import "./index.css";
 
