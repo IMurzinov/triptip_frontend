@@ -191,7 +191,7 @@ const TripCreatePage = () => {
 
       // (F) Перенаправляем обратно на страницу профиля
       console.log(`Успешно создана поездка c trip_id = ${tripId}`);
-      navigate(`/profile/${username}`);
+      navigate(`/profile/${userId}`);
 
     } catch (err) {
       console.error("Ошибка при создании поездки:", err);
