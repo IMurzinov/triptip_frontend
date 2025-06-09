@@ -37,6 +37,7 @@
 @import 'pages/WelcomePage/index.css';
 @import 'pages/TripCreatePage/index.css';
 @import 'pages/TripGuidePage/index.css';
+@import 'pages/EmailNotificationPage/index.css';
 
 
 body, html {

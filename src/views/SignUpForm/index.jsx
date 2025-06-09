@@ -77,19 +77,19 @@ const SignUpForm = () => {
             const result = await userRegistration(data);
 
             // Авторизация
-            const loginResponse = await auth(data);
+            // const loginResponse = await auth(data);
 
             // Обновление состояния authSlice
-            dispatch(loginSuccess({ user: loginResponse.user_data }));
+            // dispatch(loginSuccess({ user: loginResponse.user_data }));
             
             // Перенаправление
-            navigate(`/profile/${loginResponse.user_data.id}`);
+            navigate(`/emailnotification`);
 
-        } catch (error) {
-            console.error("Ошибка:", error.message);
+        } catch (err) {
+            console.error("Ошибка регистрации:", err);
 
-            // Установка ошибки на сервере
-            setError("server", { message: error.message || "Произошла ошибка" });
+            // Устанавливаем ошибку в форму
+            setError("server", { message: err.message });
         }
     };
 
@@ -246,7 +246,8 @@ const SignUpForm = () => {
                         </div>
                     </div>
                     <div className="error-message">{errors.confirmPassword?.message}</div>
-                </div>    
+                    {errors.server && ( <div className="error-message">{errors.server.message}</div> )}
+                </div>
             </div>
             <div className="sign-up-form__buttons">
                 <Button

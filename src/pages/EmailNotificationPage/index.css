@@ -1,0 +1,17 @@
+.notification-page__layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+}
+
+.notification-page__logo {
+    width: 30%;
+}
+
+.notification-page__text {
+    width: 30%;
+}

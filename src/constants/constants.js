@@ -4,6 +4,7 @@ export const URL = {
   TRIPS: `${BASE_URL}/trips`,
   GET_USERS: `${BASE_URL}/users`,
   REGISTER: `${BASE_URL}/auth/register`,
+  VERIFY: `${BASE_URL}/verify`
 };
 
 export const AUTH = {
