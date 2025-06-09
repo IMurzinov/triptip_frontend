@@ -34,18 +34,15 @@ const VerifyPage = () => {
                     },
                 })
 
-                // Автоматическая авторизация пользователя
-                const autoAuth = await auth(verificationResponse.user_data);
-
                 // Собираем данные о путешествиях пользователя
-                const tripsUrl = `${URL.GET_USERS}/${autoAuth.user_data.id}/trips`;
+                const tripsUrl = `${URL.GET_USERS}/${verificationResponse.user_data.id}/trips`;
                 const tripFetchResponse = await apiClient(tripsUrl);
 
                 // Обновление состояния authSlice
                 dispatch(loginSuccess({
-                    user: autoAuth.user_data,
-                    token: autoAuth.access_token,
-                    refreshToken: autoAuth.refresh_token,
+                    user: verificationResponse.user_data,
+                    token: verificationResponse.access_token,
+                    refreshToken: verificationResponse.refresh_token,
                 }));
 
                 // Обновление состояния userTripsSlice
@@ -55,7 +52,7 @@ const VerifyPage = () => {
                 }));
 
                 //Перенаправление на страницу пользователя
-                navigate(`/profile/${autoAuth.user_data.id}`)
+                navigate(`/profile/${verificationResponse.user_data.id}`)
 
             } catch(err) {
                 console.warn("Ошибка верификации: ", err);
