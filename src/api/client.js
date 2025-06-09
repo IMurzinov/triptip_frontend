@@ -127,7 +127,14 @@ const apiClient = async (endpoint, { method = 'GET', headers = {}, body } = {}) 
     
           // Иные HTTP-ошибки
           const errorData = await response.json();
-          throw new Error(errorData.message || "Произошла ошибка");
+
+          // Выбираем detail, если он есть, иначе message, иначе общий текст
+          const errorText = errorData.detail || errorData.message || `Ошибка ${response.status}`;
+
+          // Можно пробросить кроме строки и весь объект, если нужно
+          const err = new Error(errorText);
+          err.data = errorData;
+          throw err;
         }
     
         // Если всё ок
