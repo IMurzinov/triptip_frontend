@@ -35,7 +35,7 @@ const VerifyPage = () => {
                 })
 
                 // Автоматическая авторизация пользователя
-                const autoAuth = await auth(verificationResponse);
+                const autoAuth = await auth(verificationResponse.user_data);
 
                 // Собираем данные о путешествиях пользователя
                 const tripsUrl = `${URL.GET_USERS}/${autoAuth.user_data.id}/trips`;
