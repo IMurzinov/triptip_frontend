@@ -101,47 +101,58 @@ const apiClient = async (endpoint, { method = 'GET', headers = {}, body } = {}) 
         }
     }
 
-    try {
-        const response = await fetch(endpoint, options);
-    
-        if (!response.ok) {
-          // Если получили 401 — значит, access_token просрочен или невалиден
-          if (response.status === 401) {
-            return new Promise((resolve, reject) => {
-              // Добавляем запрос в очередь (refreshSubscribers),
-              // чтобы повторить его после обновления
-              addRefreshSubscriber(() => {
-                resolve(apiClient(endpoint, { method, headers, body }));
-              });
-    
-              // Если обновление еще не запущено, запускаем
-              if (!isRefreshing) {
-                refreshToken().catch((err) => {
-                  // Если рефреш не удался — выкидываем ошибку и делаем логаут
-                  store.dispatch(logout());
-                  reject(err);
-                });
-              }
+    const response = await fetch(endpoint, options);
+
+    if (!response.ok) {
+      // Если получили 401 — значит, access_token просрочен или невалиден
+      if (response.status === 401) {
+        return new Promise((resolve, reject) => {
+          // Добавляем запрос в очередь (refreshSubscribers),
+          // чтобы повторить его после обновления
+          addRefreshSubscriber(() => {
+            resolve(apiClient(endpoint, { method, headers, body }));
+          });
+
+          // Если обновление еще не запущено, запускаем
+          if (!isRefreshing) {
+            refreshToken().catch((err) => {
+              // Если рефреш не удался — выкидываем ошибку и делаем логаут
+              store.dispatch(logout());
+              reject(err);
             });
           }
-    
-          // Иные HTTP-ошибки
-          const errorData = await response.json();
-
-          // Выбираем detail, если он есть, иначе message, иначе общий текст
-          const errorText = errorData.detail || errorData.message || `Ошибка ${response.status}`;
-
-          // Можно пробросить кроме строки и весь объект, если нужно
-          const err = new Error(errorText);
-          err.data = errorData;
-          throw err;
-        }
-    
-        // Если всё ок
-        return await response.json();
-      } catch (error) {
-        throw error;
+        });
       }
+
+      // Иные HTTP-ошибки
+      let errorData = {};
+
+      try {
+        const text = await response.text();
+        if (text) errorData = JSON.parse(text);
+      } catch (e) {
+
+      }
+
+      // Выбираем detail, если он есть, иначе message, иначе общий текст
+      const errorText = errorData.detail || errorData.message || `Ошибка ${response.status}`;
+
+      // Можно пробросить кроме строки и весь объект, если нужно
+      const err = new Error(errorText);
+      err.data = errorData;
+      throw err;
+    }
+
+    // Если всё ок
+    const text = await response.text();
+    if (text) {
+      try {
+        return JSON.parse(text);
+      } catch {
+        return text;
+      }
+    }
+    return {};
 };
 
 export default apiClient;
