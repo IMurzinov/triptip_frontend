@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { Footer, PageHeader } from "components";
+import { Footer, PageHeader, Header, LocationList, } from "components";
 import { URL } from "constants/constants";
+import { apiClient } from "api";
+import locationIcon from "assets/images/locationIcon.svg";
 
 import "./index.css";
-import { apiClient } from "api";
 
 const TripGuidePage = () => {
     const { id } = useParams();
