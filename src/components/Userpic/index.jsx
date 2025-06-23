@@ -1,9 +1,11 @@
+//TODO: Добавить загрузку фото юзера по id
+
 import { CiUser } from "react-icons/ci";
 import classNames from "classnames";
 
 import "./index.css";
 
-const Userpic = ({ userpicSrc, size }) => {
+const Userpic = ({ userpicSrc, size, userId }) => {
     
     if (!userpicSrc) {
         return <div className={classNames(

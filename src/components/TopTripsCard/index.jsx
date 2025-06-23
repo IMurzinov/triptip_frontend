@@ -23,7 +23,7 @@ const TopTripsCard = ({ tripId, name, location, dateFrom, dateTo, likes, comment
         <div className='top-trip-card__info'>
           <div className='top-trip-card__user'>
             <Userpic
-              user_id={user_id}
+              userId={user_id}
               size='medium'  
             />
             <Link

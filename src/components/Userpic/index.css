@@ -7,18 +7,18 @@
 }
 
 .userpic-small {
-    width: 18px;
-    height: 18px;
+    width: 1.125rem;
+    height: 1.125rem;
 }
 
 .userpic-medium {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 .userpic-large {
-    width: 120px;
-    height: 120px;
+    width: 7.5rem;
+    height: 7.5rem;
 }
 
 .userpic-stub__icon {
