@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { Footer, PageHeader, Header, LocationList, } from "components";
+import { Footer, PageHeader, Header, LocationList, Userpic, } from "components";
 import { URL } from "constants/constants";
 import { apiClient } from "api";
 import locationIcon from "assets/images/locationIcon.svg";
+import externalLink from "assets/images/externalLink.svg";
 
 import "./index.css";
 
@@ -18,6 +19,7 @@ const TripGuidePage = () => {
 
     // Стейты для загрузки данных
     const [tripData, setTripData] = useState([]);
+    const [authorData, setAuthorData] = useState([]);
     const [locationsData, setLocationsData] = useState([]);
     const [locHighlightsData, setLocHighlightsData] = useState();
     const [routesData, setRoutesData] = useState([]);
@@ -38,6 +40,13 @@ const TripGuidePage = () => {
                     throw new Error("Поездка не найдена");
                 }
                 setTripData(tripResponse);
+
+                // Запрашиваем данные автора поездки
+                const authorResponse = await apiClient(`${URL.GET_USERS}/${tripResponse.author_id}`);
+                if (!authorResponse) {
+                    throw new Error("Автор не найден")
+                }
+                setAuthorData(authorResponse);
 
                 // Запрашиваем локации поездки
                 const locationsResponse = await apiClient(`${URL.TRIPS}/${id}/locations`);
@@ -122,14 +131,45 @@ const TripGuidePage = () => {
         fetchTrip();
     }, [id]);
 
+    const formatDate = (date) => {
+        const options = { day: 'numeric', month: 'long' };
+        return new Date(date).toLocaleDateString('ru-RU', options);
+    };
+
+    const formatYear = (date) => {
+        return new Date(date).getFullYear();
+    };
+
     return (
         <div className="trip-guide-page__layout">
             <PageHeader />
             <main className="trip-guide-page__content">
-                <p>Скоро здесь будет отчет о поездке с id = {id}</p>
-                <pre>{JSON.stringify(tripData, null, 2)}</pre>
-                <pre>{JSON.stringify(locationsData, null, 2)}</pre>
-                <pre>{JSON.stringify(routesData, null, 2)}</pre>
+                <div className="trip-guide-page__container">
+                    <Header
+                        hdrType="page"
+                        text={tripData.name}
+                    />
+                    <div className="trip-guide-page__author-info">
+                        <div className="info-wrapper">
+                            <Userpic
+                                size="medium"
+                                userId={tripData.author_id}
+                            />
+                            <div className="author-name">
+                                <p className="name">{authorData.username}</p>
+                                <p className="post-date">{`${formatDate(tripData.created_at)} ${formatYear(tripData.created_at)}`}</p> {/*Заменить на дату публикации!*/}
+                            </div>    
+                        </div>
+                        <button className="share-button">
+                            <img src={externalLink} alt="share this guide button"/>
+                            <span className="share-text">Поделиться</span>
+                        </button>
+                    </div>
+                    <p>Скоро здесь будет отчет о поездке с id = {id}</p>
+                    <p>{JSON.stringify(tripData)}</p>
+                    <p>{JSON.stringify(locationsData)}</p>
+                    <p>{JSON.stringify(routesData)}</p> 
+                </div>
             </main>
             <Footer />
         </div>
