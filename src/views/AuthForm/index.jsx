@@ -187,6 +187,11 @@ const AuthForm = () => {
                             type="button"
                         />
                     </Link>
+                    <Button
+                        btnType="plain"
+                        text="Забыли пароль?"
+                        type="button"
+                    />
                 </div>
             </form>
         </div>
