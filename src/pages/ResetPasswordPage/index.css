@@ -1,0 +1,17 @@
+.reset-password__layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+}
+
+.reset-password__logo {
+    width: 30%;
+}
+
+.reset-password__text {
+    width: 30%;
+}
