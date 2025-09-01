@@ -3,7 +3,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 
 
-import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage, WelcomePage, TripCreatePage, TripGuidePage, EmailNotificationPage, VerifyPage } from "pages";
+import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage, WelcomePage, TripCreatePage, TripGuidePage, EmailNotificationPage, VerifyPage, ResetPasswordPage } from "pages";
 import { ProtectedRoute, EntranceAuthCheck } from "components";
 import { store, persistor } from "store";
 
@@ -65,6 +65,12 @@ const router = createBrowserRouter([
     path: "/verify/:verificationToken",
     element: (
        <VerifyPage/>
+    )
+  },
+  {
+    path: "/passwordreset",
+    element: (
+      <ResetPasswordPage/>
     )
   },
 ]);

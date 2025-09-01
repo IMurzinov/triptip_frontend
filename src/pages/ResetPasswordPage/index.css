@@ -1,4 +1,4 @@
-.notification-page__layout {
+.reset-password__layout {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -8,10 +8,10 @@
     height: 100vh;
 }
 
-.notification-page__logo {
+.reset-password__logo {
     width: 30%;
 }
 
-.notification-page__text {
+.reset-password__text {
     width: 30%;
 }
