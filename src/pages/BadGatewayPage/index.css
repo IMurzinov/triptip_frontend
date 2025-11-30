@@ -24,7 +24,7 @@
     box-sizing: border-box;
 }
 
-.badgateway-page__content > img {
+.badgateway-page__content img {
     max-width: 100%;
     height: auto;
     width: clamp(8rem, 40vw, 15rem);
