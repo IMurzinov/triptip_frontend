@@ -3,7 +3,12 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 
 
-import { AuthPage, StartingPage, RegisterPage, NotFoundPage, ProfilePage, WelcomePage, TripCreatePage, TripGuidePage, EmailNotificationPage, VerifyPage, ResetPasswordPage } from "pages";
+import { 
+  AuthPage, StartingPage, RegisterPage,
+  NotFoundPage, ProfilePage, WelcomePage,
+  TripCreatePage, TripGuidePage, EmailNotificationPage,
+  VerifyPage, ResetPasswordPage, BadGatewayPage
+} from "pages";
 import { ProtectedRoute, EntranceAuthCheck } from "components";
 import { store, persistor } from "store";
 
