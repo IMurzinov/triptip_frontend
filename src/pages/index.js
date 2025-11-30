@@ -9,3 +9,4 @@ export { default as TripGuidePage } from  'pages/TripGuidePage';
 export { default as EmailNotificationPage } from 'pages/EmailNotificationPage';
 export { default as ResetPasswordPage } from 'pages/ResetPasswordPage';
 export { default as VerifyPage } from 'pages/VerifyPage';
+export { default as BadGatewayPage } from 'pages/BadGatewayPage';
