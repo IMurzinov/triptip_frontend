@@ -1,4 +1,5 @@
 .not-found-page {
+    position: relative;
     height: 100vh;
 
     display: flex;
@@ -19,4 +20,18 @@
     flex-direction: column;
     gap: 2.6rem;
     align-items: center;
+}
+
+.plane-up, .plane-down {
+    position: absolute;
+}
+
+.plane-down {
+    right: 0rem;
+    top: -3rem;
+}
+
+.plane-up {
+    bottom: 0rem;
+    left: 0rem;
 }
