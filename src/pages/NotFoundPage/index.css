@@ -1,37 +1,106 @@
+/* Mobile-first base styles */
 .not-found-page {
     position: relative;
-    height: 100vh;
-
+    min-height: 100vh;
     display: flex;
     background-color: var(--light-gray);
+    overflow: hidden;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .not-found-page__content {
     margin: auto;
     text-align: center;
-
     background-color: white;
-    padding: 3.3rem 7.3rem;
-    border-radius: 2rem;
-
-    width: 30%;
-
+    padding: 1.5rem 1rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 25rem;
     display: flex;
     flex-direction: column;
-    gap: 2.6rem;
+    gap: clamp(1rem, 3vw, 2.6rem);
     align-items: center;
+    box-sizing: border-box;
 }
 
-.plane-up, .plane-down {
+.not-found-page__content img {
+    max-width: 100%;
+    height: auto;
+    width: clamp(8rem, 40vw, 15rem);
+    object-fit: contain;
+}
+
+.not-found-page__text {
+    /* font-size: clamp(0.875rem, 2vw, 1rem); */
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0 0.5rem;
+}
+
+.plane-up,
+.plane-down {
     position: absolute;
+    max-width: 30%;
+    height: auto;
+    object-fit: contain;
 }
 
 .plane-down {
-    right: 0rem;
-    top: -3rem;
+    right: 0;
+    top: -1rem;
+    width: clamp(6rem, 25vw, 20rem);
 }
 
 .plane-up {
-    bottom: 0rem;
-    left: 0rem;
+    bottom: 0;
+    left: 0;
+    width: clamp(6rem, 25vw, 20rem);
+}
+
+/* Tablet styles (768px and up) */
+@media screen and (min-width: 768px) {
+    .not-found-page {
+        padding: 2rem;
+    }
+
+    .not-found-page__content {
+        padding: 2rem 3rem;
+        border-radius: 1.5rem;
+        width: 70%;
+        max-width: 28rem;
+    }
+
+    .plane-down {
+        top: -2rem;
+    }
+}
+
+/* Desktop styles (1024px and up) */
+@media screen and (min-width: 1024px) {
+    .not-found-page__content {
+        padding: 2.5rem 5rem;
+        width: 50%;
+        max-width: 32rem;
+    }
+
+    .plane-down {
+        top: -2.5rem;
+    }
+}
+
+/* Large desktop styles (1440px and up) */
+@media screen and (min-width: 1440px) {
+    .not-found-page__content {
+        padding: 3.3rem 7.3rem;
+        border-radius: 2rem;
+        width: 30%;
+        max-width: 40rem;
+        gap: 2.6rem;
+    }
+
+    .plane-down {
+        top: -3rem;
+    }
 }
