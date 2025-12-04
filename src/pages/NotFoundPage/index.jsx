@@ -27,7 +27,10 @@ const NotFoundPage = () => {
                     hdrType="page"
                     text="Ошибка"
                 />
-                <p className="not-found-page__text">Неправильно набран адрес, или такой страницы на сайте больше не существует</p>
+                <p className="not-found-page__text">
+                    <p>Неправильно набран адрес, или такой</p>
+                    <p>страницы на сайте больше не существует</p>
+                </p>
                 <Button
                     btnType="primary"
                     text="На главную"

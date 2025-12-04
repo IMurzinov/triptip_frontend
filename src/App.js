@@ -9,7 +9,7 @@ import {
   TripCreatePage, TripGuidePage, EmailNotificationPage,
   VerifyPage, ResetPasswordPage, BadGatewayPage
 } from "pages";
-import { ProtectedRoute, EntranceAuthCheck } from "components";
+import { ProtectedRoute, EntranceAuthCheck, RouteStatusCheck } from "components";
 import { store, persistor } from "store";
 
 import "assets/fonts/fonts.css";
@@ -18,65 +18,96 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <EntranceAuthCheck>
-        <StartingPage />
-      </EntranceAuthCheck>
+      <RouteStatusCheck>
+        <EntranceAuthCheck>
+          <StartingPage />
+        </EntranceAuthCheck>
+      </RouteStatusCheck>
     ),
-    errorElement: <NotFoundPage />,
   },
   {
     path: "/auth",
-    element: <AuthPage />,
+    element: (
+      <RouteStatusCheck>
+        <AuthPage />
+      </RouteStatusCheck>
+    ),
   },
   {
     path: "/register",
-    element: <RegisterPage />,
+    element: (
+      <RouteStatusCheck>
+        <RegisterPage />
+      </RouteStatusCheck>
+    ),
   },
   {
     path: "/welcome",
     element: (
-      <ProtectedRoute>
-        <WelcomePage />
-      </ProtectedRoute>
+      <RouteStatusCheck>
+        <ProtectedRoute>
+          <WelcomePage />
+        </ProtectedRoute>
+      </RouteStatusCheck>
     ),
   },
   {
     path: "/profile/:userId",
     element: (
+      <RouteStatusCheck>
         <ProfilePage/>
+      </RouteStatusCheck>
     ),
   },
   {
     path: "/createyourtrip",
     element: (
-      <ProtectedRoute>
-        <TripCreatePage />
-      </ProtectedRoute>
+      <RouteStatusCheck>
+        <ProtectedRoute>
+          <TripCreatePage />
+        </ProtectedRoute>
+      </RouteStatusCheck>
     ),
   },
   {
     path: "/trip/:id",
     element: (
-      <TripGuidePage/>
+      <RouteStatusCheck>
+        <TripGuidePage/>
+      </RouteStatusCheck>
     )
   },
   {
     path: "/emailnotification",
     element: (
-      <EmailNotificationPage/>
+      <RouteStatusCheck>
+        <EmailNotificationPage/>
+      </RouteStatusCheck>
     )
   },
   {
     path: "/verify/:verificationToken",
     element: (
-       <VerifyPage/>
+      <RouteStatusCheck>
+        <VerifyPage/>
+      </RouteStatusCheck>
     )
   },
   {
     path: "/passwordreset",
     element: (
-      <ResetPasswordPage/>
+      <RouteStatusCheck>
+        <ResetPasswordPage/>
+      </RouteStatusCheck>
     )
+  },
+  {
+    path: "/404",
+    element: <NotFoundPage />,
+  },
+  {
+    path: "/502",
+    element: <BadGatewayPage />,
   },
 ]);
 
