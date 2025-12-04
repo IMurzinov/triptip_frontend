@@ -17,3 +17,4 @@ export { default as CreateTripRoute } from 'components/CreateTripRoute';
 export { default as LocationList } from 'components/LocationList';
 export { default as AddRoute } from 'components/AddRoute';
 export { default as AddLocation } from 'components/AddLocation';
+export { default as RouteStatusCheck } from 'components/RouteStatusCheck';
