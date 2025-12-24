@@ -5,9 +5,9 @@ import "./index.css";
 const Stepper = ({ currentStep, steps }) => {
   // Default steps for backward compatibility
   const defaultSteps = [
-    { label: "Название", description: "Description" },
-    { label: "Локации", description: "Description" },
-    { label: "Дополнительно", description: "Description" }
+    { label: "Название" },
+    { label: "Локации" },
+    { label: "Дополнительно" }
   ];
 
   const stepLabels = steps || defaultSteps;

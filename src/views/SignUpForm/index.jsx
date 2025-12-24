@@ -76,8 +76,11 @@ const SignUpForm = () => {
                 currentData[field] = watch(field);
             });
             
-            if (currentStep === 2 && dateOfBirth) {
-                currentData.date_of_birth = dateOfBirth.toISOString().split('T')[0];
+            // Сохраняем дату рождения, если она выбрана
+            if (currentStep === 2) {
+                if (dateOfBirth) {
+                    currentData.date_of_birth = dateOfBirth.toISOString().split('T')[0];
+                }
             }
             
             setFormData(prev => ({ ...prev, ...currentData }));
@@ -98,6 +101,11 @@ const SignUpForm = () => {
                 ...formData,
                 password: data.password,
             };
+
+            // Добавляем дату рождения, если она была выбрана
+            if (dateOfBirth) {
+                completeData.date_of_birth = dateOfBirth.toISOString().split('T')[0];
+            }
 
             // Отправляем запрос на регистрацию
             await userRegistration(completeData);
@@ -180,7 +188,7 @@ const SignUpForm = () => {
                     {...register("username", {
                         required: "Введите никнейм",
                         validate: (value) => {
-                            return /^[A-Za-z@_-]+$/u.test(value) || `Только латиница и символы "@", "-", "_"`;
+                            return /^[A-Za-z@_-]+$/u.test(value) || `Только английские буквы и символы "@", "-", "_"`;
                         }
                     })}
                     autoComplete="username"
