@@ -2,25 +2,47 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 52px;
+    gap: 32px;
 
     width: 502px;
     margin: auto;
     margin-bottom: 98px;
 }
 
-.sign-up-form__personal-data {
+.sign-up-form__content {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 24px; 
+    gap: 40px;
 }
 
-.sign-up-form__password {
+.steps-container {
+    position: relative;
+    min-height: 300px;
+}
+
+.step-content {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 24px; 
+    gap: 24px;
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+.step-content.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .sign-up-form__buttons {
@@ -62,4 +84,41 @@
 
 .link {
     text-decoration: none;
+}
+
+.date-picker-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.date-picker-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.success-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.success-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    max-width: 500px;
+}
+
+.server-error {
+    color: var(--danger-red-2);
+    margin-top: 8px;
 }

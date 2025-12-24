@@ -1,40 +1,56 @@
-//TODO: Переписать структуру степпера, внести текст в общий флекс контейнер второй строчкой с использованием невидимых разделителей
 import check from "assets/images/check.svg";
 
 import "./index.css";
 
-const Stepper = ({ currentStep }) => {
+const Stepper = ({ currentStep, steps }) => {
+  // Default steps for backward compatibility
+  const defaultSteps = [
+    { label: "Название", description: "Description" },
+    { label: "Локации", description: "Description" },
+    { label: "Дополнительно", description: "Description" }
+  ];
+
+  const stepLabels = steps || defaultSteps;
+
   return (
     <div className="stepper-container">
       <div className="stepper">
-        {[1, 2, 3].map((step, index) => (
-          <div key={step} className="stepper-item">
-            <div
-              className={`step ${step === currentStep ? "current" : step < currentStep ? "finished" : "default"}`}
-            >
-              {step < currentStep ? (
-                <img className="check-img" src={check} alt="check icon" />
-              ) : (
-                step
-              )}
+        {stepLabels.map((stepData, index) => {
+          const stepNumber = index + 1;
+          return (
+            <div key={stepNumber} className="stepper-item">
+              <div
+                className={`step ${stepNumber === currentStep ? "current" : stepNumber < currentStep ? "finished" : "default"}`}
+              >
+                {stepNumber < currentStep ? (
+                  <img className="check-img" src={check} alt="check icon" />
+                ) : (
+                  stepNumber
+                )}
+              </div>
+              {index < stepLabels.length - 1 && (
+                <hr className={`divider ${stepNumber < currentStep ? "completed" : ""}`} />
+              )} 
             </div>
-            {index < 2 && (
-              <hr className={`divider ${step < currentStep ? "completed" : ""}`} />
-            )} 
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div className="stepper-text">
-        {[1, 2, 3].map((step) => (
-          <div key={`text-${step}`} className="text-group">
-            <p className={`text upper ${step === currentStep ? "chosen" : "inactive"}`}>
-              {step === 1 ? "Название" : step === 2 ? "Локации" : "Дополнительно"}
-            </p>
-            <p className={`text lower ${step === currentStep ? "chosen" : "inactive"}`}>
-              Description
-            </p>
-          </div>
-        ))}
+        {stepLabels.map((stepData, index) => {
+          const stepNumber = index + 1;
+          return (
+            <div key={`text-${stepNumber}`} className="text-group">
+              <p className={`text upper ${stepNumber === currentStep ? "chosen" : "inactive"}`}>
+                {stepData.label}
+              </p>
+              {stepData.description && (
+                <p className={`text lower ${stepNumber === currentStep ? "chosen" : "inactive"}`}>
+                  {stepData.description}
+                </p>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
