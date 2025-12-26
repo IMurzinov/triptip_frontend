@@ -106,7 +106,7 @@ const SignUpForm = () => {
         if (currentStep === 1) {
             fieldsToValidate = ["email"];
         } else if (currentStep === 2) {
-            fieldsToValidate = ["first_name", "last_name", "username", "dob"];
+            fieldsToValidate = ["username", "dob"];
         }
         
         const isValid = await trigger(fieldsToValidate);
