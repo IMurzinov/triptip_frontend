@@ -204,7 +204,7 @@ const SignUpForm = () => {
                         <Input
                             label="Дата рождения"
                             type="date"
-                            placeholder="01.01.2001"
+                            placeholder="01.01.1991"
                             {...register("dob", {
                                 required: "Введите дату рождения",
                             })}
