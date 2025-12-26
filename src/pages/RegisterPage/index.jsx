@@ -1,4 +1,3 @@
-import { Footer } from "components";
 import { SignUpForm } from "views";
 
 import "./index.css";
@@ -8,7 +7,6 @@ const RegisterPage = () => {
     <main>
       <SignUpForm />
     </main>
-    <Footer />
  </div>
 };
 

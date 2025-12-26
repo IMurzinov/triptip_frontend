@@ -116,16 +116,29 @@ const SignUpForm = () => {
         }
     };
     
-    const handlePreviousStep = () => {
-        setCurrentStep(currentStep - 1);
-    };
-    
     return (
         <form
             className="sign-up-form"
             onSubmit={handleFormSubmit}
         >
-            <Header hdrType="page" text="Регистрация" />
+            <div className="sign-up-form__header">
+                <Header hdrType="page" text="Регистрация" />
+                {currentStep === 1 && (
+                    <p className="sign-up-form__description">
+                        Ваша почта, которая будет использоваться для входа в аккаунт
+                    </p>
+                )}
+                {currentStep === 2 && (
+                    <p className="sign-up-form__description">
+                        Заполните общую информацию
+                    </p>
+                )}
+                {currentStep === 3 && (
+                    <p className="sign-up-form__description">
+                        Создайте пароль
+                    </p>
+                )}
+            </div>
             
             {/* Step 1: Email */}
             {currentStep === 1 && (
@@ -152,12 +165,6 @@ const SignUpForm = () => {
                             type="button"
                             onClick={handleNextStep}
                         />
-                        <Button
-                            btnType="secondary"
-                            text="Отменить"
-                            type="button"
-                            onClick={() => handleNavigation(-1)}
-                        />
                     </div>
                 </div>
             )}
@@ -165,7 +172,6 @@ const SignUpForm = () => {
             {/* Step 2: Personal Information */}
             {currentStep === 2 && (
                 <div className="sign-up-form__step">
-                    <Header hdrType="section" text="Общая информация" style={{ marginBottom: "4px" }} />
                     <div className="input-container">
                         <Input
                             label={<Header hdrType="input" text="Имя"/>}
@@ -228,12 +234,6 @@ const SignUpForm = () => {
                             type="button"
                             onClick={handleNextStep}
                         />
-                        <Button
-                            btnType="secondary"
-                            text="Назад"
-                            type="button"
-                            onClick={handlePreviousStep}
-                        />
                     </div>
                 </div>
             )}
@@ -241,7 +241,6 @@ const SignUpForm = () => {
             {/* Step 3: Password Creation */}
             {currentStep === 3 && (
                 <div className="sign-up-form__step">
-                    <Header className="section-header" text="Создание пароля" style={{ marginBottom: "4px" }} />
                     <div className="input-container">
                         <div className="password-field-container">
                             <Input
@@ -297,13 +296,6 @@ const SignUpForm = () => {
                             text={isSubmitting ? "Отправляю..." : "Зарегистрироваться"}
                             type="submit"
                             disabled={isSubmitting}
-                        />
-                        <Button
-                            btnType="secondary"
-                            text="Назад"
-                            type="button"
-                            disabled={isSubmitting}
-                            onClick={handlePreviousStep}
                         />
                     </div>
                 </div>
