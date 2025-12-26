@@ -19,7 +19,7 @@
     padding: 0.5rem 0.75rem;
     font-size: 1rem;
     color: var(--black);
-    border: none;
+    border: 1px solid transparent;
     background-color: var(--light-gray);
     border-radius: 0.3125rem;
     box-sizing: border-box;
