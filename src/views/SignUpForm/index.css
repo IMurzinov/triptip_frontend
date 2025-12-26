@@ -4,9 +4,13 @@
     align-items: stretch;
     gap: 52px;
 
-    width: 502px;
+    width: 50vw;
+    height: 90vh;
     margin: auto;
-    margin-bottom: 98px;
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: white;
+    overflow-y: auto;
 }
 
 .sign-up-form__personal-data {
