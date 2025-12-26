@@ -5,7 +5,7 @@ const Input = forwardRef(({ label, type, placeholder, autocomplete, ...props }, 
   return (
     <div className="form-input">
       <label className="form-input__label">
-        {label}
+        {typeof label === 'string' ? <span className="form-input__label-text">{label}</span> : label}
         <input
           ref={ref}
           className="form-input__field"
