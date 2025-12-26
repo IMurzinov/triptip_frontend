@@ -145,7 +145,7 @@ const SignUpForm = () => {
                 <div className="sign-up-form__step">
                     <div className="input-container">
                         <Input
-                            label={<Header hdrType="input" text="Электронная почта"/>}
+                            label="Электронная почта"
                             type="email"
                             placeholder="something@smth.com"
                             {...register("email", {
@@ -174,7 +174,7 @@ const SignUpForm = () => {
                 <div className="sign-up-form__step">
                     <div className="input-container">
                         <Input
-                            label={<Header hdrType="input" text="Имя"/>}
+                            label="Имя"
                             type="text"
                             placeholder="Иван"
                             {...register("first_name", {
@@ -188,7 +188,7 @@ const SignUpForm = () => {
                     </div>
                     <div className="input-container">
                         <Input
-                            label={<Header hdrType="input" text="Фамилия"/>}
+                            label="Фамилия"
                             type="text"
                             placeholder="Иванов"
                             {...register("last_name", {
@@ -202,9 +202,9 @@ const SignUpForm = () => {
                     </div>
                     <div className="input-container">
                         <Input
-                            label={<Header hdrType="input" text="Дата рождения"/>}
+                            label="Дата рождения"
                             type="date"
-                            placeholder="20.01.1995"
+                            placeholder="01.01.2001"
                             {...register("dob", {
                                 required: "Введите дату рождения",
                             })}
@@ -214,7 +214,7 @@ const SignUpForm = () => {
                     </div>
                     <div className="input-container">
                         <Input
-                            label={<Header hdrType="input" text="Имя пользователя"/>}
+                            label="Имя пользователя"
                             type="text"
                             placeholder="username"
                             {...register("username", {
@@ -244,7 +244,7 @@ const SignUpForm = () => {
                     <div className="input-container">
                         <div className="password-field-container">
                             <Input
-                                label={<Header hdrType="input" text="Введите пароль"/>}
+                                label="Введите пароль"
                                 type={passwordIsVisible ? "text" : "password"}
                                 placeholder=""
                                 {...register("password", {
@@ -268,7 +268,7 @@ const SignUpForm = () => {
                     <div className="input-container">
                         <div className="password-field-container">
                             <Input
-                                label={<Header hdrType="input" text="Повторите пароль"/>}
+                                label="Повторите пароль"
                                 type={passwordIsVisible ? "text" : "password"}
                                 placeholder=""
                                 {...register("confirmPassword", {
