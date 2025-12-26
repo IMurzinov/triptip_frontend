@@ -23,6 +23,7 @@ const SignUpForm = () => {
         setError,
         formState: { errors, isSubmitting, isDirty }, 
         watch,
+        trigger,
     } = useForm({ mode: "onChange" });
 
     // navigate, handleNavigation и useEffect для создания уведомления
@@ -30,6 +31,9 @@ const SignUpForm = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    
+    // Stepper state - tracks current step but doesn't display visually
+    const [currentStep, setCurrentStep] = useState(1);
 
     const handleNavigation = (path) => {
         if (isDirty && !window.confirm("Вы действительно хотите покинуть страницу? Несохранённые данные будут потеряны.")) {
@@ -54,7 +58,7 @@ const SignUpForm = () => {
 
     },  [isDirty]);
 
-    const fields = ["first_name", "last_name", "username", "email"];
+    const fields = ["first_name", "last_name", "username", "email", "dob"];
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -95,175 +99,215 @@ const SignUpForm = () => {
 
     const [passwordIsVisible, setPasswordIsVisible] = useState(false);
     
+    // Navigation between steps with validation
+    const handleNextStep = async () => {
+        let fieldsToValidate = [];
+        
+        if (currentStep === 1) {
+            fieldsToValidate = ["email"];
+        } else if (currentStep === 2) {
+            fieldsToValidate = ["first_name", "last_name", "username", "dob"];
+        }
+        
+        const isValid = await trigger(fieldsToValidate);
+        
+        if (isValid) {
+            setCurrentStep(currentStep + 1);
+        }
+    };
+    
+    const handlePreviousStep = () => {
+        setCurrentStep(currentStep - 1);
+    };
+    
     return (
         <form
             className="sign-up-form"
             onSubmit={handleFormSubmit}
         >
             <Header hdrType="page" text="Регистрация" />
-            <div className="sign-up-form__personal-data">
-                <Header hdrType="section" text="Общая информация" style={{ marginBottom: "4px" }} />
-                <div className="input-container">
-                    <Input
-                        label={<Header hdrType="input" text="Имя"/>}
-                        type="text"
-                        placeholder="Иван"
-                        {...register("first_name", {
-                            validate: (value) => {
-                                return /^[a-zA-Zа-яА-ЯёЁ\s]+$/u.test(value) || "Только латиница или кириллица";
-                                }
-                            }
-                        )}
-                        autoСomplete="given-name"
-                    />
-                    <div className="error-message">{errors.first_name?.message}</div>
-                </div>
-                <div className="input-container">
-                    <Input
-                        label={<Header hdrType="input" text="Фамилия"/>}
-                        type="text"
-                        placeholder="Иванов"
-                        {...register("last_name", {
-                            validate: (value) => {
-                                return /^[a-zA-Zа-яА-ЯёЁ]+$/u.test(value) || "Только латиница или кириллица";
-                                }
-                            }
-                        )}
-                        autoСomplete="family-name"
-                    />
-                    <div className="error-message">{errors.last_name?.message}</div>
-                </div>
-                <div className="input-container">
-                    <Input
-                        label={<Header hdrType="input" text="Имя пользователя"/>}
-                        type="text"
-                        placeholder="username"
-                        {...register("username", {
-                            required: "Введите имя пользователя",
-                            validate: (value) => {
-                                return /^[A-Za-z@_-]+$/u.test(value) || `Только латиница и символы "@", "-", "_"` ;
-                                }
-                            }
-                        )}
-                        autoСomplete="username"
-                    />
-                    <div className="error-message">{errors.username?.message}</div>
-                </div>
-                <div className="input-container">
-                    <Input
-                        label={<Header hdrType="input" text="Электронная почта"/>}
-                        type="email"
-                        placeholder="something@smth.com"
-                        {...register("email", {
-                            required: "Введите email",
-                            validate: (value) => {
-                                return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) || "Введите корректный email";
-                                }
-                            }
-                        )}
-                        autoСomplete="email"
-                    />
-                    <div className="error-message">{errors.email?.message}</div>
-                </div>
-                {/* <div className="input-container">
-                    <Input
-                        label={<Header hdrType="input" text="Телефон"/>}
-                        type="tel"
-                        placeholder="+7(XXX)XXX-XX-XX"
-                        {...register("phone", {
-                            required: "Введите номер телефона",
-                            validate: (value) => {
-                                return /^(\+)?[0-9]+$/.test(value) || "Введите корректный номер телефона";
-                                }
-                            }
-                        )}
-                        autocomplete="tel"
-                    />
-                    <div className="error-message">{errors.phone?.message}</div>
-                </div> */}
-                {/* <div className="input-container">
-                    <Input
-                        label={<Header hdrType="input" text="Дата рождения"/>}
-                        type="date"
-                        placeholder="20.01.1995"                    
-                        {...register("dob", {
-                            required: "Введите дату рождения",
-                            }
-                        )}
-                        autocomplete="off"
-                    />
-                    <div className="error-message">{errors.dob?.message}</div>
-                </div> */}
-            </div>
-            <div className="sign-up-form__password">
-                <Header className="section-header" text="Создание пароля" style={{ marginBottom: "4px" }} />
-                <div className="input-container">
-                    <div className="password-field-container">
+            
+            {/* Step 1: Email */}
+            {currentStep === 1 && (
+                <div className="sign-up-form__step">
+                    <div className="input-container">
                         <Input
-                            label={<Header hdrType="input" text="Введите пароль"/>}
-                            type={passwordIsVisible ? "text" : "password"}
-                            placeholder=""                        
-                            {...register("password", {
-                                required: "Введите пароль",
+                            label={<Header hdrType="input" text="Электронная почта"/>}
+                            type="email"
+                            placeholder="something@smth.com"
+                            {...register("email", {
+                                required: "Введите email",
                                 validate: (value) => {
-                                    return value.length >= 8 || "Пароль должен содержать не менее 8 символов";
+                                    return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) || "Введите корректный email";
+                                }
+                            })}
+                            autoСomplete="email"
+                        />
+                        <div className="error-message">{errors.email?.message}</div>
+                    </div>
+                    <div className="sign-up-form__buttons">
+                        <Button
+                            btnType="primary"
+                            text="Продолжить"
+                            type="button"
+                            onClick={handleNextStep}
+                        />
+                        <Button
+                            btnType="secondary"
+                            text="Отменить"
+                            type="button"
+                            onClick={() => handleNavigation(-1)}
+                        />
+                    </div>
+                </div>
+            )}
+            
+            {/* Step 2: Personal Information */}
+            {currentStep === 2 && (
+                <div className="sign-up-form__step">
+                    <Header hdrType="section" text="Общая информация" style={{ marginBottom: "4px" }} />
+                    <div className="input-container">
+                        <Input
+                            label={<Header hdrType="input" text="Имя"/>}
+                            type="text"
+                            placeholder="Иван"
+                            {...register("first_name", {
+                                validate: (value) => {
+                                    return /^[a-zA-Zа-яА-ЯёЁ\s]+$/u.test(value) || "Только латиница или кириллица";
+                                }
+                            })}
+                            autoСomplete="given-name"
+                        />
+                        <div className="error-message">{errors.first_name?.message}</div>
+                    </div>
+                    <div className="input-container">
+                        <Input
+                            label={<Header hdrType="input" text="Фамилия"/>}
+                            type="text"
+                            placeholder="Иванов"
+                            {...register("last_name", {
+                                validate: (value) => {
+                                    return /^[a-zA-Zа-яА-ЯёЁ]+$/u.test(value) || "Только латиница или кириллица";
+                                }
+                            })}
+                            autoСomplete="family-name"
+                        />
+                        <div className="error-message">{errors.last_name?.message}</div>
+                    </div>
+                    <div className="input-container">
+                        <Input
+                            label={<Header hdrType="input" text="Дата рождения"/>}
+                            type="date"
+                            placeholder="20.01.1995"
+                            {...register("dob", {
+                                required: "Введите дату рождения",
+                            })}
+                            autoСomplete="bday"
+                        />
+                        <div className="error-message">{errors.dob?.message}</div>
+                    </div>
+                    <div className="input-container">
+                        <Input
+                            label={<Header hdrType="input" text="Имя пользователя"/>}
+                            type="text"
+                            placeholder="username"
+                            {...register("username", {
+                                required: "Введите имя пользователя",
+                                validate: (value) => {
+                                    return /^[A-Za-z@_-]+$/u.test(value) || `Только латиница и символы "@", "-", "_"`;
+                                }
+                            })}
+                            autoСomplete="username"
+                        />
+                        <div className="error-message">{errors.username?.message}</div>
+                    </div>
+                    <div className="sign-up-form__buttons">
+                        <Button
+                            btnType="primary"
+                            text="Продолжить"
+                            type="button"
+                            onClick={handleNextStep}
+                        />
+                        <Button
+                            btnType="secondary"
+                            text="Назад"
+                            type="button"
+                            onClick={handlePreviousStep}
+                        />
+                    </div>
+                </div>
+            )}
+            
+            {/* Step 3: Password Creation */}
+            {currentStep === 3 && (
+                <div className="sign-up-form__step">
+                    <Header className="section-header" text="Создание пароля" style={{ marginBottom: "4px" }} />
+                    <div className="input-container">
+                        <div className="password-field-container">
+                            <Input
+                                label={<Header hdrType="input" text="Введите пароль"/>}
+                                type={passwordIsVisible ? "text" : "password"}
+                                placeholder=""
+                                {...register("password", {
+                                    required: "Введите пароль",
+                                    validate: (value) => {
+                                        return value.length >= 8 || "Пароль должен содержать не менее 8 символов";
                                     }
-                                }
-                            )}
-                            autoСomplete="new-password"
-                        />
-                        <div 
-                            className="show-hide-icon"
-                            onClick={() => setPasswordIsVisible(!passwordIsVisible)}
-                            aria-label={passwordIsVisible ? "Скрыть пароль" : "Показать пароль"}
-                        >
-                            {passwordIsVisible ? <GoEyeClosed /> : <GoEye />}
+                                })}
+                                autoСomplete="new-password"
+                            />
+                            <div 
+                                className="show-hide-icon"
+                                onClick={() => setPasswordIsVisible(!passwordIsVisible)}
+                                aria-label={passwordIsVisible ? "Скрыть пароль" : "Показать пароль"}
+                            >
+                                {passwordIsVisible ? <GoEyeClosed /> : <GoEye />}
+                            </div>
                         </div>
+                        <div className="error-message">{errors.password?.message}</div>
                     </div>
-                    <div className="error-message">{errors.password?.message}</div>
-                </div>
-                <div className="input-container">
-                    <div className="password-field-container">
-                        <Input
-                            label={<Header hdrType="input" text="Повторите пароль"/>}
-                            type={passwordIsVisible ? "text" : "password"}
-                            placeholder=""                        
-                            {...register("confirmPassword", {
-                                required: "Подтвердите пароль",
-                                validate: (value) => {
-                                    return value === watch("password") || "Пароли не совпадают";
+                    <div className="input-container">
+                        <div className="password-field-container">
+                            <Input
+                                label={<Header hdrType="input" text="Повторите пароль"/>}
+                                type={passwordIsVisible ? "text" : "password"}
+                                placeholder=""
+                                {...register("confirmPassword", {
+                                    required: "Подтвердите пароль",
+                                    validate: (value) => {
+                                        return value === watch("password") || "Пароли не совпадают";
                                     }, 
-                                }
-                            )}
-                            autoСomplete="off"
-                        />
-                        <div 
-                            className="show-hide-icon"
-                            onClick={() => setPasswordIsVisible(!passwordIsVisible)}
-                            aria-label={passwordIsVisible ? "Скрыть пароль" : "Показать пароль"}
-                        >
-                            {passwordIsVisible ? <GoEyeClosed /> : <GoEye />}
+                                })}
+                                autoСomplete="off"
+                            />
+                            <div 
+                                className="show-hide-icon"
+                                onClick={() => setPasswordIsVisible(!passwordIsVisible)}
+                                aria-label={passwordIsVisible ? "Скрыть пароль" : "Показать пароль"}
+                            >
+                                {passwordIsVisible ? <GoEyeClosed /> : <GoEye />}
+                            </div>
                         </div>
+                        <div className="error-message">{errors.confirmPassword?.message}</div>
+                        {errors.server && ( <div className="error-message">{errors.server.message}</div> )}
                     </div>
-                    <div className="error-message">{errors.confirmPassword?.message}</div>
-                    {errors.server && ( <div className="error-message">{errors.server.message}</div> )}
+                    <div className="sign-up-form__buttons">
+                        <Button
+                            btnType="primary"
+                            text={isSubmitting ? "Отправляю..." : "Зарегистрироваться"}
+                            type="submit"
+                            disabled={isSubmitting}
+                        />
+                        <Button
+                            btnType="secondary"
+                            text="Назад"
+                            type="button"
+                            disabled={isSubmitting}
+                            onClick={handlePreviousStep}
+                        />
+                    </div>
                 </div>
-            </div>
-            <div className="sign-up-form__buttons">
-                <Button
-                    btnType="primary"
-                    text={isSubmitting ? "Отправляю..." : "Зарегистрироваться"}
-                    type="submit"
-                    disabled={isSubmitting}
-                />
-                <Button
-                    btnType="secondary"
-                    text="Отменить"
-                    type="button"
-                    disabled={isSubmitting}
-                    onClick={() => handleNavigation(-1)}
-                />
-            </div>
+            )}
         </form>
     );
 };
