@@ -13,6 +13,8 @@ import { loginSuccess } from "features/auth/authSlice";
 import { Button, Header, Input } from "components";
 import { userRegistration, auth } from "api";
 
+import FullLogo from "assets/images/full-logo.svg";
+
 import "./index.css";
 
 const SignUpForm = () => {
@@ -36,7 +38,7 @@ const SignUpForm = () => {
     const [currentStep, setCurrentStep] = useState(1);
 
     const handleNavigation = (path) => {
-        if (isDirty && !window.confirm("Вы действительно хотите покинуть страницу? Несохранённые данные будут потеряны.")) {
+        if (currentStep !== 4 &&isDirty && !window.confirm("Вы действительно хотите покинуть страницу? Несохранённые данные будут потеряны.")) {
             return;
         }
         navigate(path);
@@ -44,7 +46,7 @@ const SignUpForm = () => {
 
     useEffect(() => {
         const handleBeforeUnload = (event) => {
-            if (isDirty) {
+            if (isDirty && currentStep !== 4) {
                 event.preventDefault();
                 event.returnValue = '';
             }
@@ -87,7 +89,7 @@ const SignUpForm = () => {
             // dispatch(loginSuccess({ user: loginResponse.user_data }));
             
             // Перенаправление
-            navigate(`/emailnotification`);
+            setCurrentStep(4);
 
         } catch (err) {
             console.error("Ошибка регистрации:", err);
@@ -122,6 +124,12 @@ const SignUpForm = () => {
             onSubmit={handleFormSubmit}
         >
             <div className="sign-up-form__header">
+                <img
+                    src={FullLogo}
+                    alt="Triptip Logo"
+                    className="sign-up-form__logo"
+                    onClick={() => handleNavigation("/")}
+                />
                 <Header hdrType="page" text="Регистрация" />
                 {currentStep === 1 && (
                     <p className="sign-up-form__description">
@@ -147,7 +155,7 @@ const SignUpForm = () => {
                         <Input
                             label="Электронная почта"
                             type="email"
-                            placeholder="something@smth.com"
+                            placeholder="email@email.com"
                             {...register("email", {
                                 required: "Введите email",
                                 validate: (value) => {
@@ -166,6 +174,10 @@ const SignUpForm = () => {
                             onClick={handleNextStep}
                         />
                     </div>
+                    <p className="terms-and-conditions">
+                        {`Нажимая «Продолжить», вы принимаете пользовательское
+                        соглашение и политику конфиденциальности.`}
+                    </p>
                 </div>
             )}
             
@@ -299,6 +311,21 @@ const SignUpForm = () => {
                         />
                     </div>
                 </div>
+            )}
+
+            {/* step 4: Confirmation */}
+            {currentStep === 4 && (
+                <div className="sign-up-form__step">
+                    <img src={FullLogo} alt="Triptip Logo" className="sign-up-form__logo" />
+                    <Header hdrType="page" text="Проверьте почту" />
+                    <div className="sign-up-form__confirmation-message">
+                        <p className="confirmation-text">
+                            Ссылка для входа отправлена {"\n"}
+                            на {watch("email")}
+                        </p>
+                    </div>
+                </div>
+
             )}
         </form>
     );
