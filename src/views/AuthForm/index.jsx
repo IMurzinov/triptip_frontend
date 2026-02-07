@@ -3,7 +3,7 @@
 // TODO: Добавить маску для ввода телефона
 
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { GoEye, GoEyeClosed } from "react-icons/go";
@@ -14,6 +14,8 @@ import { auth, apiClient } from "api";
 import { URL } from "constants/constants";
 import { Toggler } from "views";
 import { Button, Header, Input } from "components";
+
+import FullLogo from "assets/images/full-logo.svg";
 
 import "./index.css";
 
@@ -124,20 +126,25 @@ const AuthForm = () => {
         );
     };
 
-// Uncomment line 121 to get back toggler button
-
     const options = [
+        { label: 'По почте', value: 'email' },
         // { label: 'По номеру телефона', value: 'phone' },
-        { label: 'По электронной почте', value: 'email' },
     ];
 
     return (
         <div className="auth-form">
-            <Header hdrType="page" text="Вход или регистрация" />
             <form 
                 className="auth-form__data-wrapper"
                 onSubmit={handleFormSubmit}
             >
+                <div className="auth-form__header">
+                    <img
+                        src={FullLogo}
+                        alt="Triptip Logo"
+                        className="sign-up-form__logo"
+                        onClick={() => navigate("/")}
+                    />
+                </div>
                 <div className="auth-form__data">
                     <Toggler
                         options={options}
@@ -179,14 +186,13 @@ const AuthForm = () => {
                         disabled={isSubmitting}
                         type="submit"
                     />
-                    <Link className="link" to="/register">
-                        <Button
-                            btnType="secondary"
-                            text="Зарегистрироваться"
-                            disabled={isSubmitting}
-                            type="button"
-                        />
-                    </Link>
+                    <Button
+                        btnType="secondary"
+                        text="Зарегистрироваться"
+                        disabled={isSubmitting}
+                        type="button"
+                        onClick={() => navigate("/register")}
+                    />
                     <Button
                         btnType="plain"
                         text="Забыли пароль?"

@@ -4,9 +4,20 @@
     align-items: stretch;
     gap: 52px;
 
-    width: 502px;
+    width: 24vw;
+    height: auto;
     margin: auto;
-    margin-top: 100px;
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 24px;
+}
+
+.auth-form__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .auth-form__data-wrapper {
@@ -18,7 +29,9 @@
 
 .auth-form__buttons {
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 0.625rem;
+    align-items: stretch;
 }
   
 .form-wrapper {
@@ -53,7 +66,7 @@
 .show-hide-icon {
     box-sizing: border-box;
     position: absolute;
-    left: 93%;
+    left: 91%;
     bottom: 1px;
 
     padding: 8px 10px 6px;

@@ -4,18 +4,15 @@
   
 .toggle-buttons {
     display: flex;
-    gap: 0;
+    gap: 1rem;
     position: relative;
-    border-bottom: 2px solid var(--light-gray);
-    margin-bottom: 12px;
 }
   
 .toggle-button {
-    background: none;
+    background: var(--light-gray);
 
     border: none;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    border-radius: 0.75rem;
 
     font-family: 'Inter', sans-serif;
     font-size: 14px;
@@ -27,9 +24,12 @@
     cursor: pointer;
     outline: none;
 
-    
+    flex: 1 1 auto;
 }
   
 .toggle-button.active-button {
-    border-bottom: 2px solid var(--primary-color);
+    border: 1px solid var(--primary-color);
+    background-color: white;
+
+    font-weight: 600;
 }
