@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useForm, FormProvider, useFieldArray } from "react-hook-form";
 import { parse, format } from "date-fns";
 
-import { Footer, PageHeader, Button, Stepper, Header } from "components";
+import { Footer, Button, Stepper, Header, Sidebar } from "components";
 import { FirstStep, SecondStep, ThirdStep } from "views";
 import { tripsAdd } from "features/userTrips/userTripsSlice";
 
@@ -203,8 +203,9 @@ const TripCreatePage = () => {
     <FormProvider {...methods}>
       {/* onSubmit ссылается на onSubmit в этом компоненте */}
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <div className="trip-create-page__layout">
-          <PageHeader />
+        <div className="trip-create-page__wrapper">
+          <Sidebar />
+          <div className="trip-create-page__layout">
           <main className="trip-create-page__content">
             <Button
               text="« Назад"
@@ -223,6 +224,7 @@ const TripCreatePage = () => {
             </div>
           </main>
           <Footer />
+          </div>
         </div>
       </form>
     </FormProvider>

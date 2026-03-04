@@ -1,8 +1,15 @@
+.profile-page-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
+}
+
 .profile-page-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    min-height: 100vh
+    flex: 1;
+    min-height: 100vh;
 }
 
 .profile-page-layout {

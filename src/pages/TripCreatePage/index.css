@@ -1,7 +1,14 @@
+.trip-create-page__wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 100vh;
+}
+
 .trip-create-page__layout {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    flex: 1;
     min-height: 100vh;
 }
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { Button, Header, PageHeader, Footer } from "components";
+import { Button, Header, Footer, Sidebar } from "components";
 import { UserProfileCard, Toggler, TripList } from "views";
 import { apiClient } from "api";
 import { URL } from "constants/constants";
@@ -150,30 +150,35 @@ const ProfilePage = () => {
     // 7. Лоадер / Ошибка
     if (loading) {
         return (
-        <div className="profile-page-loading">
-            <PageHeader />
+        <div className="profile-page-wrapper">
+            <Sidebar />
+            <div className="profile-page-loading">
             <main className="profile-page-layout">
             <p>Загрузка профиля...</p>
             </main>
             <Footer />
+            </div>
         </div>
         );
     }
 
     if (error) {
         return (
-        <div className="profile-page-error">
-            <PageHeader />
+        <div className="profile-page-wrapper">
+            <Sidebar />
+            <div className="profile-page-error">
             <main className="profile-page-layout">
             <p>Ошибка: {error}</p>
             </main>
             <Footer />
+            </div>
         </div>
         );
     }
 
-    return <div className="profile-page-container">
-                <PageHeader/>
+    return <div className="profile-page-wrapper">
+                <Sidebar />
+                <div className="profile-page-container">
                 <main className="profile-page-layout">
                     <Header
                         className="profile-page__header"
@@ -213,6 +218,7 @@ const ProfilePage = () => {
                     {renderFunctions[selectedOption]?.()}
                 </main>
                 <Footer />
+            </div>
             </div>
 };
 
