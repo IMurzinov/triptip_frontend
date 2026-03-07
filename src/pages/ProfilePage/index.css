@@ -1,45 +1,26 @@
-.profile-page-container {
+.profile-page {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 100vh
+    min-height: 100vh;
+    background: #F2F4F7;
 }
 
-.profile-page-layout {
-    width: 1168px;
-    height: 773px;
+.profile-page__main {
     flex: 1;
-    margin: 30px 72px 27px 200px;
-}
-
-.profile-page__toggler {
-    width: 100%;
-    display: flex;
-}
-
-.toggler-trips {
-
-}
-
-.toggler__security {
-    margin-top: 18px;
+    margin-left: 270px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 20px;
 }
 
-.password__change, .account__delete {
+.profile-page__content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 24px
+    gap: 20px;
 }
 
-.password__change-text, .account__delete-text, .security-info-prohibited {
-    color: var(--black);
-    font-family: 'Inter';
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+.profile-page__trips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
