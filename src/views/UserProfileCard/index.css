@@ -1,91 +1,69 @@
 .profile-card {
-    width: 409px;
-    height: 274px;
-
-    border: 1px solid var(--gray);
-    border-radius: 12px;
-
-    margin: 2.6rem 0 3.3rem;
-    padding: 24px 32px;
-
     position: relative;
+    width: 100%;
+}
+
+.profile-card__banner {
+    background: #ADBACC;
+    height: 212px;
+    border-radius: 12px;
+    width: 100%;
+}
+
+.profile-card__body {
+    position: relative;
+    margin-top: -60px;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    justify-content: center;
-    align-items: center;
+    gap: 12px;
 }
 
-.profile-card__edit-icon {
-    cursor: pointer;
+.profile-card__body .userpic,
+.profile-card__body .userpic-stub {
+    outline: 3px solid white;
+    border-radius: 50%;
+    display: block;
 }
 
-.hidden {
-    display: none;
-}
-
-.profile-card__edit-icon {
-    position: absolute;
-
-    width: 24px;
-    height: 24px;
-    color: var(--snow-gray);
-
-    top: 16px;
-    right: 16px;
-}
-
-.profile-card__info {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    text-align: center;
-
-    justify-content: center;
-    align-items: center;
-}
-
-.nickname {
-    color: var(--dark-gray);
-    font-family: 'Inter';
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.profile-card__numbers {
-    display: flex;
-    gap: 40px;
-}
-
-.profile-card__trips {
-    display: flex;
-    gap: 8px;
-}
-
-.profile-card__friends {
-    display: flex;
-    gap: 8px;
-}
-
-.number {
-    color: var(--primary-color);
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
+.profile-card__username {
+    font-size: 28px;
     font-weight: 600;
-    line-height: normal;
-    text-transform: capitalize;
+    color: #1C1E22;
+    margin: 0;
 }
 
-.trips, .friends {
-    color: var(--black);
-    font-family: Inter;
+.profile-card__stats {
+    display: flex;
+    gap: 20px;
+}
+
+.profile-card__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.profile-card__stat-number {
     font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    text-transform: capitalize;
+    font-weight: 700;
+    color: #1C1E22;
+}
+
+.profile-card__stat-label {
+    font-size: 14px;
+    color: #7187A8;
+}
+
+.profile-card__bio {
+    font-size: 16px;
+    color: #1C1E22;
+    line-height: 20px;
+    margin: 0;
+}
+
+.profile-card__subscribe {
+    position: absolute;
+    top: 20px;
+    right: 0;
 }

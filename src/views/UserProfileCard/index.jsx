@@ -1,48 +1,43 @@
-// TODO: Прописать заглушку на случай отсутствия данных по пользователю
-// TODO: Обернуть edit в кнопку
-import { useSelector, useDispatch } from "react-redux";
-
-import { Header, Userpic } from "components";
-import editLogo from "assets/images/edit_logo.svg";
+import { Userpic, Button } from "components";
 
 import "./index.css";
 
-const UserProfileCard = ({isMyAccount, userpic, username, tripsCount = 0}) => {
-    const dispatch = useDispatch();
-
+const UserProfileCard = ({ isMyAccount, userpic, username, tripsCount = 0, subscribersCount = 0, likesCount = 0, bio }) => {
     if (!username) {
-        return <div>Не удалось загрузить информацию о пользователе</div>
-    };
+        return <div>Не удалось загрузить информацию о пользователе</div>;
+    }
 
     return (
-        <div className='profile-card'>
-            <img
-                className={`profile-card__edit-icon ${!isMyAccount ? 'hidden' : ''}`}
-                src={editLogo}
-                alt='edit-icon'
-            />
-            <Userpic 
-                userpicSrc={userpic}
-                size="large"
-            />
-            <div className='profile-card__info'>
-                <div className='profile-card__name'>
-                    <Header 
-                        text={username}
-                        hdrType="section"
-                    />
-                </div>
-                <div className='profile-card__numbers'>
-                    <div className='profile-card__trips'>
-                        <p className='trips'>Путешествия</p>
-                        <span className='number'>{tripsCount}</span>
+        <div className="profile-card">
+            <div className="profile-card__banner" />
+            <div className="profile-card__body">
+                <Userpic
+                    userpicSrc={userpic}
+                    size="large"
+                    style={{ outline: '3px solid white', borderRadius: '50%', display: 'block' }}
+                />
+                <p className="profile-card__username">{username}</p>
+                <div className="profile-card__stats">
+                    <div className="profile-card__stat">
+                        <span className="profile-card__stat-number">{tripsCount}</span>
+                        <span className="profile-card__stat-label">Публикации</span>
                     </div>
-                    {/* <div className='profile-card__friends'>
-                        <p className='friends'>Друзья</p>
-                        <span className='number'>120</span>
-                    </div> */}
+                    <div className="profile-card__stat">
+                        <span className="profile-card__stat-number">{subscribersCount}</span>
+                        <span className="profile-card__stat-label">Подписчики</span>
+                    </div>
+                    <div className="profile-card__stat">
+                        <span className="profile-card__stat-number">{likesCount}</span>
+                        <span className="profile-card__stat-label">Лайки</span>
+                    </div>
                 </div>
+                {bio && <p className="profile-card__bio">{bio}</p>}
             </div>
+            {!isMyAccount && (
+                <div className="profile-card__subscribe">
+                    <Button text="Подписаться" btnType="primary" />
+                </div>
+            )}
         </div>
     );
 };
