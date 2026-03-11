@@ -1,0 +1,117 @@
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 270px;
+    height: 100vh;
+    background: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    z-index: 100;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar__top {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+}
+
+.sidebar__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar__logo-icon {
+    width: 36px;
+    height: 36px;
+    background: #F46539;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.sidebar__logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1C1E22;
+}
+
+.sidebar__collapse-btn {
+    position: absolute;
+    right: -10px;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #FFECE5;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #E53700;
+    font-size: 14px;
+}
+
+.sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar__nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1C1E22;
+    font-size: 15px;
+    font-weight: 500;
+    background: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+    transition: background 0.15s;
+}
+
+.sidebar__nav-item--active {
+    background: #FFECE5;
+    color: #E53700;
+}
+
+.sidebar__nav-item--logout {
+    color: #1C1E22;
+}
+
+.sidebar__nav-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar__divider {
+    height: 2px;
+    background: #F2F4F7;
+    margin-bottom: 8px;
+}

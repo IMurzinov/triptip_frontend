@@ -7,3 +7,4 @@ export { default as SecondStep } from 'views/TripCreateSecondStep';
 export { default as TripInit } from 'views/TripInit';
 export { default as FirstStep } from 'views/TripCreateFirstStep';
 export { default as ThirdStep } from 'views/TripCreateThirdStep';
+export { default as ProfileTripCard } from 'views/ProfileTripCard';
